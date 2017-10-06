@@ -3,15 +3,32 @@ using Microsoft.Xna.Framework.Input;
 
 class InputHelper
 {
-      
-     // current and previous mouse/keyboard states
-      
+    protected Vector2 scale, offset;
+
+    // current and previous mouse/keyboard states
+
     MouseState currentMouseState, previousMouseState;
     KeyboardState currentKeyboardState, previousKeyboardState;
 
-     
-     // time passed since the last key press
-      
+
+    public InputHelper()
+    {
+        scale = Vector2.One;
+        offset = Vector2.Zero;
+    }
+    public Vector2 Scale
+    {
+        get { return scale; }
+        set { scale = value; }
+    }
+
+    public Vector2 Offset
+    {
+        get { return offset; }
+        set { offset = value; }
+    }
+    // time passed since the last key press
+
     double timeSinceLastKeyPress;
 
      
@@ -22,11 +39,11 @@ class InputHelper
      
      // constructor method
       
-    public InputHelper()
+   /* public InputHelper()
     {
         keyPressInterval = 100;
         timeSinceLastKeyPress = 0;
-    }
+    }*/
 
      
      // updates the input helper object by updating the mouse and keyboard states and updating the timeSinceLastKeyPress variable
