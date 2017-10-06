@@ -45,6 +45,8 @@ class GameWorld
       
     TetrisGrid grid;
 
+    
+
     public GameWorld(int width, int height, ContentManager Content)
     {
         screenWidth = width;
@@ -70,10 +72,8 @@ class GameWorld
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        spriteBatch.Begin();
         grid.Draw(gameTime, spriteBatch, block);
         DrawText("Hello!", Vector2.Zero, spriteBatch);
-        spriteBatch.End();    
     }
      
       // utility method for drawing text on the screen
@@ -82,9 +82,8 @@ class GameWorld
     {
         spriteBatch.DrawString(font, text, positie, Color.Blue);
     }
-
-    public Random Random
+    public int RandomNumber(int a, int b)
     {
-        get { return random; }
+        return random.Next(a, b);
     }
 }

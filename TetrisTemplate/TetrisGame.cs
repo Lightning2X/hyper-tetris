@@ -53,5 +53,9 @@ class TetrisGame : Game
         gameWorld.Draw(gameTime, spriteBatch);
         spriteBatch.End();
     }
+    public GameWorld CurrentGameWorld
+    {
+        get { return gameWorld; }
+    }
 }
 
