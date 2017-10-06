@@ -5,47 +5,44 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System;
 
-/*
- * A class for representing the game world.
- */
+ 
+  // A class for representing the game world.
+  
 class GameWorld
 {
-    /*
-     * enum for different game states (playing or game over)
-     */
+     
+      // enum for different game states (playing or game over)
+      
     enum GameState
     {
-        Playing, GameOver
+        Menu, Options, Playing, GameOver
     }
 
-    /*
-     * screen width and height
-     */
+     
+      // screen width and height
+      
     int screenWidth, screenHeight;
 
-    /*
-     * random number generator
-     */
+    //random number generator
     Random random;
 
-    /*
-     * main game font
-     */
+    //main game font
+
     SpriteFont font;
 
-    /*
-     * sprite for representing a single tetris block element
-     */
+     
+      // sprite for representing a single tetris block element
+      
     Texture2D block;
 
-    /*
-     * the current game state
-     */
+     
+      // the current game state
+      
     GameState gameState;
 
-    /*
-     * the main playing grid
-     */
+     
+      // the main playing grid
+      
     TetrisGrid grid;
 
     public GameWorld(int width, int height, ContentManager Content)
@@ -79,10 +76,9 @@ class GameWorld
         DrawText("Hello!", Vector2.Zero, spriteBatch);
         spriteBatch.End();    
     }
-
-    /*
-     * utility method for drawing text on the screen
-     */
+     
+      // utility method for drawing text on the screen
+      
     public void DrawText(string text, Vector2 positie, SpriteBatch spriteBatch)
     {
         spriteBatch.DrawString(font, text, positie, Color.Blue);
