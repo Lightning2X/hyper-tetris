@@ -20,7 +20,7 @@ namespace Tetris
 
         protected int BlockBuilder()
         {
-
+            return 1;
         }
     }
 

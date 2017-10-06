@@ -26,3 +26,31 @@ C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX
 C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\obj\x86\Debug\Tetris.exe
 C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\obj\x86\Debug\Tetris.pdb
 C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\obj\x86\Debug\Super Hyper Tetris.csprojResolveAssemblyReference.cache
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\obj\x86\Debug\Super Hyper Tetris.csprojResolveAssemblyReference.cache
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\obj\x86\Debug\Tetris.exe
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\obj\x86\Debug\Tetris.pdb
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\block.png
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\SpelFont.spritefont
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\SpelFont.xnb
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Tetris.exe
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Tetris.pdb
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\MonoGame.Framework.dll
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.dll
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.XInput.dll
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.RawInput.dll
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\MonoGame.Framework.xml
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.xml
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.XInput.xml
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.RawInput.xml
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml

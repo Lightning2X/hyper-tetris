@@ -4,9 +4,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 class TetrisGame : Game
 {
+    // initialize the graphics device
+    GraphicsDeviceManager graphics;
     SpriteBatch spriteBatch;
     InputHelper inputHelper;
     GameWorld gameWorld;
+    protected static Point screen;
+    protected Point windowSize;
+
 
     [STAThread]
     static void Main(string[] args)
@@ -16,23 +21,44 @@ class TetrisGame : Game
     }
 
     public TetrisGame()
-    {        
-        // initialize the graphics device
-        GraphicsDeviceManager graphics = new GraphicsDeviceManager(this);
-        
+    {
+        graphics = new GraphicsDeviceManager(this);
         // set the directory where game assets are located
-        this.Content.RootDirectory = "Content";
-        
+        Content.RootDirectory = "Content";
         // set the desired window size
         graphics.PreferredBackBufferWidth = 800;
         graphics.PreferredBackBufferHeight = 600;
-        graphics.IsFullScreen = false;
-        graphics.ApplyChanges();
         
         // create the input helper object
         inputHelper = new InputHelper();
     }
 
+    public bool FullScreen
+    {
+        get { return graphics.IsFullScreen; }
+        set
+        {
+            ApplyResolutionSettings(value);
+        }
+    }
+
+    public void ApplyResolutionSettings(bool fullScreen = false)
+    {
+        if (!fullScreen)
+        {
+            graphics.PreferredBackBufferWidth = windowSize.X;
+            graphics.PreferredBackBufferHeight = windowSize.Y;
+            graphics.IsFullScreen = false;
+            graphics.ApplyChanges();
+        }
+        else
+        {
+            graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
+        }
+    }
     protected override void LoadContent()
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);

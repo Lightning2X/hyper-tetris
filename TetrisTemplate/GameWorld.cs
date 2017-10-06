@@ -71,10 +71,8 @@ class GameWorld
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        spriteBatch.Begin();
         grid.Draw(gameTime, spriteBatch, block);
         DrawText("Hello!", Vector2.Zero, spriteBatch);
-        spriteBatch.End();    
     }
      
       // utility method for drawing text on the screen
