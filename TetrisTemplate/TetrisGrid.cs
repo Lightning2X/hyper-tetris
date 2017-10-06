@@ -41,7 +41,18 @@ class TetrisGrid
         get { return 20; }
     }
 
-     
+    public bool getGridPositions(int x, int y)
+    {
+        // getter
+        return gridlock[x , y]
+        
+    }
+
+    public void setGridPositions(int x, int y, bool set)
+    {
+        gridlock[x, y] = set;
+    }
+
      // clears the grid
       
     public void Clear()

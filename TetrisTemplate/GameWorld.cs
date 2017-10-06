@@ -51,7 +51,6 @@ class GameWorld
         screenHeight = height;
         random = new Random();
         gameState = GameState.Playing;
-
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         grid = new TetrisGrid(block);
