@@ -25,3 +25,5 @@ C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX
 C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\obj\x86\Debug\Tetris.exe
 C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\obj\x86\Debug\Tetris.pdb
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\obj\x86\Debug\Tetris.exe
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\obj\x86\Debug\Tetris.pdb
