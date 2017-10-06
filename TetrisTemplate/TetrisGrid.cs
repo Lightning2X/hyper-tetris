@@ -44,12 +44,12 @@ class TetrisGrid
     public bool getGridPositions(int x, int y)
     {
         // getter
-        return gridlock[x , y]
-        
+        return gridlock[x, y]; 
     }
 
     public void setGridPositions(int x, int y, bool set)
     {
+        // setter
         gridlock[x, y] = set;
     }
 
@@ -62,7 +62,7 @@ class TetrisGrid
      
      // draws the grid on the screen
       
-    public void Draw(GameTime gameTime, SpriteBatch s)
+    public void Draw(GameTime gameTime, SpriteBatch s, Texture2D block)
     {
         for (int x = 0;  x < GridWidth; x++)
         {
@@ -70,8 +70,7 @@ class TetrisGrid
             {
                 if (gridlock[x, y])
                 {
-                    // Draw the sprite
-                    // block.draw ofzo 
+                    s.Draw(block, new Vector2(x + block.Width, y + block.Height), Color.White);     
                 }
             }
         }
