@@ -45,6 +45,8 @@ class GameWorld
       
     TetrisGrid grid;
 
+    
+
     public GameWorld(int width, int height, ContentManager Content)
     {
         screenWidth = width;
@@ -81,9 +83,8 @@ class GameWorld
     {
         spriteBatch.DrawString(font, text, positie, Color.Blue);
     }
-
-    public Random Random
+    public int RandomNumber(int a, int b)
     {
-        get { return random; }
+        return random.Next(a, b);
     }
 }
