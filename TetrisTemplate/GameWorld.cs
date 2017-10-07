@@ -87,4 +87,8 @@ class GameWorld
     {
         return random.Next(a, b);
     }
+    public void LineIsFull()
+    {
+        // code voorals de rij vol is
+    }
 }

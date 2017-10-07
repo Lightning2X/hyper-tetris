@@ -40,10 +40,44 @@ namespace Tetris
         protected void BlockBuilder()
         {
             currentgameworld.RandomNumber(0, 9);
-           /// if(currentgameworld.RandomNumber.Equals(1))
-           /// {
-           ///     Blockbuild.
-           /// }
+            Random rblocks = new Random();
+            rblocks.Next(0, 10);
+            if(rblocks.Equals(1))
+            {
+           ///     Blockbuild blockL.
+            }
+            else if(rblocks.Equals(2))
+            {
+                ///     Blockbuild blockZ.
+            }
+            else if (rblocks.Equals(3))
+            {
+                ///     Blockbuild blockS.
+            }
+            else if (rblocks.Equals(4))
+            {
+                ///     Blockbuild blockOmgL.
+            }
+            else if (rblocks.Equals(5))
+            {
+                ///     Blockbuild block4Kant.
+            }
+            else if (rblocks.Equals(6))
+            {
+                ///     Blockbuild blockI.
+            }
+            else if (rblocks.Equals(7))
+            {
+                ///     Blockbuild blockBom.
+            }
+            else if (rblocks.Equals(8))
+            {
+                ///     Blockbuild blockY.
+            }
+            else if (rblocks.Equals(9))
+            {
+                ///     Blockbuild blockR.
+            }
 
         }
     }
