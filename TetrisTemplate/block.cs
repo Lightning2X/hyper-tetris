@@ -31,12 +31,63 @@ namespace Tetris
             {
                 // Sneller naar beneden
             }
+            if (inputhelper.KeyPressed(Keys.W, false))
+            {
+                // 180* draaien
+            }
         }
 
         protected void BlockBuilder()
         {
             currentgameworld.RandomNumber(0, 9);
+           /// if(currentgameworld.RandomNumber.Equals(1))
+           /// {
+           ///     Blockbuild.
+           /// }
+
         }
     }
+    class Blockbuild : Block
+    {
+        public Blockbuild(Texture2D blocksprite, GameWorld currentgameworld) : base(blocksprite, currentgameworld)
+        {
 
+        }
+        protected void BlockL()
+        {
+           // maak block met vorm L
+        }
+        protected void BlockZ()
+        {
+            // maak block met vorm Z
+        }
+        protected void BlockS()
+        {
+            // maak block met vorm S
+        }
+        protected void BlockOmgL()
+        {
+            // maak block met vorm  omgekeerde L
+        }
+        protected void Block4Kant()
+        {
+            // maak block met vorm van een vierkant
+        }
+        protected void BlockI()
+        {
+            // maak block met vorm I (4 blocken recht aan elkaar)
+        }
+        protected void BlockBom()
+        {
+            // maak block met grote 1, die als ie staat gelijk weer verdwijnt en de directe aangesloten blockjes meeneemt (opblaast)
+        }
+        protected void BlockY()
+        {
+            // maak block met grote 1, die alle gaten in de rij waarin ie neerkomt vult
+        }
+        protected void BlockR()
+        {
+            // maak block met grote 1, die 1 gat in de rij (of de rij er boven of de rij eronder) waarin ie neerkomt vult
+        }
+    }
 }
