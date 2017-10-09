@@ -57,8 +57,8 @@ class TetrisGrid
       
     public void Clear()
     {
-    }
 
+    }
      
      // draws the grid on the screen
       

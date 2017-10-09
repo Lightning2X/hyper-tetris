@@ -18,20 +18,20 @@ namespace Tetris
 
         protected void BlockEvent(InputHelper inputhelper)
         {
-            if (inputhelper.KeyPressed(Keys.A, false))
+            if (inputhelper.KeyPressedA(Keys.A, false))
             {
                 // Linksom draaien
             }
 
-            if (inputhelper.KeyPressed(Keys.D, false))
+            if (inputhelper.KeyPressedD(Keys.D, false))
             {
                 // Rechtsom draaien
             }
-            if (inputhelper.KeyPressed(Keys.S, false))
+            if (inputhelper.KeyPressedS(Keys.S, false))
             {
                 // Sneller naar beneden
             }
-            if (inputhelper.KeyPressed(Keys.W, false))
+            if (inputhelper.KeyPressedW(Keys.W, false))
             {
                 // 180* draaien
             }
@@ -39,7 +39,7 @@ namespace Tetris
 
         protected void BlockBuilder()
         {
-            currentgameworld.RandomNumber(0, 9);
+            currentgameworld.RandomNumber(0, 10);
             Random rblocks = new Random();
             rblocks.Next(0, 10);
             if(rblocks.Equals(1))
