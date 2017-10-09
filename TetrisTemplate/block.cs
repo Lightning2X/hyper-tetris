@@ -43,7 +43,6 @@ namespace Tetris
                 // 1 naar rechts op grid
             }
         }
-
         protected void BlockBuilder()
         {
             currentgameworld.RandomNumber(0, 10);
