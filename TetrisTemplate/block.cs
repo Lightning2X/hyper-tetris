@@ -22,7 +22,6 @@ namespace Tetris
             {
                 // Linksom draaien
             }
-
             if (inputhelper.KeyPressedD(Keys.D, false))
             {
                 // Rechtsom draaien
@@ -78,7 +77,6 @@ namespace Tetris
             {
                 ///     Blockbuild blockR.
             }
-
         }
     }
     class Blockbuild : Block
