@@ -34,6 +34,14 @@ namespace Tetris
             {
                 // 180* draaien
             }
+            if (inputhelper.KeyPressedLeft(Keys.Left, false))
+            {
+                // 1 naar links op grid
+            }
+            if (inputhelper.KeyPressedRight(Keys.Right, false))
+            {
+                // 1 naar rechts op grid
+            }
         }
 
         protected void BlockBuilder()

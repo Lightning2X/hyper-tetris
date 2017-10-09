@@ -102,6 +102,14 @@ class InputHelper
     {
         return currentKeyboardState.IsKeyDown(d) && (previousKeyboardState.IsKeyUp(d) || (timeSinceLastKeyPress > keyPressInterval && detecthold));
     }
+    public bool KeyPressedLeft(Keys left, bool detecthold = true)
+    {
+        return currentKeyboardState.IsKeyDown(left) && (previousKeyboardState.IsKeyUp(left) || (timeSinceLastKeyPress > keyPressInterval && detecthold));
+    }
+    public bool KeyPressedRight(Keys right, bool detecthold = true)
+    {
+        return currentKeyboardState.IsKeyDown(right) && (previousKeyboardState.IsKeyUp(right) || (timeSinceLastKeyPress > keyPressInterval && detecthold));
+    }
     // indicates whether key is currently down
 
     public bool IsKeyDownA(Keys a)
