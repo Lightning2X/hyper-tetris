@@ -18,27 +18,27 @@ namespace Tetris
 
         protected void BlockEvent(InputHelper inputhelper)
         {
-            if (inputhelper.KeyPressedA(Keys.A, false))
+            if (inputhelper.KeyPressed(Keys.A))
             {
                 // Linksom draaien
             }
-            if (inputhelper.KeyPressedD(Keys.D, false))
+            if (inputhelper.KeyPressed(Keys.D, false))
             {
                 // Rechtsom draaien
             }
-            if (inputhelper.KeyPressedS(Keys.S, false))
+            if (inputhelper.KeyPressed(Keys.S, false))
             {
                 // Sneller naar beneden
             }
-            if (inputhelper.KeyPressedW(Keys.W, false))
+            if (inputhelper.KeyPressed(Keys.W, false))
             {
                 // 180* draaien
             }
-            if (inputhelper.KeyPressedLeft(Keys.Left, false))
+            if (inputhelper.KeyPressed(Keys.Left, false))
             {
                 // 1 naar links op grid
             }
-            if (inputhelper.KeyPressedRight(Keys.Right, false))
+            if (inputhelper.KeyPressed(Keys.Right, false))
             {
                 // 1 naar rechts op grid
             }
