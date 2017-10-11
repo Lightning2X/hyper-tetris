@@ -41,40 +41,43 @@ class Block
             // 1 naar rechts op grid
         }
     }
-
-    public static Block RandomBlock()
+    public int NextBlock()
     {
-        int r = GameWorld.RandomNumber(0, 8);
-        if (r == 0)
+        blocktype = GameWorld.RandomNumber(0, 7);
+        return blocktype;
+    }
+    public Block RandomBlock()
+    {
+        if (blocktype == 0)
             //     Bouw blok I (streep)
             return new BlockI();
-        else if (r.Equals(2))
+        else if (blocktype == 1)
         {
             //    Bouw blok J
             return new BlockJ();
         }
-        else if (r.Equals(3))
+        else if (blocktype == 2)
         {
             //     Bouw blok L
             return new BlockL();
         }
-        else if (r.Equals(4))
+        else if (blocktype == 3)
         {
             //    Bouw blok O (vierkant)
             return new BlockO();
         }
-        else if (r.Equals(5))
+        else if (blocktype == 4)
         {
             //  Bouw blok S
             return new BlockS();
         }
-        else if (r.Equals(6))
+        else if (blocktype == 5)
         {
             // Bouw blok T
             return new BlockT();
 
         }
-        else if (r.Equals(7))
+        else if (blocktype == 6)
         {
             // Bouw blok Z
             return new BlockZ();
@@ -94,7 +97,7 @@ class BlockI : Block
 }
 class BlockJ : Block
 {
-
+    
 }
 
 class BlockL : Block

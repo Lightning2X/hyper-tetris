@@ -54,7 +54,7 @@ class GameWorld
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         grid = new TetrisGrid(block);
-        blockfunction = new Block(block);
+        blockfunction = new Block();
     }
 
     public void Reset()
@@ -68,7 +68,8 @@ class GameWorld
 
     public void Update(GameTime gameTime)
     {
-        Block newblock = Block.RandomBlock();
+        blockfunction.NextBlock();
+        Block newblock = blockfunction.RandomBlock();
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -86,9 +87,5 @@ class GameWorld
     static public int RandomNumber(int a, int b)
     {
         return random.Next(a, b);
-    }
-    public void LineIsFull()
-    {
-        // code voorals de rij vol is
     }
 }
