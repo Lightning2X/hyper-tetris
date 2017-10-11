@@ -13,18 +13,15 @@ class TetrisGrid
         position = Vector2.Zero;
         this.Clear();
     }
-
     protected bool[,] gridlock = new bool[12, 20];
      
      // sprite for representing a single grid block
       
     Texture2D gridblock;
 
-     
      // the position of the tetris grid
       
     Vector2 position;
-
      
      // width in terms of grid elements
       
@@ -32,7 +29,6 @@ class TetrisGrid
     {
         get { return 12; }
     }
-
      
      // height in terms of grid elements
       
@@ -40,13 +36,11 @@ class TetrisGrid
     {
         get { return 20; }
     }
-
     public bool getGridPositions(int x, int y)
     {
         // getter
         return gridlock[x, y]; 
     }
-
     public void setGridPositions(int x, int y, bool set)
     {
         // setter
@@ -59,7 +53,6 @@ class TetrisGrid
     {
 
     }
-     
      // draws the grid on the screen
       
     public void Draw(GameTime gameTime, SpriteBatch s, Texture2D block)

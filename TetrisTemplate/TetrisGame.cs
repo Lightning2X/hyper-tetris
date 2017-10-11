@@ -35,7 +35,6 @@ class TetrisGame : Game
         // create the input helper object
         inputHelper = new InputHelper();
     }
-
     public bool FullScreen
     {
         get { return graphics.IsFullScreen; }
@@ -44,7 +43,6 @@ class TetrisGame : Game
             ApplyResolutionSettings(value);
         }
     }
-
     public void ApplyResolutionSettings(bool fullScreen = false)
     {
         if (!fullScreen)
@@ -82,7 +80,6 @@ class TetrisGame : Game
         inputHelper.Offset = new Vector2(viewport.X, viewport.Y);
         spriteScale = Matrix.CreateScale(inputHelper.Scale.X, inputHelper.Scale.Y, 1);
     }
-
     protected override void LoadContent()
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -91,14 +88,12 @@ class TetrisGame : Game
         gameWorld.Reset();
         hud = new HUD(gameWorld);
     }
-
     protected override void Update(GameTime gameTime)
     {
         inputHelper.Update(gameTime);
         gameWorld.HandleInput(gameTime, inputHelper);
         gameWorld.Update(gameTime);
     }
-
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.White);
