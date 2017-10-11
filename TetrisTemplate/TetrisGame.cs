@@ -15,6 +15,7 @@ class TetrisGame : Game
     protected Point windowSize;
     protected Matrix spriteScale;
 
+
     [STAThread]
     static void Main(string[] args)
     {

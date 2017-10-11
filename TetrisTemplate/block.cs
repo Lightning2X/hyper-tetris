@@ -18,7 +18,7 @@ namespace Tetris
 
         protected void BlockEvent(InputHelper inputhelper)
         {
-            if (inputhelper.KeyPressed(Keys.A))
+            if (inputhelper.KeyPressed(Keys.A, false))
             {
                 // Linksom draaien
             }
@@ -94,7 +94,8 @@ namespace Tetris
         }
         protected void BlockL()
         {
-           // maak block met vorm L
+            // maak block met vorm L
+
         }
         protected void BlockZ()
         {

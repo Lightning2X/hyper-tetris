@@ -53,8 +53,17 @@ class TetrisGrid
     {
 
     }
+ /*   public int RemovedLineCount()
+    {
+        int removedlinecount = 0;
+     //   while(LineIsFull > 0)
+     //   {
+     //       removedlinecount++;
+     //   }
+     //   return removedlinecount;
+    }
      // draws the grid on the screen
-      
+     */ 
     public void Draw(GameTime gameTime, SpriteBatch s, Texture2D block)
     {
         for (int x = 0;  x < GridWidth; x++)
