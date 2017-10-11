@@ -30,6 +30,7 @@ class InputHelper
     // time passed since the last key press
 
     double timeSinceLastKeyPress;
+
      
      // time interval to read separate keypresses when holding a key
       
@@ -43,6 +44,7 @@ class InputHelper
         keyPressInterval = 100;
         timeSinceLastKeyPress = 0;
     }*/
+
      
      // updates the input helper object by updating the mouse and keyboard states and updating the timeSinceLastKeyPress variable
       
@@ -62,6 +64,7 @@ class InputHelper
         currentMouseState = Mouse.GetState();
         currentKeyboardState = Keyboard.GetState();
     }
+
      
      // returns the current mouse position
       
@@ -69,6 +72,7 @@ class InputHelper
     {
         get { return new Vector2(currentMouseState.X, currentMouseState.Y); }
     }
+
      
      // indicates whether the left mouse button is pressed
       
@@ -76,51 +80,14 @@ class InputHelper
     {
         return currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released;
     }
- 
-     // indicates whether the player has pressed the key in the current update, a key press is detected
-     // if either the key wasn't pressed in the previous state, or enough time has passed since the last time the key press
-     // was detected
-      
-    public bool KeyPressedS(Keys s, bool detecthold = true)
-    {
-        return currentKeyboardState.IsKeyDown(s) && (previousKeyboardState.IsKeyUp(s) || (timeSinceLastKeyPress > keyPressInterval && detecthold));
-    }
-    public bool KeyPressedA(Keys a, bool detecthold = true)
-    {
-        return currentKeyboardState.IsKeyDown(a) && (previousKeyboardState.IsKeyUp(a) || (timeSinceLastKeyPress > keyPressInterval && detecthold));
-    }
-    public bool KeyPressedW(Keys w, bool detecthold = true)
-    {
-        return currentKeyboardState.IsKeyDown(w) && (previousKeyboardState.IsKeyUp(w) || (timeSinceLastKeyPress > keyPressInterval && detecthold));
-    }
-    public bool KeyPressedD(Keys d, bool detecthold = true)
-    {
-        return currentKeyboardState.IsKeyDown(d) && (previousKeyboardState.IsKeyUp(d) || (timeSinceLastKeyPress > keyPressInterval && detecthold));
-    }
-    public bool KeyPressedLeft(Keys left, bool detecthold = true)
-    {
-        return currentKeyboardState.IsKeyDown(left) && (previousKeyboardState.IsKeyUp(left) || (timeSinceLastKeyPress > keyPressInterval && detecthold));
-    }
-    public bool KeyPressedRight(Keys right, bool detecthold = true)
-    {
-        return currentKeyboardState.IsKeyDown(right) && (previousKeyboardState.IsKeyUp(right) || (timeSinceLastKeyPress > keyPressInterval && detecthold));
-    }
-    // indicates whether key is currently down
 
-    public bool IsKeyDownA(Keys a)
+
+    // indicates whether the player has pressed the key in the current update, a key press is detected
+    // if either the key wasn't pressed in the previous state, or enough time has passed since the last time the key press
+    // was detected
+
+    public bool KeyPressed(Keys k, bool detecthold = true)
     {
-        return currentKeyboardState.IsKeyDown(a);
-    }
-    public bool IsKeyDownW(Keys w)
-    {
-        return currentKeyboardState.IsKeyDown(w);
-    }
-    public bool IsKeyDownS(Keys s)
-    {
-        return currentKeyboardState.IsKeyDown(s);
-    }
-    public bool IsKeyDownD(Keys d)
-    {
-        return currentKeyboardState.IsKeyDown(d);
+        return currentKeyboardState.IsKeyDown(k) && (previousKeyboardState.IsKeyUp(k) || (timeSinceLastKeyPress > keyPressInterval && detecthold));
     }
 }
