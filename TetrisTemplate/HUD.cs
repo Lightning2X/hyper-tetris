@@ -4,21 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tetris
+
+class HUD
 {
-    class HUD : TetrisGame
+    private GameWorld currentgameworld;
+    public HUD(GameWorld currentgameworld)
     {
-        
+        this.currentgameworld = currentgameworld;
     }
-    class Score : HUD
-    {
-        
-    }
-    class Menu : HUD
-    {
-        
-    }
-    class Nextpiece : HUD
+    public Score()
     {
 
     }

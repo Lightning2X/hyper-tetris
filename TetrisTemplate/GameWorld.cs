@@ -24,7 +24,7 @@ class GameWorld
     int screenWidth, screenHeight;
 
     //random number generator
-    Random random;
+    static Random random;
 
     //main game font
 
@@ -44,8 +44,8 @@ class GameWorld
       // the main playing grid
       
     TetrisGrid grid;
-
-    
+    Block blockfunction;
+   
 
     public GameWorld(int width, int height, ContentManager Content)
     {
@@ -56,6 +56,7 @@ class GameWorld
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         grid = new TetrisGrid(block);
+        blockfunction = new Block(block);
     }
 
     public void Reset()
@@ -69,6 +70,7 @@ class GameWorld
 
     public void Update(GameTime gameTime)
     {
+        Block newblock = Block.RandomBlock();
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -83,7 +85,7 @@ class GameWorld
     {
         spriteBatch.DrawString(font, text, positie, Color.Blue);
     }
-    public int RandomNumber(int a, int b)
+    static public int RandomNumber(int a, int b)
     {
         return random.Next(a, b);
     }
