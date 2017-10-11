@@ -12,7 +12,15 @@ class HUD
     {
         this.currentgameworld = currentgameworld;
     }
-    public Score()
+    protected void Score()
+    {
+
+    }
+    protected void NextPiece()
+    {
+
+    }
+    protected void Additionaleffects()
     {
 
     }
