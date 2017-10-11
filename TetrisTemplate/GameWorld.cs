@@ -13,9 +13,7 @@ class GameWorld
      
       // enum for different game states (playing or game over)
       
-    enum GameState
-    {
-        Menu, Options, Playing, GameOver
+    enum GameState     {         Menu, Options, Playing, GameOver
     }
 
      
