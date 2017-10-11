@@ -51,10 +51,26 @@ class TetrisGrid
       
     public void Clear()
     {
+        for (int x = 0; x < GridWidth; x++)
+        {
+            for (int y = 0; y < GridHeight; y++)
+            {
+                gridlock[x, y] = false;
+            }
+        }
+    }
+    public void MoveDown()
+    {
 
     }
-     // draws the grid on the screen
-      
+    public void LineisFull()
+    {
+
+    }
+    public void Update(GameTime gameTime)
+    {
+        LineisFull();
+    }
     public void Draw(GameTime gameTime, SpriteBatch s, Texture2D block)
     {
         for (int x = 0;  x < GridWidth; x++)

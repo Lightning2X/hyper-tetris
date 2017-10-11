@@ -17,7 +17,6 @@ class GameWorld
     {
         Menu, Options, Playing, GameOver
     }
-
      
       // screen width and height
       
@@ -39,8 +38,6 @@ class GameWorld
       // the current game state
       
     GameState gameState;
-
-     
       // the main playing grid
       
     TetrisGrid grid;
@@ -52,11 +49,11 @@ class GameWorld
         screenWidth = width;
         screenHeight = height;
         random = new Random();
-        gameState = GameState.Playing;
+        gameState = GameState.Menu;
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         grid = new TetrisGrid(block);
-        blockfunction = new Block();
+        blockfunction = new Block(grid);
     }
 
     public void Reset()
@@ -68,10 +65,15 @@ class GameWorld
 
     }
 
+    public void Gameclock()
+    {
+
+    }
+
     public void Update(GameTime gameTime)
     {
-        blockfunction.NextBlock();
         Block newblock = blockfunction.RandomBlock();
+        blockfunction.NextBlock();
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
