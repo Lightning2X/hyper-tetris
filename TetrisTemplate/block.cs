@@ -5,129 +5,117 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 
-namespace Tetris
+class Block
 {
-    class Block
+    public int blocktype;
+    private int rblocks;
+    public Block()
     {
-        GameWorld currentgameworld;
-        public Block(Texture2D blocksprite, GameWorld currentgameworld)
-        {
-            this.currentgameworld = currentgameworld;
 
-        }
+    }
 
-        protected void BlockEvent(InputHelper inputhelper)
+    protected void BlockEvent(InputHelper inputhelper)
+    {
+        if (inputhelper.KeyPressed(Keys.A))
         {
-            if (inputhelper.KeyPressed(Keys.A, false))
-            {
-                // Linksom draaien
-            }
-            if (inputhelper.KeyPressed(Keys.D, false))
-            {
-                // Rechtsom draaien
-            }
-            if (inputhelper.KeyPressed(Keys.S, false))
-            {
-                // Sneller naar beneden
-            }
-            if (inputhelper.KeyPressed(Keys.W, false))
-            {
-                // 180* draaien
-            }
-            if (inputhelper.KeyPressed(Keys.Left, false))
-            {
-                // 1 naar links op grid
-            }
-            if (inputhelper.KeyPressed(Keys.Right, false))
-            {
-                // 1 naar rechts op grid
-            }
+            // Linksom draaien
         }
-        protected void BlockBuilder()
+        if (inputhelper.KeyPressed(Keys.D, false))
         {
-            currentgameworld.RandomNumber(0, 10);
-            Random rblocks = new Random();
-            rblocks.Next(0, 10);
-            if(rblocks.Equals(1))
-            {
-           ///     Blockbuild blockL.
-            }
-            else if(rblocks.Equals(2))
-            {
-                ///     Blockbuild blockZ.
-            }
-            else if (rblocks.Equals(3))
-            {
-                ///     Blockbuild blockS.
-            }
-            else if (rblocks.Equals(4))
-            {
-                ///     Blockbuild blockOmgL.
-            }
-            else if (rblocks.Equals(5))
-            {
-                ///     Blockbuild block4Kant.
-            }
-            else if (rblocks.Equals(6))
-            {
-                ///     Blockbuild blockI.
-            }
-            else if (rblocks.Equals(7))
-            {
-                ///     Blockbuild blockBom.
-            }
-            else if (rblocks.Equals(8))
-            {
-                ///     Blockbuild blockY.
-            }
-            else if (rblocks.Equals(9))
-            {
-                ///     Blockbuild blockR.
-            }
+            // Rechtsom draaien
+        }
+        if (inputhelper.KeyPressed(Keys.S, false))
+        {
+            // Sneller naar beneden
+        }
+        if (inputhelper.KeyPressed(Keys.W, false))
+        {
+            // 180* draaien
+        }
+        if (inputhelper.KeyPressed(Keys.Left, false))
+        {
+            // 1 naar links op grid
+        }
+        if (inputhelper.KeyPressed(Keys.Right, false))
+        {
+            // 1 naar rechts op grid
         }
     }
-    class Blockbuild : Block
+
+    public static Block RandomBlock()
     {
-        public Blockbuild(Texture2D blocksprite, GameWorld currentgameworld) : base(blocksprite, currentgameworld)
+        int r = GameWorld.RandomNumber(0, 8);
+        if (r == 0)
+            //     Bouw blok I (streep)
+            return new BlockI();
+        else if (r.Equals(2))
         {
+            //    Bouw blok J
+            return new BlockJ();
+        }
+        else if (r.Equals(3))
+        {
+            //     Bouw blok L
+            return new BlockL();
+        }
+        else if (r.Equals(4))
+        {
+            //    Bouw blok O (vierkant)
+            return new BlockO();
+        }
+        else if (r.Equals(5))
+        {
+            //  Bouw blok S
+            return new BlockS();
+        }
+        else if (r.Equals(6))
+        {
+            // Bouw blok T
+            return new BlockT();
 
         }
-        protected void BlockL()
+        else if (r.Equals(7))
         {
-            // maak block met vorm L
-
+            // Bouw blok Z
+            return new BlockZ();
         }
-        protected void BlockZ()
-        {
-            // maak block met vorm Z
-        }
-        protected void BlockS()
-        {
-            // maak block met vorm S
-        }
-        protected void BlockOmgL()
-        {
-            // maak block met vorm  omgekeerde L
-        }
-        protected void Block4Kant()
-        {
-            // maak block met vorm van een vierkant
-        }
-        protected void BlockI()
-        {
-            // maak block met vorm I (4 blocken recht aan elkaar)
-        }
-        protected void BlockBom()
-        {
-            // maak block met grote 1, die als ie staat gelijk weer verdwijnt en de directe aangesloten blockjes meeneemt (opblaast)
-        }
-        protected void BlockY()
-        {
-            // maak block met grote 1, die alle gaten in de rij waarin ie neerkomt vult
-        }
-        protected void BlockR()
-        {
-            // maak block met grote 1, die 1 gat in de rij (of de rij er boven of de rij eronder) waarin ie neerkomt vult
-        }
+        else
+            return null;
     }
+    public int Blocktype
+    {
+        get { return blocktype; }
+    }
+}
+
+class BlockI : Block
+{
+
+}
+class BlockJ : Block
+{
+
+}
+
+class BlockL : Block
+{
+
+}
+class BlockO : Block
+{
+
+}
+class BlockS : Block
+{
+
+}
+
+class BlockT : Block
+{
+
+}
+
+class BlockZ : Block
+{
+
 }

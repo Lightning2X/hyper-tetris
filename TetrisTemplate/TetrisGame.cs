@@ -11,6 +11,7 @@ class TetrisGame : Game
     SpriteBatch spriteBatch;
     InputHelper inputHelper;
     GameWorld gameWorld;
+    HUD hud;
     protected static Point screen;
     protected Point windowSize;
     protected Matrix spriteScale;
@@ -86,6 +87,7 @@ class TetrisGame : Game
         // create and reset the game world
         gameWorld = new GameWorld(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, Content);
         gameWorld.Reset();
+        hud = new HUD(gameWorld);
     }
     protected override void Update(GameTime gameTime)
     {
@@ -100,8 +102,5 @@ class TetrisGame : Game
         gameWorld.Draw(gameTime, spriteBatch);
         spriteBatch.End();
     }
-    public GameWorld CurrentGameWorld
-    {
-        get { return gameWorld; }
-    }
+ 
 }
