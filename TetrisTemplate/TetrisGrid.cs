@@ -25,14 +25,14 @@ class TetrisGrid
      
      // width in terms of grid elements
       
-    public int GridWidth
+    public static int GridWidth
     {
         get { return 12; }
     }
      
      // height in terms of grid elements
       
-    public int GridHeight
+    public static int GridHeight
     {
         get { return 20; }
     }

@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 class Block
 {
-    public int blocktype;
+    public int blocktype, offsetx;
     protected int rotation;
     protected bool[,] blockposition = new bool[4, 4];
     public Block()
@@ -24,7 +24,7 @@ class Block
         {
             RotateRight();
         }
-        if (inputhelper.KeyPressed(Keys.S, false))
+        if (inputhelper.KeyPressed(Keys.S, true))
         {
             MoveDown();
         }
@@ -36,30 +36,54 @@ class Block
         {
             MoveRight();
         }
+        // yspeed is nu weer nul? yspeed = 0
     }
     protected virtual void MoveRight()
     {
-
+        if(offsetx <= (TetrisGrid.GridWidth - 4))
+        {
+            offsetx++;
+        }
     }
     protected virtual void MoveLeft()
     {
-
+        if(offsetx >= 0)
+        {
+            offsetx--;
+        }
     }
     protected virtual void MoveDown()
     {
-
+        // TODO: add an integer that increases y speed
     }
     protected virtual void RotateRight()
     {
-
+        // Decreases rotation on button press
+        if (rotation >= 0)
+        {
+            rotation--;
+        }
+        else
+            rotation = 3;
     }
     protected virtual void RotateLeft()
     {
+        // Increases rotation on button press
+        if (rotation <= 3)
+        {
+            rotation++;
+        }
+        else
+            rotation = 0;
 
+    }
+    public bool GetBlockPosition(int x, int y)
+    {
+        return blockposition[x, y];
     }
     protected virtual void BlockPosition()
     {
-
+        // deze functie bouwt voor elk blok een andere versie van 4 arrays van 4 x 4, daarom is hij hier leeg
     }
     protected void ResetBlockPosition()
     {
@@ -118,6 +142,19 @@ class Block
     public int Blocktype
     {
         get { return blocktype; }
+    }
+    public void Draw(GameTime gameTime, SpriteBatch s, Texture2D block)
+    {
+        for (int x = 0; x < 4; x++)
+        {
+            for (int y = 0; y < 4; y++)
+            {
+                if (blockposition[x, y])
+                {
+                    s.Draw(block, new Vector2(offsetx + (x + block.Width), (y + block.Height)), Color.White);
+                }
+            }
+        }
     }
 }
 
