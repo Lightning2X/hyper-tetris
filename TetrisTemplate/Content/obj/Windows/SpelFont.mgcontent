@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/SpelFont.spritefont</SourceFile>
-  <SourceTime>2017-10-06T14:07:02.6869021+02:00</SourceTime>
-  <DestFile>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/bin/Windows/SpelFont.xnb</DestFile>
-  <DestTime>2017-10-11T08:58:58.0090668+02:00</DestTime>
+  <SourceFile>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/SpelFont.spritefont</SourceFile>
+  <SourceTime>2017-10-11T14:23:26.157495+02:00</SourceTime>
+  <DestFile>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/bin/Windows/SpelFont.xnb</DestFile>
+  <DestTime>2017-10-11T15:15:24.0230153+02:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
