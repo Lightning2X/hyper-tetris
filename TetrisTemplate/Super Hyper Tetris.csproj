@@ -40,6 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Block.cs" />
+    <Compile Include="Gameclock.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="HUD.cs" />
     <Compile Include="InputHelper.cs" />

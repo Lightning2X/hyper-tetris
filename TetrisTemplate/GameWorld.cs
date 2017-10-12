@@ -40,6 +40,7 @@ class GameWorld
       
     TetrisGrid grid;
     Block blockfunction, newblock;
+    Gameclock Timer;
    
 
     public GameWorld(int width, int height, ContentManager Content)
@@ -52,6 +53,7 @@ class GameWorld
         font = Content.Load<SpriteFont>("SpelFont");
         grid = new TetrisGrid(block);
         blockfunction = new Block();
+        Timer = new Gameclock();
     }
 
     public void Reset()
@@ -59,11 +61,6 @@ class GameWorld
     }
 
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
-    {
-
-    }
-
-    public void Gameclock()
     {
 
     }
