@@ -14,7 +14,7 @@ class Block
     {
         offsety = 0;
         offsetx = 0;
-        rotation = 0;
+        rotation = GameWorld.RandomNumber(0, 4);
         blocktype = GameWorld.RandomNumber(0, 7);
     }
 

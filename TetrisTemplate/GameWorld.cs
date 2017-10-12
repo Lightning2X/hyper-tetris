@@ -71,6 +71,11 @@ class GameWorld
         blockfunction.NextBlock();
     }
 
+    public int NextWorldBlock
+    {
+        get { return blockfunction.blocktype; }
+    }
+
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         grid.Draw(gameTime, spriteBatch, block);
