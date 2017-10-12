@@ -13,8 +13,7 @@ class GameWorld
      
       // enum for different game states (playing or game over)
       
-    enum GameState     {         Menu, Options, Playing, GameOver
-    }
+    enum GameState     {         Menu, Options, Help, Playing, GameOver     }
      
       // screen width and height
       
@@ -30,7 +29,7 @@ class GameWorld
      
       // sprite for representing a single tetris block element
       
-    Texture2D block;
+    Texture2D block, helpmenu;
 
      
       // the current game state
@@ -47,15 +46,17 @@ class GameWorld
         screenWidth = width;
         screenHeight = height;
         random = new Random();
-        gameState = GameState.Menu;
+        gameState = GameState.Help;
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
+        helpmenu = Content.Load<Texture2D>("Helpmenu");
         grid = new TetrisGrid(block);
         blockfunction = new Block();
     }
 
     public void Reset()
     {
+
     }
 
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
@@ -70,19 +71,41 @@ class GameWorld
 
     public void Update(GameTime gameTime)
     {
+        if (gameState == GameState.Options)
+        {
+
+        }
+        if (gameState == GameState.Help)
+        {
+
+        }
+        if (gameState == GameState.GameOver)
+        {
+
+        }
+        if (gameState == GameState.Playing)
+        {
+
+        }
         newblock = blockfunction.RandomBlock();
         blockfunction.NextBlock();
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
+
         grid.Draw(gameTime, spriteBatch, block);
-        newblock.Draw(gameTime, spriteBatch, block);
-        DrawText("Hello!", Vector2.Zero, spriteBatch);
+        if (gameState == GameState.GameOver)
+        {
+
+        }
+        if (gameState == GameState.Help)
+        {
+            spriteBatch.Draw(helpmenu, Vector2.Zero, Color.White);
+        }
     }
-     
-      // utility method for drawing text on the screen
-      
+    // utility method for drawing text on the screen
+
     public void DrawText(string text, Vector2 positie, SpriteBatch spriteBatch)
     {
         spriteBatch.DrawString(font, text, positie, Color.Blue);

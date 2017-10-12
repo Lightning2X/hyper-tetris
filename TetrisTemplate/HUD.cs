@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 
-
 class HUD
 {
     private GameWorld currentgameworld;
@@ -15,13 +14,28 @@ class HUD
     {
         this.currentgameworld = currentgameworld;
     }
-    protected void Score()
+    protected /*public mogelijk */ int Score()
     {
+        int score = 0;
+        if(/* new block neer gezet*/true)
+            {
+            score += 10;
+            }
+        if(/* lineisfull*/ true)
+        {
+            score += 100;
 
+        }
+        if(/* reset*/ true)
+        {
+            score = 0;
+        }
+        return score;
     }
-    protected void NextPiece()
+    public NextPiece()
     {
 
+        return Block.Blocktype;
     }
     protected void Menu()
     {

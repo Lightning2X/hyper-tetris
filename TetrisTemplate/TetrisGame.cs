@@ -30,7 +30,7 @@ class TetrisGame : Game
         // set the directory where game assets are located
         Content.RootDirectory = "Content";
         // set the desired window size
-        graphics.PreferredBackBufferWidth = 800;
+        graphics.PreferredBackBufferWidth = 400;
         graphics.PreferredBackBufferHeight = 600;
         
         // create the input helper object
