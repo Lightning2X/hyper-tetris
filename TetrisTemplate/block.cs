@@ -7,11 +7,15 @@ using Microsoft.Xna.Framework.Input;
 
 class Block
 {
-    public int blocktype, offsetx;
+    public int blocktype, offsetx, offsety;
     protected int rotation;
     protected bool[,] blockposition = new bool[4, 4];
     public Block()
     {
+        offsety = 0;
+        offsetx = 0;
+        rotation = 0;
+        blocktype = GameWorld.RandomNumber(0, 7);
     }
 
     protected void BlockEvent(InputHelper inputhelper)
@@ -36,7 +40,7 @@ class Block
         {
             MoveRight();
         }
-        // yspeed is nu weer nul? yspeed = 0
+        // gofaster is set back to false if S isn't pressed
     }
     protected virtual void MoveRight()
     {
@@ -52,9 +56,15 @@ class Block
             offsetx--;
         }
     }
+    public int Yoffset
+    {
+        get { return offsety; }
+        set { offsety = value; }
+    }
     protected virtual void MoveDown()
     {
         // TODO: add an integer that increases y speed
+        offsety++;
     }
     protected virtual void RotateRight()
     {
@@ -151,7 +161,7 @@ class Block
             {
                 if (blockposition[x, y])
                 {
-                    s.Draw(block, new Vector2(offsetx + (x + block.Width), (y + block.Height)), Color.White);
+                    s.Draw(block, new Vector2(offsetx + (x + block.Width), (offsety + (y + block.Height))), Color.White);
                 }
             }
         }

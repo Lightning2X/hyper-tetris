@@ -53,7 +53,7 @@ class GameWorld
         font = Content.Load<SpriteFont>("SpelFont");
         grid = new TetrisGrid(block);
         blockfunction = new Block();
-        Timer = new Gameclock();
+        Timer = new Gameclock(newblock);
     }
 
     public void Reset()
