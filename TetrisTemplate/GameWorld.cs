@@ -39,7 +39,7 @@ class GameWorld
       // the main playing grid
       
     TetrisGrid grid;
-    Block blockfunction;
+    Block blockfunction, newblock;
    
 
     public GameWorld(int width, int height, ContentManager Content)
@@ -51,7 +51,7 @@ class GameWorld
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         grid = new TetrisGrid(block);
-        blockfunction = new Block(grid);
+        blockfunction = new Block();
     }
 
     public void Reset()
@@ -70,13 +70,14 @@ class GameWorld
 
     public void Update(GameTime gameTime)
     {
-        Block newblock = blockfunction.RandomBlock();
+        newblock = blockfunction.RandomBlock();
         blockfunction.NextBlock();
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         grid.Draw(gameTime, spriteBatch, block);
+        newblock.Draw(gameTime, spriteBatch, block);
         DrawText("Hello!", Vector2.Zero, spriteBatch);
     }
      
