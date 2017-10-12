@@ -20,6 +20,10 @@ class HUD
     {
 
     }
+    protected void Menu()
+    {
+
+    }
     protected void Additionaleffects()
     {
 
