@@ -39,6 +39,7 @@ class GameWorld
       
     TetrisGrid grid;
     Block blockfunction, newblock;
+    Gameclock Timer;
    
 
     public GameWorld(int width, int height, ContentManager Content)
@@ -52,6 +53,7 @@ class GameWorld
         helpmenu = Content.Load<Texture2D>("Helpmenu");
         grid = new TetrisGrid(block);
         blockfunction = new Block();
+        Timer = new Gameclock(newblock);
     }
 
     public void Reset()
@@ -60,11 +62,6 @@ class GameWorld
     }
 
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
-    {
-
-    }
-
-    public void Gameclock()
     {
 
     }
@@ -89,6 +86,11 @@ class GameWorld
         }
         newblock = blockfunction.RandomBlock();
         blockfunction.NextBlock();
+    }
+
+    public int NextWorldBlock
+    {
+        get { return blockfunction.blocktype; }
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
