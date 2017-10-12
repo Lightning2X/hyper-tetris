@@ -82,3 +82,7 @@ C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.RawInput.xml
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\obj\x86\Debug\Super Hyper Tetris.csprojResolveAssemblyReference.cache
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\Helpmenu.png
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\xblock.png
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\bomblock.png
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\rblock.png
