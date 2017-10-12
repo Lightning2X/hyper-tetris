@@ -39,7 +39,6 @@ class GameWorld
       
     TetrisGrid grid;
     Block blockfunction, newblock;
-    Gameclock Timer;
    
 
     public GameWorld(int width, int height, ContentManager Content)
@@ -53,7 +52,6 @@ class GameWorld
         helpmenu = Content.Load<Texture2D>("Helpmenu");
         grid = new TetrisGrid(block);
         blockfunction = new Block();
-        Timer = new Gameclock(newblock);
     }
 
     public void Reset()
@@ -82,7 +80,9 @@ class GameWorld
         }
         if (gameState == GameState.Playing)
         {
+            // TODO add check for if there is already a block
             newblock = blockfunction.RandomBlock();
+            newblock.Clock(gameTime);
             blockfunction.NextBlock();
         }
     }

@@ -7,13 +7,15 @@ using Microsoft.Xna.Framework.Input;
 
 class Block
 {
-    public int blocktype, offsetx, offsety;
+    public int blocktype, offsetx, offsety, nexttick, tick;
     protected int rotation;
     protected bool[,] blockposition = new bool[4, 4];
     public Block()
     {
         offsety = 0;
         offsetx = 0;
+        nexttick = 0;
+        tick = 3;
         rotation = GameWorld.RandomNumber(0, 4);
         blocktype = GameWorld.RandomNumber(0, 7);
     }
@@ -56,15 +58,21 @@ class Block
             offsetx--;
         }
     }
-    public int Yoffset
-    {
-        get { return offsety; }
-        set { offsety = value; }
-    }
+
     protected virtual void MoveDown()
     {
         // TODO: add an integer that increases y speed
         offsety++;
+    }
+    public virtual void Clock(GameTime gameTime)
+    {
+        nexttick += (int)gameTime.ElapsedGameTime.TotalSeconds;
+        if (nexttick == tick)
+        {
+            nexttick = 0;
+            offsety++;
+        }
+
     }
     protected virtual void RotateRight()
     {
@@ -91,7 +99,7 @@ class Block
     {
         return blockposition[x, y];
     }
-    protected virtual void BlockPosition()
+    public virtual void BlockPosition()
     {
         // deze functie bouwt voor elk blok een andere versie van 4 arrays van 4 x 4, daarom is hij hier leeg
     }
@@ -174,7 +182,7 @@ class BlockI : Block
     {
 
     }
-    protected override void BlockPosition()
+    public override void BlockPosition()
     {
         ResetBlockPosition();
         if (rotation == 0)
@@ -214,7 +222,7 @@ class BlockJ : Block
         
     }
 
-    protected override void BlockPosition()
+    public override void BlockPosition()
     {
         ResetBlockPosition();
         if (rotation == 0)
@@ -259,7 +267,7 @@ class BlockL : Block
     {
 
     }
-    protected override void BlockPosition()
+    public override void BlockPosition()
     {
         ResetBlockPosition();
         if (rotation == 0)
@@ -302,13 +310,15 @@ class BlockO : Block
     {
 
     }
-    protected override void BlockPosition()
+    public override void BlockPosition()
     {
+        ResetBlockPosition();
         blockposition[0, 0] = true;
         blockposition[1, 0] = true;
         blockposition[0, 1] = true;
         blockposition[1, 1] = true;
     }
+
 }
 class BlockS : Block
 {
@@ -316,7 +326,7 @@ class BlockS : Block
     {
 
     }
-    protected override void BlockPosition()
+    public override void BlockPosition()
     {
         ResetBlockPosition();
         if (rotation == 0)
@@ -356,7 +366,7 @@ class BlockT : Block
     {
 
     }
-    protected override void BlockPosition()
+    public override void BlockPosition()
     {
         ResetBlockPosition();
         if (rotation == 0)
@@ -391,6 +401,7 @@ class BlockT : Block
             }
             blockposition[2, 1] = true;
         }
+        
     }
 }
 
@@ -400,7 +411,7 @@ class BlockZ : Block
     {
 
     }
-    protected override void BlockPosition()
+    public override void BlockPosition()
     {
         ResetBlockPosition();
         if (rotation == 0)
