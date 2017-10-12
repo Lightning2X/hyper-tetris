@@ -15,7 +15,7 @@ class Gameclock
     public void Update(GameTime gameTime)
     {
         float speedincrease = (float)0.01 * (float)gameTime.ElapsedGameTime.TotalSeconds;
-        for(int i = 0; i < 30; i++)
+        for (int i = 0; i < 30; i++)
         {
             if (i * gameTime.TotalGameTime.Seconds >= 30)
             {

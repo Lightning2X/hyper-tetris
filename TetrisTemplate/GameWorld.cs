@@ -82,10 +82,9 @@ class GameWorld
         }
         if (gameState == GameState.Playing)
         {
-
+            newblock = blockfunction.RandomBlock();
+            blockfunction.NextBlock();
         }
-        newblock = blockfunction.RandomBlock();
-        blockfunction.NextBlock();
     }
 
     public int NextWorldBlock
@@ -95,8 +94,12 @@ class GameWorld
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
+        if (gameState == GameState.Playing)
+        {
+            grid.Draw(gameTime, spriteBatch, block);
+            newblock.Draw(gameTime, spriteBatch, block);
+        }
 
-        grid.Draw(gameTime, spriteBatch, block);
         if (gameState == GameState.GameOver)
         {
 
