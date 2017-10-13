@@ -84,7 +84,11 @@ class GameWorld
         if (gameState == GameState.Playing)
         {
             // TODO add check for if there is already a block
-            newblock = blockfunction.RandomBlock();
+            if (!(grid.IsThereABlock))
+            {
+                newblock = blockfunction.RandomBlock();
+                grid.IsThereABlock = true;
+            }
             newblock.Update(gameTime);
             blockfunction.NextBlock();
         }

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
   
 class TetrisGrid
 {
+    bool isthereablock;
     public TetrisGrid(Texture2D b)
     {
         gridblock = b;
@@ -59,13 +60,15 @@ class TetrisGrid
             }
         }
     }
-    public void MoveDown()
-    {
 
-    }
     public void LineisFull()
     {
 
+    }
+    public bool IsThereABlock
+    {
+        get { return isthereablock; }
+        set { isthereablock = value; }
     }
     public void Update(GameTime gameTime)
     {
