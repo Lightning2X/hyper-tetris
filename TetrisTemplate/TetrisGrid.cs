@@ -14,8 +14,9 @@ class TetrisGrid
         this.Clear();
     }
     protected bool[,] gridlock = new bool[12, 20];
-     
-     // sprite for representing a single grid block
+
+    public int AVL = 0;
+    // sprite for representing a single grid block
       
     Texture2D gridblock;
 
@@ -65,7 +66,7 @@ class TetrisGrid
     }
     public void LineisFull()
     {
-
+        AVL += 100; 
     }
     public void Update(GameTime gameTime)
     {

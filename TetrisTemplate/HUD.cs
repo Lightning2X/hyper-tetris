@@ -17,6 +17,9 @@ class HUD
     }
     protected void Score()
     {
+       // int score = 
+
+
 
     }
     protected void NextPiece()
