@@ -20,7 +20,7 @@ class Block
         blocktype = GameWorld.RandomNumber(0, 7);
     }
 
-    protected void BlockEvent(InputHelper inputhelper)
+    public void HandleInput(InputHelper inputhelper)
     {
         if (inputhelper.KeyPressed(Keys.A, false))
         {
@@ -161,6 +161,11 @@ class Block
     {
         get { return blocktype; }
     }
+    public void Update(GameTime gameTime)
+    {
+        BlockPosition();
+        Clock(gameTime);
+    }
     public void Draw(GameTime gameTime, SpriteBatch s, Texture2D block)
     {
         for (int x = 0; x < 4; x++)
@@ -169,7 +174,8 @@ class Block
             {
                 if (blockposition[x, y])
                 {
-                    s.Draw(block, new Vector2(offsetx + (x + block.Width), (offsety + (y + block.Height))), Color.White);
+                    s.Draw(block, new Vector2(((offsetx + x) * block.Width), ((offsety + y) * block.Height)), Color.White);
+                    
                 }
             }
         }

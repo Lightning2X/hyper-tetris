@@ -46,7 +46,7 @@ class GameWorld
         screenWidth = width;
         screenHeight = height;
         random = new Random();
-        gameState = GameState.Help;
+        gameState = GameState.Playing;
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         helpmenu = Content.Load<Texture2D>("Helpmenu");
@@ -61,7 +61,10 @@ class GameWorld
 
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
     {
-
+        if(newblock != null)
+        {
+            newblock.HandleInput(inputHelper);
+        }
     }
 
     public void Update(GameTime gameTime)
@@ -82,7 +85,7 @@ class GameWorld
         {
             // TODO add check for if there is already a block
             newblock = blockfunction.RandomBlock();
-            newblock.Clock(gameTime);
+            newblock.Update(gameTime);
             blockfunction.NextBlock();
         }
     }
