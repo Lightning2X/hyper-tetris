@@ -13,9 +13,9 @@ class GameWorld
      
       // enum for different game states (playing or game over)
       
-    enum GameState     {         Menu, Options, Help, Playing, GameOver     }
-     
-      // screen width and height
+    enum GameState     {         Menu, Options, Help, Playing, GameOver     } 
+
+    // screen width and height
       
     int screenWidth, screenHeight;
 
@@ -58,7 +58,7 @@ class GameWorld
 
     public void Reset()
     {
-
+        
     }
 
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
@@ -95,8 +95,6 @@ class GameWorld
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-
-        grid.Draw(gameTime, spriteBatch, block);
         if (gameState == GameState.GameOver)
         {
 
@@ -104,6 +102,10 @@ class GameWorld
         if (gameState == GameState.Help)
         {
             spriteBatch.Draw(helpmenu, Vector2.Zero, Color.White);
+        }
+        if(gameState == GameState.Playing)
+        {
+            grid.Draw(gameTime, spriteBatch, block);
         }
     }
     // utility method for drawing text on the screen
