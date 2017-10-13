@@ -46,11 +46,11 @@ class Block
     }
     protected virtual void MoveRight()
     {
-            offsetx++;
+        offsetx++;
     }
     protected virtual void MoveLeft()
     {
-            offsetx--;
+        offsetx++;
     }
 
     protected virtual void MoveDown()
@@ -88,7 +88,7 @@ class Block
         }
         else
         {
-            rotation = 3;
+            rotation = 4;
             rotation--;
         }
     }

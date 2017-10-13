@@ -65,6 +65,7 @@ class TetrisGrid
     {
 
     }
+
     public bool IsThereABlock
     {
         get { return isthereablock; }
