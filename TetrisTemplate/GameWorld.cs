@@ -13,9 +13,9 @@ class GameWorld
      
       // enum for different game states (playing or game over)
       
-    enum GameState     {         Menu, Options, Help, Playing, GameOver     } 
-
-    // screen width and height
+    enum GameState     {         Menu, Options, Help, Playing, GameOver     }
+     
+      // screen width and height
       
     int screenWidth, screenHeight;
 
@@ -39,7 +39,6 @@ class GameWorld
       
     TetrisGrid grid;
     Block blockfunction, newblock;
-    Gameclock Timer;
    
 
     public GameWorld(int width, int height, ContentManager Content)
@@ -47,23 +46,25 @@ class GameWorld
         screenWidth = width;
         screenHeight = height;
         random = new Random();
-        gameState = GameState.Help;
+        gameState = GameState.Playing;
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         helpmenu = Content.Load<Texture2D>("Helpmenu");
         grid = new TetrisGrid(block);
         blockfunction = new Block();
-        Timer = new Gameclock(newblock);
     }
 
     public void Reset()
     {
-        
+
     }
 
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
     {
-
+        if(newblock != null)
+        {
+            newblock.HandleInput(inputHelper);
+        }
     }
 
     public void Update(GameTime gameTime)
@@ -82,10 +83,11 @@ class GameWorld
         }
         if (gameState == GameState.Playing)
         {
-
+            // TODO add check for if there is already a block
+            newblock = blockfunction.RandomBlock();
+            newblock.Update(gameTime);
+            blockfunction.NextBlock();
         }
-        newblock = blockfunction.RandomBlock();
-        blockfunction.NextBlock();
     }
 
     public int NextWorldBlock
@@ -95,6 +97,12 @@ class GameWorld
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
+        if (gameState == GameState.Playing)
+        {
+            grid.Draw(gameTime, spriteBatch, block);
+            newblock.Draw(gameTime, spriteBatch, block);
+        }
+
         if (gameState == GameState.GameOver)
         {
 
@@ -102,10 +110,6 @@ class GameWorld
         if (gameState == GameState.Help)
         {
             spriteBatch.Draw(helpmenu, Vector2.Zero, Color.White);
-        }
-        if(gameState == GameState.Playing)
-        {
-            grid.Draw(gameTime, spriteBatch, block);
         }
     }
     // utility method for drawing text on the screen
