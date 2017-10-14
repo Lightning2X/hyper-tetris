@@ -4,19 +4,20 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System;
+using static System.Console;
 
- 
-  // A class for representing the game world.
-  
+
+// A class for representing the game world.
+
 class GameWorld
 {
-     
-      // enum for different game states (playing or game over)
-      
-    enum GameState     {         Menu, Options, Help, Playing, GameOver     }
-     
-      // screen width and height
-      
+
+    // enum for different game states (playing or game over)
+
+    enum GameState { Menu, Options, Help, Playing, GameOver }
+
+    // screen width and height
+
     int screenWidth, screenHeight;
 
     //random number generator
@@ -26,20 +27,20 @@ class GameWorld
 
     SpriteFont font;
 
-     
-      // sprite for representing a single tetris block element
-      
-    Texture2D block, helpmenu;
 
-     
-      // the current game state
-      
+    // sprite for representing a single tetris block element
+
+    Texture2D block, helpmenu, OptionsMenu, OnSprite, OffSprite;
+    Vector2 ScorePosition = new Vector2(360, 0);
+
+    // the current game state
+
     GameState gameState;
-      // the main playing grid
-      
+    // the main playing grid
+
     TetrisGrid grid;
     Block blockfunction, newblock;
-   
+
 
     public GameWorld(int width, int height, ContentManager Content)
     {
@@ -50,8 +51,12 @@ class GameWorld
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         helpmenu = Content.Load<Texture2D>("Helpmenu");
+        OnSprite = Content.Load<Texture2D>("onoptions");
+        OffSprite = Content.Load<Texture2D>("offoptions");
+        OptionsMenu = Content.Load<Texture2D>("OptionsMenu");
         grid = new TetrisGrid(block);
         blockfunction = new Block();
+
     }
 
     public void Reset()
@@ -61,7 +66,7 @@ class GameWorld
 
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
     {
-        if(newblock != null)
+        if (newblock != null)
         {
             newblock.HandleInput(inputHelper);
         }
@@ -69,6 +74,7 @@ class GameWorld
 
     public void Update(GameTime gameTime)
     {
+
         if (gameState == GameState.Options)
         {
 
@@ -101,6 +107,8 @@ class GameWorld
         {
             grid.Draw(gameTime, spriteBatch, block);
             newblock.Draw(gameTime, spriteBatch, block);
+            string Scorestring = TetrisGame.Variables.score.ToString();
+            spriteBatch.DrawString(font,Scorestring, ScorePosition, Color.Black);
         }
 
         if (gameState == GameState.GameOver)

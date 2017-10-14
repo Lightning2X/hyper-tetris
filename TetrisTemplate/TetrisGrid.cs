@@ -66,7 +66,7 @@ class TetrisGrid
     }
     public void LineisFull()
     {
-        AVL += 100; 
+        AVL++; 
     }
     public void Update(GameTime gameTime)
     {

@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using static System.Console;
 
 
 class TetrisGame : Game
@@ -15,13 +16,18 @@ class TetrisGame : Game
     protected static Point screen;
     protected Point windowSize;
     protected Matrix spriteScale;
-
+    public static int score = 3;
 
     [STAThread]
     static void Main(string[] args)
     {
         TetrisGame game = new TetrisGame();
         game.Run();
+    }
+
+    public class Variables
+    {
+        public static int score = 3;
     }
 
     public TetrisGame()
@@ -32,7 +38,6 @@ class TetrisGame : Game
         // set the desired window size
         graphics.PreferredBackBufferWidth = 400;
         graphics.PreferredBackBufferHeight = 600;
-        
         // create the input helper object
         inputHelper = new InputHelper();
     }
@@ -88,6 +93,7 @@ class TetrisGame : Game
         gameWorld = new GameWorld(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, Content);
         gameWorld.Reset();
         hud = new HUD(gameWorld);
+      //  int score = 0;
     }
     protected override void Update(GameTime gameTime)
     {

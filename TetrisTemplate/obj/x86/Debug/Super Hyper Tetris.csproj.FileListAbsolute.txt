@@ -90,3 +90,6 @@ C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content
 C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\xblock.png
 C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\bomblock.png
 C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\rblock.png
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\offoptions.png
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\onoptions.png
+C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\Optionsmenu.png

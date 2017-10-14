@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using static System.Console;
 
 
 
@@ -14,13 +15,6 @@ class HUD
     public HUD(GameWorld currentgameworld)
     {
         this.currentgameworld = currentgameworld;
-    }
-    protected void Score()
-    {
-       // int score = 
-
-
-
     }
     protected void NextPiece()
     {
