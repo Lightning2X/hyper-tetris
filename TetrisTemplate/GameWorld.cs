@@ -32,7 +32,10 @@ class GameWorld
 
     Texture2D block, helpmenu, OptionsMenu, OnSprite, OffSprite;
     Vector2 ScorePosition = new Vector2(360, 0);
-
+    Vector2 FSon = new Vector2(250, 70);
+    Vector2 Musicoff = new Vector2(250, 260);
+    bool fullscreen1 = true;
+    bool music = false;
     // the current game state
 
     GameState gameState;
@@ -47,7 +50,7 @@ class GameWorld
         screenWidth = width;
         screenHeight = height;
         random = new Random();
-        gameState = GameState.Playing;
+        gameState = GameState.Options;
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         helpmenu = Content.Load<Texture2D>("Helpmenu");
@@ -122,6 +125,18 @@ class GameWorld
         if (gameState == GameState.Help)
         {
             spriteBatch.Draw(helpmenu, Vector2.Zero, Color.White);
+        }
+        if (gameState == GameState.Options)
+        {
+            spriteBatch.Draw(OptionsMenu, Vector2.Zero, Color.White);
+            if(fullscreen1)
+            {
+                spriteBatch.Draw(OnSprite, FSon, Color.White);
+            }
+            if (!music)
+            {
+                spriteBatch.Draw(OffSprite, Musicoff, Color.White);
+            }
         }
     }
     // utility method for drawing text on the screen
