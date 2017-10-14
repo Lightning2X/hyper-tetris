@@ -30,10 +30,11 @@ class GameWorld
 
     // sprite for representing a single tetris block element
 
-    Texture2D block, helpmenu, OptionsMenu, OnSprite, OffSprite;
-    Vector2 ScorePosition = new Vector2(360, 0);
+    Texture2D block, helpmenu, MainMenu, OptionsMenu, OnSprite, OffSprite, blauwsprite, GameOverSprite;
+    Vector2 ScorePosition = new Vector2(420, 0);
     Vector2 FSon = new Vector2(250, 70);
     Vector2 Musicoff = new Vector2(250, 260);
+    Vector2 blauw1 = new Vector2(380, 0);
     bool fullscreen1 = true;
     bool music = false;
     // the current game state
@@ -50,13 +51,16 @@ class GameWorld
         screenWidth = width;
         screenHeight = height;
         random = new Random();
-        gameState = GameState.Options;
+        gameState = GameState.GameOver;
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         helpmenu = Content.Load<Texture2D>("Helpmenu");
         OnSprite = Content.Load<Texture2D>("onoptions");
         OffSprite = Content.Load<Texture2D>("offoptions");
         OptionsMenu = Content.Load<Texture2D>("OptionsMenu");
+        blauwsprite = Content.Load<Texture2D>("blauw");
+        MainMenu = Content.Load<Texture2D>("Mainmenu");
+        GameOverSprite = Content.Load<Texture2D>("gameover");
         grid = new TetrisGrid(block);
         blockfunction = new Block();
 
@@ -66,7 +70,18 @@ class GameWorld
     {
 
     }
+    protected void NextPiece()
+    {
 
+    }
+    protected void Menu()
+    {
+
+    }
+    protected void Additionaleffects()
+    {
+
+    }
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
     {
         if (newblock != null)
@@ -77,18 +92,63 @@ class GameWorld
 
     public void Update(GameTime gameTime)
     {
-
+        if (gameState == GameState.Menu)
+        {
+            if (false)// klikken op opties knop
+            {
+                gameState = GameState.Options;
+            }
+            if(false)// klikken op help knop
+            {
+                gameState = GameState.Help;
+            }
+            if (false)// klikken op play knop
+            {
+                gameState = GameState.Playing;
+            }
+        }
         if (gameState == GameState.Options)
         {
-
+            if (true)
+            {//in veld wordt gedrukt dan uitvoeren
+                if (fullscreen1)
+                {
+                    fullscreen1 = false;
+                }
+                if (!fullscreen1)
+                {
+                    fullscreen1 = true;
+                }
+            }
+            if (true)
+            {//in veld wordt gedrukt dan uitvoeren
+                if (!music)
+                {
+                    music = true;
+                }
+                if (music)
+                {
+                    music = false;
+                }
+            }
+            if(false)// klikken op terug knop
+            {
+                gameState = GameState.Menu;
+            }
         }
         if (gameState == GameState.Help)
         {
-
+            if (false)// klikken op terug knop
+            {
+                gameState = GameState.Menu;
+            }
         }
         if (gameState == GameState.GameOver)
         {
-
+            if (false)// klikken op terug knop
+            {
+                gameState = GameState.Menu;
+            }
         }
         if (gameState == GameState.Playing)
         {
@@ -115,12 +175,14 @@ class GameWorld
             grid.Draw(gameTime, spriteBatch, block);
             newblock.Draw(gameTime, spriteBatch, block);
             string Scorestring = TetrisGame.Variables.score.ToString();
+            spriteBatch.Draw(blauwsprite, blauw1, Color.White);
             spriteBatch.DrawString(font,Scorestring, ScorePosition, Color.Black);
+
         }
 
         if (gameState == GameState.GameOver)
         {
-
+            spriteBatch.Draw(GameOverSprite, Vector2.Zero, Color.White);
         }
         if (gameState == GameState.Help)
         {
@@ -137,6 +199,10 @@ class GameWorld
             {
                 spriteBatch.Draw(OffSprite, Musicoff, Color.White);
             }
+        }
+        if(gameState == GameState.Menu)
+        {
+            spriteBatch.Draw(MainMenu, Vector2.Zero, Color.White);
         }
     }
     // utility method for drawing text on the screen

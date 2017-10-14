@@ -16,16 +16,5 @@ class HUD
     {
         this.currentgameworld = currentgameworld;
     }
-    protected void NextPiece()
-    {
-
-    }
-    protected void Menu()
-    {
-
-    }
-    protected void Additionaleffects()
-    {
-
-    }
+    
 }
