@@ -34,11 +34,11 @@ class Block
         {
             MoveDown();
         }
-        if (inputhelper.KeyPressed(Keys.Left, false))
+        if (inputhelper.KeyPressed(Keys.Left, true))
         {
             MoveLeft();
         }
-        if (inputhelper.KeyPressed(Keys.Right, false))
+        if (inputhelper.KeyPressed(Keys.Right, true))
         {
             MoveRight();
         }
@@ -46,22 +46,15 @@ class Block
     }
     protected virtual void MoveRight()
     {
-        if(offsetx <= (TetrisGrid.GridWidth - 4))
-        {
-            offsetx++;
-        }
+        offsetx++;
     }
     protected virtual void MoveLeft()
     {
-        if(offsetx >= 0)
-        {
-            offsetx--;
-        }
+        offsetx++;
     }
 
     protected virtual void MoveDown()
     {
-        // TODO: add an integer that increases y speed
         offsety++;
     }
     public virtual void Clock(GameTime gameTime)
@@ -77,23 +70,27 @@ class Block
     protected virtual void RotateRight()
     {
         // Decreases rotation on button press
-        if (rotation >= 0)
-        {
-            rotation--;
-        }
-        else
-            rotation = 3;
-    }
-    protected virtual void RotateLeft()
-    {
-        // Increases rotation on button press
-        if (rotation <= 3)
+        if (rotation <= 2)
         {
             rotation++;
         }
         else
             rotation = 0;
 
+    }
+    protected virtual void RotateLeft()
+    {
+        // Increases rotation on button press
+        
+        if (rotation >= 1)
+        {
+            rotation--;
+        }
+        else
+        {
+            rotation = 4;
+            rotation--;
+        }
     }
     public bool GetBlockPosition(int x, int y)
     {
@@ -112,6 +109,7 @@ class Block
                 blockposition[x, y] = false;
             }
         }
+        // xd
     }
     public int NextBlock()
     {
@@ -175,7 +173,6 @@ class Block
                 if (blockposition[x, y])
                 {
                     s.Draw(block, new Vector2(((offsetx + x) * block.Width), ((offsety + y) * block.Height)), Color.White);
-                    
                 }
             }
         }
@@ -237,7 +234,7 @@ class BlockJ : Block
             {
                 blockposition[1, i] = true;
             }
-            blockposition[0, 3] = true;
+            blockposition[0, 2] = true;
         }
         else if (rotation == 1)
         {
@@ -306,7 +303,7 @@ class BlockL : Block
             {
                 blockposition[i, 1] = true;
             }
-            blockposition[3, 0] = true;
+            blockposition[2, 0] = true;
         }
     }
 }
@@ -374,10 +371,11 @@ class BlockT : Block
     }
     public override void BlockPosition()
     {
+        // verkeerde block roteert atm
         ResetBlockPosition();
         if (rotation == 0)
         {
-            for (int i = 0; i < 3; i++)
+            for(int i = 0; i < 3; i++)
             {
                 blockposition[i, 1] = true;
             }
