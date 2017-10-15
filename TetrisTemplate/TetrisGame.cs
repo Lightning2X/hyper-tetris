@@ -16,7 +16,7 @@ class TetrisGame : Game
     protected static Point screen;
     protected Point windowSize;
     protected Matrix spriteScale;
-    public static int score = 3;
+    public static int score = 0;
 
     [STAThread]
     static void Main(string[] args)
@@ -27,7 +27,7 @@ class TetrisGame : Game
 
     public class Variables
     {
-        public static int score = 3;
+        public static int score = 0;
     }
 
     public TetrisGame()
@@ -93,13 +93,12 @@ class TetrisGame : Game
         gameWorld = new GameWorld(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, Content);
         gameWorld.Reset();
         hud = new HUD(gameWorld);
-      //  int score = 0;
     }
     protected override void Update(GameTime gameTime)
     {
         inputHelper.Update(gameTime);
         gameWorld.HandleInput(gameTime, inputHelper);
-        gameWorld.Update(gameTime);
+        gameWorld.Update(gameTime, inputHelper);
     }
     protected override void Draw(GameTime gameTime)
     {

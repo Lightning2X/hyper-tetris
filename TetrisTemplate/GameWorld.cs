@@ -35,6 +35,7 @@ class GameWorld
     Vector2 FSon = new Vector2(250, 70);
     Vector2 Musicoff = new Vector2(250, 260);
     Vector2 blauw1 = new Vector2(380, 0);
+    MouseState currentMouseState;
     bool fullscreen1 = true;
     bool music = false;
     // the current game state
@@ -63,6 +64,7 @@ class GameWorld
         GameOverSprite = Content.Load<Texture2D>("gameover");
         grid = new TetrisGrid(block);
         blockfunction = new Block();
+        currentMouseState = Mouse.GetState();
 
     }
 
@@ -71,10 +73,6 @@ class GameWorld
 
     }
     protected void NextPiece()
-    {
-
-    }
-    protected void Menu()
     {
 
     }
@@ -89,28 +87,31 @@ class GameWorld
             newblock.HandleInput(inputHelper);
         }
     }
-
-    public void Update(GameTime gameTime)
+    public Vector2 MousePosition
+    {
+        get { return new Vector2(currentMouseState.X, currentMouseState.Y); }
+    }
+    public void Update(GameTime gameTime, InputHelper inputhelper)
     {
         if (gameState == GameState.Menu)
         {
-            if (false)// klikken op opties knop
+           if (inputhelper.MouseLeftButtonPressed() && MousePosition.X >=15 && MousePosition.X <= 365 && MousePosition.Y >= 100 && MousePosition.Y <= 220) // startknop
             {
-                gameState = GameState.Options;
+                gameState = GameState.Playing;
             }
-            if(false)// klikken op help knop
+            if (inputhelper.MouseLeftButtonPressed() && MousePosition.X >= 15 && MousePosition.X <= 335 && MousePosition.Y >= 375 && MousePosition.Y <= 495) // helpknop
             {
                 gameState = GameState.Help;
             }
-            if (false)// klikken op play knop
+            if (inputhelper.MouseLeftButtonPressed() && MousePosition.X >= 15 && MousePosition.X <= 335 && MousePosition.Y >= 225 && MousePosition.Y <= 345) // optiesnop
             {
-                gameState = GameState.Playing;
+                gameState = GameState.Options;
             }
         }
         if (gameState == GameState.Options)
         {
-            if (true)
-            {//in veld wordt gedrukt dan uitvoeren
+            if (inputhelper.MouseLeftButtonPressed() && MousePosition.X >= 250 && MousePosition.X <= 400 && MousePosition.Y >= 70 && MousePosition.Y <= 220) // fullscreenknop
+            {   //in veld wordt gedrukt dan uitvoeren
                 if (fullscreen1)
                 {
                     fullscreen1 = false;
@@ -119,9 +120,9 @@ class GameWorld
                 {
                     fullscreen1 = true;
                 }
-            }
-            if (true)
-            {//in veld wordt gedrukt dan uitvoeren
+           }
+            if (inputhelper.MouseLeftButtonPressed() && MousePosition.X >= 250 && MousePosition.X <= 400 && MousePosition.Y >= 260 && MousePosition.Y <= 410) // songknop
+            {   //in veld wordt gedrukt dan uitvoeren
                 if (!music)
                 {
                     music = true;
@@ -131,21 +132,23 @@ class GameWorld
                     music = false;
                 }
             }
-            if(false)// klikken op terug knop
+            if (inputhelper.MouseLeftButtonPressed() && MousePosition.X >= 20 && MousePosition.X <= 370 && MousePosition.Y >= 430 && MousePosition.Y <= 530) // mainmenu knop
             {
                 gameState = GameState.Menu;
             }
         }
         if (gameState == GameState.Help)
         {
-            if (false)// klikken op terug knop
+            if (inputhelper.MouseLeftButtonPressed() && MousePosition.X >= 15 && MousePosition.X <= 325 && MousePosition.Y >= 460 && MousePosition.Y <= 550) // mainmenu knop
             {
                 gameState = GameState.Menu;
             }
         }
+        Rectangle buttonmainmenufromgameover = new Rectangle(15, 465, 310, 70);
+
         if (gameState == GameState.GameOver)
         {
-            if (false)// klikken op terug knop
+            if (inputhelper.MouseLeftButtonPressed() && MousePosition.X >= 15 && MousePosition.X <= 465 && MousePosition.Y >= 310 && MousePosition.Y <= 380) // mainmenu knop
             {
                 gameState = GameState.Menu;
             }
@@ -174,7 +177,7 @@ class GameWorld
         {
             grid.Draw(gameTime, spriteBatch, block);
             newblock.Draw(gameTime, spriteBatch, block);
-            string Scorestring = TetrisGame.Variables.score.ToString();
+            string Scorestring = "Score" + TetrisGame.Variables.score.ToString();
             spriteBatch.Draw(blauwsprite, blauw1, Color.White);
             spriteBatch.DrawString(font,Scorestring, ScorePosition, Color.Black);
 
