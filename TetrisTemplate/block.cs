@@ -50,7 +50,7 @@ class Block
     }
     protected virtual void MoveLeft()
     {
-        offsetx++;
+        offsetx--;
     }
 
     protected virtual void MoveDown()
