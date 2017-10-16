@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -30,15 +31,16 @@ class GameWorld
 
     // sprite for representing a single tetris block element
 
-    Texture2D block, helpmenu, MainMenu, OptionsMenu, OnSprite, OffSprite, blauwsprite, GameOverSprite;
-    Vector2 ScorePosition = new Vector2(420, 0);
+    Texture2D block, helpmenu, MainMenu, OptionsMenu, OffSprite, blauwsprite, blauwsprite2, GameOverSprite;
+    Vector2 ScorePosition = new Vector2(370, 0);
     Vector2 FSon = new Vector2(250, 70);
     Vector2 Musicoff = new Vector2(250, 260);
     Vector2 blauw1 = new Vector2(360, 0);
     Vector2 NexpiecePosition = new Vector2(410, 120);
-    MouseState currentMouseState;
-    bool fullscreen1 = true;
+    //MouseState currentMouseState;
+    //bool fullscreen1 = true;
     bool music = false;
+
     // the current game state
 
     GameState gameState;
@@ -53,21 +55,20 @@ class GameWorld
         screenWidth = width;
         screenHeight = height;
         random = new Random();
-        gameState = GameState.Playing;
+        gameState = GameState.GameOver;
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         helpmenu = Content.Load<Texture2D>("Helpmenu");
-        OnSprite = Content.Load<Texture2D>("onoptions");
         OffSprite = Content.Load<Texture2D>("offoptions");
         OptionsMenu = Content.Load<Texture2D>("OptionsMenu");
         blauwsprite = Content.Load<Texture2D>("blauw");
+        blauwsprite2 = Content.Load<Texture2D>("blauw2");
         MainMenu = Content.Load<Texture2D>("Mainmenu");
         GameOverSprite = Content.Load<Texture2D>("gameover");
         grid = new TetrisGrid(block);
         blockfunction = new Block();
-        currentMouseState = Mouse.GetState();
-
-    }
+      //  currentMouseState = Mouse.GetState();
+     }
 
     public void Reset()
     {
@@ -75,7 +76,7 @@ class GameWorld
     }
     protected void NextPiece()
     {
-
+        TetrisGame.Variables.score += 10;
     }
     protected void Additionaleffects()
     {
@@ -88,70 +89,67 @@ class GameWorld
             newblock.HandleInput(inputHelper);
         }
     }
-    public Vector2 MousePosition
+    /*public Vector2 MousePosition
     {
         get { return new Vector2(currentMouseState.X, currentMouseState.Y); }
-    }
+    }*/
     public void Update(GameTime gameTime, InputHelper inputhelper)
     {
         if (gameState == GameState.Menu)
         {
-           if (inputhelper.MouseLeftButtonPressed() && MousePosition.X >=15 && MousePosition.X <= 365 && MousePosition.Y >= 100 && MousePosition.Y <= 220) // startknop
-            {
+            if (inputhelper.KeyPressed(Keys.S, true))// startknop
+            { 
                 gameState = GameState.Playing;
             }
-            if (inputhelper.MouseLeftButtonPressed() && MousePosition.X >= 15 && MousePosition.X <= 335 && MousePosition.Y >= 375 && MousePosition.Y <= 495) // helpknop
+            if (inputhelper.KeyPressed(Keys.H, true)) // helpknop
             {
                 gameState = GameState.Help;
             }
-            if (inputhelper.MouseLeftButtonPressed() && MousePosition.X >= 15 && MousePosition.X <= 335 && MousePosition.Y >= 225 && MousePosition.Y <= 345) // optiesnop
+            if (inputhelper.KeyPressed(Keys.O, true)) // optiesnop
             {
                 gameState = GameState.Options;
             }
         }
+        //&& MousePosition.X >=15 && MousePosition.X <= 365 && MousePosition.Y >= 100 && MousePosition.Y <= 220
+        // && MousePosition.X >= 15 && MousePosition.X <= 335 && MousePosition.Y >= 375 && MousePosition.Y <= 495
+        //&& MousePosition.X >= 15 && MousePosition.X <= 335 && MousePosition.Y >= 225 && MousePosition.Y <= 345
         if (gameState == GameState.Options)
         {
-            if (inputhelper.MouseLeftButtonPressed() && MousePosition.X >= 250 && MousePosition.X <= 400 && MousePosition.Y >= 70 && MousePosition.Y <= 220) // fullscreenknop
-            {   //in veld wordt gedrukt dan uitvoeren
-                if (fullscreen1)
-                {
-                    fullscreen1 = false;
-                }
-                if (!fullscreen1)
-                {
-                    fullscreen1 = true;
-                }
-           }
-            if (inputhelper.MouseLeftButtonPressed() && MousePosition.X >= 250 && MousePosition.X <= 400 && MousePosition.Y >= 260 && MousePosition.Y <= 410) // songknop
-            {   //in veld wordt gedrukt dan uitvoeren
-                if (!music)
-                {
-                    music = true;
-                }
-                if (music)
-                {
+            if (inputhelper.KeyPressed(Keys.S, true) && music == true) // songknop
+            {
                     music = false;
-                }
+                inputhelper.KeyPressed(Keys.S, false);
             }
-            if (inputhelper.MouseLeftButtonPressed() && MousePosition.X >= 20 && MousePosition.X <= 370 && MousePosition.Y >= 430 && MousePosition.Y <= 530) // mainmenu knop
+            if (inputhelper.KeyPressed(Keys.S, true) && music == false) // songknop
+            {
+                music = true;
+                inputhelper.KeyPressed(Keys.S, false);
+            }
+            if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
             {
                 gameState = GameState.Menu;
             }
         }
+        //MouseLeftButtonPressed() && MousePosition.X >= 250 && MousePosition.X <= 400 && MousePosition.Y >= 260 && MousePosition.Y <= 410
+        //MouseLeftButtonPressed() && MousePosition.X >= 20 && MousePosition.X <= 370 && MousePosition.Y >= 430 && MousePosition.Y <= 530)
         if (gameState == GameState.Help)
         {
-            if (inputhelper.MouseLeftButtonPressed() && MousePosition.X >= 15 && MousePosition.X <= 325 && MousePosition.Y >= 460 && MousePosition.Y <= 550) // mainmenu knop
+            if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
             {
                 gameState = GameState.Menu;
             }
         }
+        //MouseLeftButtonPressed() && MousePosition.X >= 15 && MousePosition.X <= 325 && MousePosition.Y >= 460 && MousePosition.Y <= 550) // mainmenu knop
+
         if (gameState == GameState.GameOver)
         {
-            if (inputhelper.MouseLeftButtonPressed() && MousePosition.X >= 15 && MousePosition.X <= 465 && MousePosition.Y >= 310 && MousePosition.Y <= 380) // mainmenu knop
+
+            if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
             {
                 gameState = GameState.Menu;
             }
         }
+        //MouseLeftButtonPressed() && MousePosition.X >= 15 && MousePosition.X <= 465 && MousePosition.Y >= 310 && MousePosition.Y <= 380) // mainmenu knop
         if (gameState == GameState.Playing)
         {
             // TODO add check for if there is already a block
@@ -174,14 +172,14 @@ class GameWorld
     {
         if (gameState == GameState.Playing)
         {
+            spriteBatch.Draw(blauwsprite, Vector2.Zero, Color.White);
             grid.Draw(gameTime, spriteBatch, block);
             newblock.Draw(gameTime, spriteBatch, block);
-            string Scorestring = "Score" + TetrisGame.Variables.score.ToString();
-            spriteBatch.Draw(blauwsprite, blauw1, Color.White);
+            string Scorestring = "Score: " + TetrisGame.Variables.score.ToString();
+            spriteBatch.Draw(blauwsprite2, blauw1, Color.White);
             spriteBatch.DrawString(font,Scorestring, ScorePosition, Color.Black);
             spriteBatch.Draw(block, NexpiecePosition, Color.White);
         }
-
         if (gameState == GameState.GameOver)
         {
             spriteBatch.Draw(GameOverSprite, Vector2.Zero, Color.White);
@@ -193,10 +191,6 @@ class GameWorld
         if (gameState == GameState.Options)
         {
             spriteBatch.Draw(OptionsMenu, Vector2.Zero, Color.White);
-            if(fullscreen1)
-            {
-                spriteBatch.Draw(OnSprite, FSon, Color.White);
-            }
             if (!music)
             {
                 spriteBatch.Draw(OffSprite, Musicoff, Color.White);
