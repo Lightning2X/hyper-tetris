@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//using System;
+//using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+//using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 
 class Block
@@ -42,6 +42,10 @@ class Block
         {
             MoveRight();
         }
+        if (inputhelper.KeyPressed(Keys.Space, true))
+        {
+            //pauze;
+        }
         // gofaster is set back to false if S isn't pressed
     }
     protected virtual void MoveRight()
@@ -50,7 +54,7 @@ class Block
     }
     protected virtual void MoveLeft()
     {
-        offsetx++;
+        offsetx--;
     }
 
     protected virtual void MoveDown()

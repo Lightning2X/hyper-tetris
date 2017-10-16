@@ -64,7 +64,7 @@ class TetrisGrid
 
     public void LineisFull()
     {
-        AVL++; 
+        TetrisGame.Variables.score += 100; 
     }
 
     public bool IsThereABlock

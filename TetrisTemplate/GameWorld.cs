@@ -1,10 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Audio;
+//using Microsoft.Xna.Framework.Media;
+//using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System;
-using static System.Console;
+//using static System.Console;
 
 
 // A class for representing the game world.
@@ -30,13 +31,16 @@ class GameWorld
 
     // sprite for representing a single tetris block element
 
-    Texture2D block, helpmenu, MainMenu, OptionsMenu, OnSprite, OffSprite, blauwsprite, GameOverSprite;
-    Vector2 ScorePosition = new Vector2(420, 0);
+    Texture2D block, helpmenu, MainMenu, OptionsMenu, OffSprite, blauwsprite, blauwsprite2, GameOverSprite;
+    Vector2 ScorePosition = new Vector2(370, 0);
     Vector2 FSon = new Vector2(250, 70);
     Vector2 Musicoff = new Vector2(250, 260);
-    Vector2 blauw1 = new Vector2(380, 0);
-    bool fullscreen1 = true;
+    Vector2 blauw1 = new Vector2(360, 0);
+    Vector2 NexpiecePosition = new Vector2(410, 120);
+    //MouseState currentMouseState;
+    //bool fullscreen1 = true;
     bool music = false;
+
     // the current game state
 
     GameState gameState;
@@ -55,16 +59,15 @@ class GameWorld
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         helpmenu = Content.Load<Texture2D>("Helpmenu");
-        OnSprite = Content.Load<Texture2D>("onoptions");
         OffSprite = Content.Load<Texture2D>("offoptions");
         OptionsMenu = Content.Load<Texture2D>("OptionsMenu");
         blauwsprite = Content.Load<Texture2D>("blauw");
+        blauwsprite2 = Content.Load<Texture2D>("blauw2");
         MainMenu = Content.Load<Texture2D>("Mainmenu");
         GameOverSprite = Content.Load<Texture2D>("gameover");
         grid = new TetrisGrid(block);
         blockfunction = new Block();
-
-    }
+     }
 
     public void Reset()
     {
@@ -72,11 +75,7 @@ class GameWorld
     }
     protected void NextPiece()
     {
-
-    }
-    protected void Menu()
-    {
-
+        TetrisGame.Variables.score += 10;
     }
     protected void Additionaleffects()
     {
@@ -89,70 +88,56 @@ class GameWorld
             newblock.HandleInput(inputHelper);
         }
     }
-
-    public void Update(GameTime gameTime)
+    public void Update(GameTime gameTime, InputHelper inputhelper)
     {
         if (gameState == GameState.Menu)
         {
-            if (false)// klikken op opties knop
-            {
-                gameState = GameState.Options;
+            if (inputhelper.KeyPressed(Keys.P, true))// startknop
+            { 
+                gameState = GameState.Playing;
             }
-            if(false)// klikken op help knop
+            if (inputhelper.KeyPressed(Keys.H, true)) // helpknop
             {
                 gameState = GameState.Help;
             }
-            if (false)// klikken op play knop
+            if (inputhelper.KeyPressed(Keys.O, true)) // optiesnop
             {
-                gameState = GameState.Playing;
+                gameState = GameState.Options;
             }
         }
         if (gameState == GameState.Options)
         {
-            if (true)
-            {//in veld wordt gedrukt dan uitvoeren
-                if (fullscreen1)
-                {
-                    fullscreen1 = false;
-                }
-                if (!fullscreen1)
-                {
-                    fullscreen1 = true;
-                }
+            if (inputhelper.KeyPressed(Keys.S, true) && music == true) // songknop
+            {
+                music = false;// music is off
             }
-            if (true)
-            {//in veld wordt gedrukt dan uitvoeren
-                if (!music)
-                {
-                    music = true;
-                }
-                if (music)
-                {
-                    music = false;
-                }
+            if (inputhelper.KeyPressed(Keys.Z, true) && music == false) // songknop
+            {
+                music = true; // music is on
             }
-            if(false)// klikken op terug knop
+            if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
             {
                 gameState = GameState.Menu;
             }
         }
         if (gameState == GameState.Help)
         {
-            if (false)// klikken op terug knop
+            if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
             {
                 gameState = GameState.Menu;
             }
         }
         if (gameState == GameState.GameOver)
         {
-            if (false)// klikken op terug knop
+
+            if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
             {
                 gameState = GameState.Menu;
             }
         }
         if (gameState == GameState.Playing)
         {
-            // TODO add check for if there is already a block
+            //check for if there is already a block
             if (!(grid.IsThereABlock))
             {
                 newblock = blockfunction.RandomBlock();
@@ -172,14 +157,14 @@ class GameWorld
     {
         if (gameState == GameState.Playing)
         {
+            spriteBatch.Draw(blauwsprite, Vector2.Zero, Color.White);// achtergrond weghalen
             grid.Draw(gameTime, spriteBatch, block);
             newblock.Draw(gameTime, spriteBatch, block);
-            string Scorestring = TetrisGame.Variables.score.ToString();
-            spriteBatch.Draw(blauwsprite, blauw1, Color.White);
+            string Scorestring = "Score: " + TetrisGame.Variables.score.ToString();
+            spriteBatch.Draw(blauwsprite2, blauw1, Color.White);
             spriteBatch.DrawString(font,Scorestring, ScorePosition, Color.Black);
-
+            spriteBatch.Draw(block, NexpiecePosition, Color.White);
         }
-
         if (gameState == GameState.GameOver)
         {
             spriteBatch.Draw(GameOverSprite, Vector2.Zero, Color.White);
@@ -191,13 +176,16 @@ class GameWorld
         if (gameState == GameState.Options)
         {
             spriteBatch.Draw(OptionsMenu, Vector2.Zero, Color.White);
-            if(fullscreen1)
-            {
-                spriteBatch.Draw(OnSprite, FSon, Color.White);
-            }
-            if (!music)
+            if (!music)// music is off
             {
                 spriteBatch.Draw(OffSprite, Musicoff, Color.White);
+                string Musicoffstring = "Press Z to turn the music off";
+                spriteBatch.DrawString(font, Musicoffstring, new Vector2(40,160), Color.Black);
+            }
+            else // music is on
+            {
+                string Musiconstring = "Press S to turn the music on";
+                spriteBatch.DrawString(font, Musiconstring, new Vector2(40, 160), Color.Black);
             }
         }
         if(gameState == GameState.Menu)
