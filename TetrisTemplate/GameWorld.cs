@@ -34,7 +34,8 @@ class GameWorld
     Vector2 ScorePosition = new Vector2(420, 0);
     Vector2 FSon = new Vector2(250, 70);
     Vector2 Musicoff = new Vector2(250, 260);
-    Vector2 blauw1 = new Vector2(380, 0);
+    Vector2 blauw1 = new Vector2(360, 0);
+    Vector2 NexpiecePosition = new Vector2(410, 120);
     MouseState currentMouseState;
     bool fullscreen1 = true;
     bool music = false;
@@ -52,7 +53,7 @@ class GameWorld
         screenWidth = width;
         screenHeight = height;
         random = new Random();
-        gameState = GameState.Menu;
+        gameState = GameState.Playing;
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         helpmenu = Content.Load<Texture2D>("Helpmenu");
@@ -144,8 +145,6 @@ class GameWorld
                 gameState = GameState.Menu;
             }
         }
-        Rectangle buttonmainmenufromgameover = new Rectangle(15, 465, 310, 70);
-
         if (gameState == GameState.GameOver)
         {
             if (inputhelper.MouseLeftButtonPressed() && MousePosition.X >= 15 && MousePosition.X <= 465 && MousePosition.Y >= 310 && MousePosition.Y <= 380) // mainmenu knop
@@ -180,7 +179,7 @@ class GameWorld
             string Scorestring = "Score" + TetrisGame.Variables.score.ToString();
             spriteBatch.Draw(blauwsprite, blauw1, Color.White);
             spriteBatch.DrawString(font,Scorestring, ScorePosition, Color.Black);
-
+            spriteBatch.Draw(block, NexpiecePosition, Color.White);
         }
 
         if (gameState == GameState.GameOver)
