@@ -110,12 +110,10 @@ class GameWorld
             if (inputhelper.KeyPressed(Keys.S, true) && music == true) // songknop
             {
                 music = false;// music is off
-                inputhelper.KeyPressed(Keys.S, false);
             }
-            if (inputhelper.KeyPressed(Keys.S, true) && music == false) // songknop
+            if (inputhelper.KeyPressed(Keys.Z, true) && music == false) // songknop
             {
                 music = true; // music is on
-                inputhelper.KeyPressed(Keys.S, false);
             }
             if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
             {
@@ -129,8 +127,6 @@ class GameWorld
                 gameState = GameState.Menu;
             }
         }
-        //MouseLeftButtonPressed() && MousePosition.X >= 15 && MousePosition.X <= 325 && MousePosition.Y >= 460 && MousePosition.Y <= 550) // mainmenu knop
-
         if (gameState == GameState.GameOver)
         {
 
@@ -139,10 +135,9 @@ class GameWorld
                 gameState = GameState.Menu;
             }
         }
-        //MouseLeftButtonPressed() && MousePosition.X >= 15 && MousePosition.X <= 465 && MousePosition.Y >= 310 && MousePosition.Y <= 380) // mainmenu knop
         if (gameState == GameState.Playing)
         {
-            // TODO add check for if there is already a block
+            //check for if there is already a block
             if (!(grid.IsThereABlock))
             {
                 newblock = blockfunction.RandomBlock();
@@ -184,6 +179,13 @@ class GameWorld
             if (!music)// music is off
             {
                 spriteBatch.Draw(OffSprite, Musicoff, Color.White);
+                string Musicoffstring = "Press Z to turn the music off";
+                spriteBatch.DrawString(font, Musicoffstring, new Vector2(40,160), Color.Black);
+            }
+            else // music is on
+            {
+                string Musiconstring = "Press S to turn the music on";
+                spriteBatch.DrawString(font, Musiconstring, new Vector2(40, 160), Color.Black);
             }
         }
         if(gameState == GameState.Menu)
