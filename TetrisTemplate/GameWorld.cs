@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Audio;
+//using Microsoft.Xna.Framework.Media;
+//using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System;
-using static System.Console;
+//using static System.Console;
 
 
 // A class for representing the game world.
@@ -55,7 +55,7 @@ class GameWorld
         screenWidth = width;
         screenHeight = height;
         random = new Random();
-        gameState = GameState.GameOver;
+        gameState = GameState.Menu;
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         helpmenu = Content.Load<Texture2D>("Helpmenu");
@@ -67,7 +67,6 @@ class GameWorld
         GameOverSprite = Content.Load<Texture2D>("gameover");
         grid = new TetrisGrid(block);
         blockfunction = new Block();
-      //  currentMouseState = Mouse.GetState();
      }
 
     public void Reset()
@@ -89,15 +88,11 @@ class GameWorld
             newblock.HandleInput(inputHelper);
         }
     }
-    /*public Vector2 MousePosition
-    {
-        get { return new Vector2(currentMouseState.X, currentMouseState.Y); }
-    }*/
     public void Update(GameTime gameTime, InputHelper inputhelper)
     {
         if (gameState == GameState.Menu)
         {
-            if (inputhelper.KeyPressed(Keys.S, true))// startknop
+            if (inputhelper.KeyPressed(Keys.P, true))// startknop
             { 
                 gameState = GameState.Playing;
             }
@@ -110,19 +105,16 @@ class GameWorld
                 gameState = GameState.Options;
             }
         }
-        //&& MousePosition.X >=15 && MousePosition.X <= 365 && MousePosition.Y >= 100 && MousePosition.Y <= 220
-        // && MousePosition.X >= 15 && MousePosition.X <= 335 && MousePosition.Y >= 375 && MousePosition.Y <= 495
-        //&& MousePosition.X >= 15 && MousePosition.X <= 335 && MousePosition.Y >= 225 && MousePosition.Y <= 345
         if (gameState == GameState.Options)
         {
             if (inputhelper.KeyPressed(Keys.S, true) && music == true) // songknop
             {
-                    music = false;
+                music = false;// music is off
                 inputhelper.KeyPressed(Keys.S, false);
             }
             if (inputhelper.KeyPressed(Keys.S, true) && music == false) // songknop
             {
-                music = true;
+                music = true; // music is on
                 inputhelper.KeyPressed(Keys.S, false);
             }
             if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
@@ -130,8 +122,6 @@ class GameWorld
                 gameState = GameState.Menu;
             }
         }
-        //MouseLeftButtonPressed() && MousePosition.X >= 250 && MousePosition.X <= 400 && MousePosition.Y >= 260 && MousePosition.Y <= 410
-        //MouseLeftButtonPressed() && MousePosition.X >= 20 && MousePosition.X <= 370 && MousePosition.Y >= 430 && MousePosition.Y <= 530)
         if (gameState == GameState.Help)
         {
             if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
@@ -172,7 +162,7 @@ class GameWorld
     {
         if (gameState == GameState.Playing)
         {
-            spriteBatch.Draw(blauwsprite, Vector2.Zero, Color.White);
+            spriteBatch.Draw(blauwsprite, Vector2.Zero, Color.White);// achtergrond weghalen
             grid.Draw(gameTime, spriteBatch, block);
             newblock.Draw(gameTime, spriteBatch, block);
             string Scorestring = "Score: " + TetrisGame.Variables.score.ToString();
@@ -191,7 +181,7 @@ class GameWorld
         if (gameState == GameState.Options)
         {
             spriteBatch.Draw(OptionsMenu, Vector2.Zero, Color.White);
-            if (!music)
+            if (!music)// music is off
             {
                 spriteBatch.Draw(OffSprite, Musicoff, Color.White);
             }

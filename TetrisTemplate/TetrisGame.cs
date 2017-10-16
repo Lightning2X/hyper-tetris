@@ -1,8 +1,8 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using static System.Console;
+//using Microsoft.Xna.Framework.Input;
+//using static System.Console;
 
 
 class TetrisGame : Game
