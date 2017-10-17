@@ -54,6 +54,34 @@ class Block
     }
     protected virtual void MoveLeft()
     {
+        int emptyspace = 0;
+        bool twocolumns = false;
+        for(int x = 0; x < 3; x++)
+        {
+            for (int y = 0; y < 4; y++)
+            {
+                if (blockposition[x, y])
+                {
+                    emptyspace++;
+                }
+                if(x > 0)
+                {
+                    twocolumns = true;
+                }
+                if(emptyspace > 1)
+                {
+                    break;
+                }
+            }
+        }
+        if(emptyspace > 1)
+        {
+            // add 1 column break
+            if (twocolumns)
+            {
+               // add 2 column break
+            }
+        }
         offsetx--;
     }
 
