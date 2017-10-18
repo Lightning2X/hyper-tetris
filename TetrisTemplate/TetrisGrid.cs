@@ -62,6 +62,42 @@ class TetrisGrid
         }
     }
 
+    public static bool IsValid(Block block)
+    {
+        bool[,] blockgrid = block.BlockGrid;
+        int WhitespaceL = block.OffsetCorrectorLeft();
+        int WhitespaceR = block.OffsetCorrectorRight();
+        int WhitespaceDWN = block.OffsetCorrectorDown();
+        if(block.Offset.X + WhitespaceL < 0)
+        {
+            return false;
+        }
+        if(block.Offset.X - WhitespaceR > GridWidth - 4)
+        {
+            return false;
+        }
+        if (block.Offset.Y - WhitespaceDWN > GridHeight - 4)
+        {
+            return false;
+        }
+        return true;
+    }
+    public void Collision(Block block)
+    {
+        bool[,] blockgrid = block.BlockGrid;
+        bool collision = false;
+        block.Offset.X += 1;
+        for (int y = 0; y < GridHeight; y++)
+        {
+            for (int x = 0; x < GridWidth; x++)
+            {
+                if (gridlock[x, y] && blockgrid[x + block.Offset.X, y + block.Offset.Y])
+                {
+                    collision = true;
+                }
+            }
+        }
+    }
     public void LineisFull()
     {
         int full = 0;

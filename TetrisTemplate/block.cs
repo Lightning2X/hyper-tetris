@@ -7,17 +7,21 @@ using Microsoft.Xna.Framework.Input;
 
 class Block
 {
-    public int blocktype, offsetx, offsety, offsetcorrector, nexttick, tick;
-    protected int rotation;
+    protected int offsetcorrector, nexttick, tick;
+    public int blocktype;
+    protected Point offset;
+    protected int rotation, previousrotation;
     protected bool[,] blockposition = new bool[4, 4];
+    protected bool[,] testposition = new bool[4, 4];
     public Block()
     {
-        offsety = 0;
-        offsetx = 0;
+        offset.Y = 0;
+        offset.X = 0;
         nexttick = 0;
         tick = 3;
         rotation = GameWorld.RandomNumber(0, 4);
         blocktype = GameWorld.RandomNumber(0, 7);
+
     }
 
     public void HandleInput(InputHelper inputhelper)
@@ -47,7 +51,8 @@ class Block
             //pauze;
         }
     }
-    protected virtual void MoveRight()
+   
+    public int OffsetCorrectorRight()
     {
         int space = 0;
         offsetcorrector = 0;
@@ -64,25 +69,22 @@ class Block
             {
                 if(x == 1)
                 {
-                    offsetcorrector = 3;
+                    offsetcorrector = 2;
                 }
-                else
+                if(x == 2)
                 {
-                    offsetcorrector = x;
+                    offsetcorrector = 1;
                 }
                 break;
             }
         }
-        if (offsetx < (7 + offsetcorrector))
-        {
-            offsetx++;
-        }
+        return offsetcorrector;
     }
-    protected virtual void MoveLeft()
+    public int OffsetCorrectorLeft()
     {
         int space = 0;
         offsetcorrector = 0;
-        for(int x = 0; x < 3; x++)
+        for (int x = 0; x < 3; x++)
         {
             for (int y = 0; y < 4; y++)
             {
@@ -97,16 +99,62 @@ class Block
                 break;
             }
         }
-        if(offsetx > (0 - offsetcorrector))
-        {
-            offsetx--;
-        }
-        
+        return offsetcorrector;
     }
-
+    public int OffsetCorrectorDown()
+    {
+        int space = 0;
+        offsetcorrector = 0;
+        for (int y = 3; y > 0; y--)
+        {
+            for (int x = 0; x < 4; x++)
+            {
+                if (blockposition[x, y])
+                {
+                    space++;
+                }
+            }
+            if (space > 0)
+            {
+                if(y == 0)
+                {
+                    offsetcorrector = 3;
+                }
+                if (y == 1)
+                {
+                    offsetcorrector = 2;
+                }
+                if (y == 2)
+                {
+                    offsetcorrector = 1;
+                }
+                break;
+            }
+        }
+        return offsetcorrector;
+    }
+    protected virtual void MoveRight()
+    {
+        offset.X++;
+        if (TetrisGrid.IsValid(this))
+        {
+            return;
+        }
+        else offset.X--;
+    }
+    protected virtual void MoveLeft()
+    {
+        offset.X--;
+        if (TetrisGrid.IsValid(this))
+        {
+            return;
+        }
+        else offset.X++;
+    }
+    
     protected virtual void MoveDown()
     {
-        offsety++;
+        offset.Y++;
     }
     public virtual void Clock(GameTime gameTime)
     {
@@ -114,42 +162,56 @@ class Block
         if (nexttick == tick)
         {
             nexttick = 0;
-            offsety++;
+            offset.Y++;
         }
 
     }
+    
     protected virtual void RotateRight()
     {
         // Decreases rotation on button press
+        previousrotation = rotation;
         if (rotation <= 2)
         {
             rotation++;
         }
         else
             rotation = 0;
+        if (TetrisGrid.IsValid(this))
+        {
+            return;
+        }
+        else
+        {
+            rotation = previousrotation;
+        }
 
     }
     protected virtual void RotateLeft()
     {
         // Increases rotation on button press
-        
+        previousrotation = rotation;
         if (rotation >= 1)
         {
             rotation--;
         }
         else
         {
-            rotation = 4;
-            rotation--;
+            rotation = 3;
         }
-    }
-    public bool GetBlockPosition(int x, int y)
-    {
-        return blockposition[x, y];
+
+        if (TetrisGrid.IsValid(this))
+        {
+            return;
+        }
+        else
+        {
+            rotation = previousrotation;
+        }
     }
     public virtual void BlockPosition()
     {
-        // deze functie bouwt voor elk blok een andere versie van 4 arrays van 4 x 4, daarom is hij hier leeg
+        
     }
     protected void ResetBlockPosition()
     {
@@ -223,10 +285,19 @@ class Block
             {
                 if (blockposition[x, y])
                 {
-                    s.Draw(block, new Vector2(((offsetx + x) * block.Width), ((offsety + y) * block.Height)), Color.White);
+                    s.Draw(block, new Vector2(((offset.X + x) * block.Width), ((offset.Y + y) * block.Height)), Color.White);
                 }
             }
         }
+    }
+    public bool[,] BlockGrid
+    {
+        get { return blockposition; }
+    }
+    public Point Offset
+    {
+        get { return offset; }
+        set { offset = value; }
     }
 }
 
@@ -267,14 +338,6 @@ class BlockI : Block
                 blockposition[i, 2] = true;
             }
         }
-    }
-    protected override void MoveRight()
-    {
-        base.MoveRight();
-    }
-    protected override void MoveLeft()
-    {
-        base.MoveLeft();
     }
 }
 class BlockJ : Block
