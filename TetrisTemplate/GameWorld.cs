@@ -19,7 +19,7 @@ class GameWorld
 
     // screen width and height
 
-    int screenWidth, screenHeight;
+    int screenWidth, screenHeight, Highscore;
     double timer, timerlimit;
 
     //random number generator
@@ -34,7 +34,8 @@ class GameWorld
 
     Texture2D block, helpmenu, MainMenu, OptionsMenu, OffSprite, blauwsprite, blauwsprite2, GameOverSprite;
     Vector2 ScorePosition = new Vector2(370, 0);
-    Vector2 FSon = new Vector2(250, 70);
+    Vector2 Gameoverscore = new Vector2(70, 380);
+    Vector2 Highscorepositie = new Vector2(70, 420);
     Vector2 Musicoff = new Vector2(250, 260);
     Vector2 blauw1 = new Vector2(360, 0);
     Vector2 NexpiecePosition = new Vector2(410, 120);
@@ -56,7 +57,7 @@ class GameWorld
         screenWidth = width;
         screenHeight = height;
         random = new Random();
-        gameState = GameState.Playing;
+        gameState = GameState.GameOver;
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         helpmenu = Content.Load<Texture2D>("Helpmenu");
@@ -70,6 +71,7 @@ class GameWorld
         timer = 0;
         timerlimit = 1;
         newblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
+        Highscore = 0;
     }
 
     public void Reset()
@@ -214,14 +216,22 @@ class GameWorld
             spriteBatch.Draw(blauwsprite, Vector2.Zero, Color.White);// achtergrond weghalen
             grid.Draw(gameTime, spriteBatch, block);
             newblock.Draw(gameTime, spriteBatch, block);
-            string Scorestring = "Score: " + TetrisGame.Variables.score.ToString();
             spriteBatch.Draw(blauwsprite2, blauw1, Color.White);
+            string Scorestring = "Score: " + TetrisGame.Variables.score.ToString();
             spriteBatch.DrawString(font,Scorestring, ScorePosition, Color.Black);
             spriteBatch.Draw(block, NexpiecePosition, Color.White);
         }
         if (gameState == GameState.GameOver)
         {
             spriteBatch.Draw(GameOverSprite, Vector2.Zero, Color.White);
+            string Scorestring = "Score: " + TetrisGame.Variables.score.ToString();
+            string HighScorestring = "HighScore: " + Highscore.ToString();
+            spriteBatch.DrawString(font, Scorestring, Gameoverscore, Color.Black);
+            if( Highscore < TetrisGame.Variables.score )
+                {
+                Highscore = TetrisGame.Variables.score;
+            }
+            spriteBatch.DrawString(font, HighScorestring, Highscorepositie, Color.Black);
         }
         if (gameState == GameState.Help)
         {
