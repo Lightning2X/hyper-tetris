@@ -15,7 +15,6 @@ class TetrisGrid
     }
     protected bool[,] maingrid = new bool[12, 20];
 
-    public int AVL = 0;
     // sprite for representing a single grid block
       
     Texture2D gridblock;
@@ -90,6 +89,7 @@ class TetrisGrid
     public void PlaceBlock(Block block)
     {
         bool[,] blockgrid = block.BlockGrid;
+        TetrisGame.Variables.score += 10;
         // Collision with another block in the field
             for (int y = 0; y < 4; y++)
             {
@@ -101,7 +101,8 @@ class TetrisGrid
                     }
                 }
             }
-    }
+
+}
     public void LineisFull()
     {
         int full = 0;
@@ -115,7 +116,7 @@ class TetrisGrid
                 }
             }
         }
-        TetrisGame.Variables.score += 100; 
+        TetrisGame.Variables.score += full*100; 
     }
 
     public void Update(GameTime gameTime)
