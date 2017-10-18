@@ -7,190 +7,51 @@ using Microsoft.Xna.Framework.Input;
 
 class Block
 {
-    protected int offsetcorrector, nexttick, tick;
     public int blocktype;
-    protected Point offset;
-    protected int rotation, previousrotation;
+    private Point offset;
+    protected int rotation;
     protected bool[,] blockposition = new bool[4, 4];
-    protected bool[,] testposition = new bool[4, 4];
-    public Block()
+    public Block(int x, int y)
     {
-        offset.Y = 0;
-        offset.X = 0;
-        nexttick = 0;
-        tick = 3;
-        rotation = GameWorld.RandomNumber(0, 4);
-        blocktype = GameWorld.RandomNumber(0, 7);
-
+        BuildBlockGrid();
+        offset.Y = y;
+        offset.X = x;        
     }
 
-    public void HandleInput(InputHelper inputhelper)
-    {
-        if (inputhelper.KeyPressed(Keys.A, false))
-        {
-            RotateLeft();
-        }
-        if (inputhelper.KeyPressed(Keys.D, false))
-        {
-            RotateRight();
-        }
-        if (inputhelper.KeyPressed(Keys.S, true))
-        {
-            MoveDown();
-        }
-        if (inputhelper.KeyPressed(Keys.Left, true))
-        {
-            MoveLeft();
-        }
-        if (inputhelper.KeyPressed(Keys.Right, true))
-        {
-            MoveRight();
-        }
-        if (inputhelper.KeyPressed(Keys.Space, true))
-        {
-            //pauze;
-        }
-    }
-   
-    public int OffsetCorrectorRight()
-    {
-        int space = 0;
-        offsetcorrector = 0;
-        for (int x = 3; x > 0; x--)
-        {
-            for (int y = 0; y < 4; y++)
-            {
-                if (blockposition[x, y])
-                {
-                    space++;
-                }
-            }
-            if (space > 0)
-            {
-                if(x == 1)
-                {
-                    offsetcorrector = 2;
-                }
-                if(x == 2)
-                {
-                    offsetcorrector = 1;
-                }
-                break;
-            }
-        }
-        return offsetcorrector;
-    }
-    public int OffsetCorrectorLeft()
-    {
-        int space = 0;
-        offsetcorrector = 0;
-        for (int x = 0; x < 3; x++)
-        {
-            for (int y = 0; y < 4; y++)
-            {
-                if (blockposition[x, y])
-                {
-                    space++;
-                }
-            }
-            if (space > 0)
-            {
-                offsetcorrector = x;
-                break;
-            }
-        }
-        return offsetcorrector;
-    }
-    public int OffsetCorrectorDown()
-    {
-        int space = 0;
-        offsetcorrector = 0;
-        for (int y = 3; y > 0; y--)
-        {
-            for (int x = 0; x < 4; x++)
-            {
-                if (blockposition[x, y])
-                {
-                    space++;
-                }
-            }
-            if (space > 0)
-            {
-                if(y == 0)
-                {
-                    offsetcorrector = 3;
-                }
-                if (y == 1)
-                {
-                    offsetcorrector = 2;
-                }
-                if (y == 2)
-                {
-                    offsetcorrector = 1;
-                }
-                break;
-            }
-        }
-        return offsetcorrector;
-    }
-    protected virtual void MoveRight()
+    public void MoveRight()
     {
         offset.X++;
-        if (TetrisGrid.IsValid(this))
-        {
-            return;
-        }
-        else offset.X--;
     }
-    protected virtual void MoveLeft()
+    public void MoveLeft()
     {
         offset.X--;
-        if (TetrisGrid.IsValid(this))
-        {
-            return;
-        }
-        else offset.X++;
     }
     
-    protected virtual void MoveDown()
+    public virtual void MoveDown()
     {
         offset.Y++;
     }
-    public virtual void Clock(GameTime gameTime)
+    public void MoveUp()
     {
-        nexttick += (int)gameTime.ElapsedGameTime.TotalSeconds;
-        if (nexttick == tick)
-        {
-            nexttick = 0;
-            offset.Y++;
-        }
-
+        offset.Y--;
     }
     
-    protected virtual void RotateRight()
+    public virtual void RotateRight()
     {
         // Decreases rotation on button press
-        previousrotation = rotation;
         if (rotation <= 2)
         {
             rotation++;
         }
         else
+        {
             rotation = 0;
-        if (TetrisGrid.IsValid(this))
-        {
-            return;
         }
-        else
-        {
-            rotation = previousrotation;
-        }
-
+        BuildBlockGrid();
     }
-    protected virtual void RotateLeft()
+    public virtual void RotateLeft()
     {
         // Increases rotation on button press
-        previousrotation = rotation;
         if (rotation >= 1)
         {
             rotation--;
@@ -199,21 +60,13 @@ class Block
         {
             rotation = 3;
         }
-
-        if (TetrisGrid.IsValid(this))
-        {
-            return;
-        }
-        else
-        {
-            rotation = previousrotation;
-        }
+        BuildBlockGrid();
     }
-    public virtual void BlockPosition()
+    protected virtual void BuildBlockGrid()
     {
-        
+        ResetBlockGrid();
     }
-    protected void ResetBlockPosition()
+    private void ResetBlockGrid()
     {
         for (int x = 0; x < 4; x++)
         {
@@ -222,48 +75,47 @@ class Block
                 blockposition[x, y] = false;
             }
         }
-        // xd
     }
-    public int NextBlock()
+    public static int RandomiseBlockType()
     {
-        blocktype = GameWorld.RandomNumber(0, 7);
+        int blocktype = GameWorld.RandomNumber(0, 7);
         return blocktype;
     }
-    public Block RandomBlock()
+    public static Block CreateBlock(int x, int y, int blocktype)
     {
         if (blocktype == 0)
             //     Bouw blok I (streep)
-            return new BlockI();
+            return new BlockI(x , y);
         else if (blocktype == 1)
         {
             //    Bouw blok J
-            return new BlockJ();
+            return new BlockJ(x, y);
         }
         else if (blocktype == 2)
         {
             //     Bouw blok L
-            return new BlockL();
+            return new BlockL(x, y);
         }
         else if (blocktype == 3)
         {
             //    Bouw blok O (vierkant)
-            return new BlockO();
+            return new BlockO(x, y);
         }
         else if (blocktype == 4)
         {
             //  Bouw blok S
-            return new BlockS();
+            return new BlockS(x, y);
         }
         else if (blocktype == 5)
         {
             // Bouw blok T
-            return new BlockT();
+            return new BlockT(x, y);
 
         }
         else if (blocktype == 6)
         {
             // Bouw blok Z
-            return new BlockZ();
+            return new BlockZ(x, y);
         }
         else
             return null;
@@ -272,11 +124,7 @@ class Block
     {
         get { return blocktype; }
     }
-    public void Update(GameTime gameTime)
-    {
-        BlockPosition();
-        Clock(gameTime);
-    }
+
     public void Draw(GameTime gameTime, SpriteBatch s, Texture2D block)
     {
         for (int x = 0; x < 4; x++)
@@ -294,22 +142,25 @@ class Block
     {
         get { return blockposition; }
     }
-    public Point Offset
+    public int OffsetY
     {
-        get { return offset; }
-        set { offset = value; }
+        get { return offset.Y; }
+    }
+    public int OffsetX
+    {
+        get { return offset.X; }
     }
 }
 
 class BlockI : Block
 {
-    public BlockI()
+    public BlockI(int x, int y) : base(x, y)
     {
 
     }
-    public override void BlockPosition()
+    protected override void BuildBlockGrid()
     {
-        ResetBlockPosition();
+        base.BuildBlockGrid();
         if (rotation == 0)
         {
             for(int i = 0; i < 4; i++)
@@ -342,14 +193,14 @@ class BlockI : Block
 }
 class BlockJ : Block
 {
-    public BlockJ()
+    public BlockJ(int x, int y) : base(x, y)
     {
         
     }
 
-    public override void BlockPosition()
+    protected override void BuildBlockGrid()
     {
-        ResetBlockPosition();
+        base.BuildBlockGrid();
         if (rotation == 0)
         {
             for(int i = 0; i < 3; i++)
@@ -388,13 +239,13 @@ class BlockJ : Block
 
 class BlockL : Block
 {
-    public BlockL()
+    public BlockL(int x, int y) : base(x, y)
     {
 
     }
-    public override void BlockPosition()
+    protected override void BuildBlockGrid()
     {
-        ResetBlockPosition();
+        base.BuildBlockGrid();
         if (rotation == 0)
         {
             for (int i = 0; i < 3; i++)
@@ -431,13 +282,13 @@ class BlockL : Block
 }
 class BlockO : Block
 {
-    public BlockO()
+    public BlockO(int x, int y) : base(x, y)
     {
 
     }
-    public override void BlockPosition()
+    protected override void BuildBlockGrid()
     {
-        ResetBlockPosition();
+        base.BuildBlockGrid();
         blockposition[0, 0] = true;
         blockposition[1, 0] = true;
         blockposition[0, 1] = true;
@@ -447,13 +298,13 @@ class BlockO : Block
 }
 class BlockS : Block
 {
-    public BlockS()
+    public BlockS(int x, int y) : base(x, y)
     {
 
     }
-    public override void BlockPosition()
+    protected override void BuildBlockGrid()
     {
-        ResetBlockPosition();
+        base.BuildBlockGrid();
         if (rotation == 0)
         {
             blockposition[0, 2] = true;
@@ -487,14 +338,14 @@ class BlockS : Block
 
 class BlockT : Block
 {
-    public BlockT()
+    public BlockT(int x, int y) : base(x, y)
     {
 
     }
-    public override void BlockPosition()
+    protected override void BuildBlockGrid()
     {
         // verkeerde block roteert atm
-        ResetBlockPosition();
+        base.BuildBlockGrid();
         if (rotation == 0)
         {
             for(int i = 0; i < 3; i++)
@@ -533,13 +384,13 @@ class BlockT : Block
 
 class BlockZ : Block
 {
-    public BlockZ()
+    public BlockZ(int x, int y) : base(x, y)
     {
 
     }
-    public override void BlockPosition()
+    protected override void BuildBlockGrid()
     {
-        ResetBlockPosition();
+        base.BuildBlockGrid();
         if (rotation == 0)
         {
             blockposition[0, 1] = true;

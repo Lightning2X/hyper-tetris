@@ -20,6 +20,7 @@ class GameWorld
     // screen width and height
 
     int screenWidth, screenHeight;
+    double timer, timerlimit;
 
     //random number generator
     static Random random;
@@ -47,7 +48,7 @@ class GameWorld
     // the main playing grid
 
     TetrisGrid grid;
-    Block blockfunction, newblock;
+    Block newblock;
 
 
     public GameWorld(int width, int height, ContentManager Content)
@@ -66,8 +67,10 @@ class GameWorld
         MainMenu = Content.Load<Texture2D>("Mainmenu");
         GameOverSprite = Content.Load<Texture2D>("gameover");
         grid = new TetrisGrid(block);
-        blockfunction = new Block();
-     }
+        timer = 0;
+        timerlimit = 1;
+        newblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
+    }
 
     public void Reset()
     {
@@ -83,9 +86,48 @@ class GameWorld
     }
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
     {
-        if (newblock != null)
+        if(newblock != null)
         {
-            newblock.HandleInput(inputHelper);
+            if (inputHelper.KeyPressed(Keys.A, false))
+            {
+                newblock.RotateLeft();
+                if (!grid.IsValid(newblock))
+                {
+                    newblock.RotateRight();
+                }
+            }
+            if (inputHelper.KeyPressed(Keys.D, false))
+            {
+                newblock.RotateRight();
+                if (!grid.IsValid(newblock))
+                {
+                    newblock.RotateLeft();
+                }
+            }
+            if (inputHelper.KeyPressed(Keys.S, true))
+            {
+                TryMoveDown();
+            }
+            if (inputHelper.KeyPressed(Keys.Left, true))
+            {
+                newblock.MoveLeft();
+                if (!grid.IsValid(newblock))
+                {
+                    newblock.MoveRight();
+                }
+            }
+            if (inputHelper.KeyPressed(Keys.Right, true))
+            {
+                newblock.MoveRight();
+                if (!grid.IsValid(newblock))
+                {
+                    newblock.MoveLeft();
+                }
+            }
+            if (inputHelper.KeyPressed(Keys.Space, true))
+            {
+                //pauze;
+            }
         }
     }
     public void Update(GameTime gameTime, InputHelper inputhelper)
@@ -137,21 +179,33 @@ class GameWorld
         }
         if (gameState == GameState.Playing)
         {
-            //check for if there is already a block
-            if (!(grid.IsThereABlock))
-            {
-                newblock = blockfunction.RandomBlock();
-                grid.IsThereABlock = true;
-            }
-            newblock.Update(gameTime);
-            blockfunction.NextBlock();
+            Clock(gameTime);
         }
     }
-
-    public int NextWorldBlock
+    private void TryMoveDown()
     {
-        get { return blockfunction.blocktype; }
+        newblock.MoveDown();
+        if (!grid.IsValid(newblock))
+        {
+            newblock.MoveUp();
+            grid.PlaceBlock(newblock);
+            newblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
+        }
     }
+    public void Clock(GameTime gameTime)
+    {
+        timer += gameTime.ElapsedGameTime.TotalSeconds;
+        if (timer >= timerlimit)
+        {
+            timer = 0;
+            TryMoveDown();
+        }
+
+    }
+//    public int NextWorldBlock
+ //   {
+ //       get { return .blocktype; }
+  //  }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {

@@ -7,14 +7,13 @@ using Microsoft.Xna.Framework.Graphics;
   
 class TetrisGrid
 {
-    bool isthereablock;
     public TetrisGrid(Texture2D b)
     {
         gridblock = b;
         position = Vector2.Zero;
         this.Clear();
     }
-    protected bool[,] gridlock = new bool[12, 20];
+    protected bool[,] maingrid = new bool[12, 20];
 
     public int AVL = 0;
     // sprite for representing a single grid block
@@ -41,12 +40,12 @@ class TetrisGrid
     public bool getGridPositions(int x, int y)
     {
         // getter
-        return gridlock[x, y]; 
+        return maingrid[x, y]; 
     }
     public void setGridPositions(int x, int y, bool set)
     {
         // setter
-        gridlock[x, y] = set;
+        maingrid[x, y] = set;
     }
 
      // clears the grid
@@ -57,46 +56,51 @@ class TetrisGrid
         {
             for (int y = 0; y < GridHeight; y++)
             {
-                gridlock[x, y] = false;
+                maingrid[x, y] = false;
             }
         }
     }
 
-    public static bool IsValid(Block block)
+    public bool IsValid(Block block)
     {
         bool[,] blockgrid = block.BlockGrid;
-        int WhitespaceL = block.OffsetCorrectorLeft();
-        int WhitespaceR = block.OffsetCorrectorRight();
-        int WhitespaceDWN = block.OffsetCorrectorDown();
-        if(block.Offset.X + WhitespaceL < 0)
+        for (int y = 0; y < 4; y++)
         {
-            return false;
-        }
-        if(block.Offset.X - WhitespaceR > GridWidth - 4)
-        {
-            return false;
-        }
-        if (block.Offset.Y - WhitespaceDWN > GridHeight - 4)
-        {
-            return false;
-        }
-        return true;
-    }
-    public void Collision(Block block)
-    {
-        bool[,] blockgrid = block.BlockGrid;
-        bool collision = false;
-        block.Offset.X += 1;
-        for (int y = 0; y < GridHeight; y++)
-        {
-            for (int x = 0; x < GridWidth; x++)
+            for (int x = 0; x < 4; x++)
             {
-                if (gridlock[x, y] && blockgrid[x + block.Offset.X, y + block.Offset.Y])
+                if (blockgrid[x, y])
                 {
-                    collision = true;
+                    if(x + block.OffsetX < 0 || x + block.OffsetX >= GridWidth)
+                    {
+                        return false;
+                    }
+                    if(y + block.OffsetY < 0 || y + block.OffsetY >= GridHeight)
+                    {
+                        return false;
+                    }
+                    if(maingrid[x + block.OffsetX, y + block.OffsetY])
+                    {
+                        return false;
+                    }
                 }
             }
         }
+        return true;
+    }
+    public void PlaceBlock(Block block)
+    {
+        bool[,] blockgrid = block.BlockGrid;
+        // Collision with another block in the field
+            for (int y = 0; y < 4; y++)
+            {
+                for (int x = 0; x < 4; x++)
+                {
+                    if (blockgrid[x, y])
+                    {
+                        maingrid[x+ block.OffsetX, y + block.OffsetY] = blockgrid[x, y];
+                    }
+                }
+            }
     }
     public void LineisFull()
     {
@@ -105,7 +109,7 @@ class TetrisGrid
         {
             for (int x = 0; x < GridWidth; x++)
             {
-                if (gridlock[x, y])
+                if (maingrid[x, y])
                 {
                     full++;
                 }
@@ -114,11 +118,6 @@ class TetrisGrid
         TetrisGame.Variables.score += 100; 
     }
 
-    public bool IsThereABlock
-    {
-        get { return isthereablock; }
-        set { isthereablock = value; }
-    }
     public void Update(GameTime gameTime)
     {
         LineisFull();
@@ -129,9 +128,9 @@ class TetrisGrid
         {
             for(int y = 0;  y < GridHeight; y++)
             {
-                if (gridlock[x, y])
+                if (maingrid[x, y])
                 {
-                    s.Draw(block, new Vector2(x + block.Width, y + block.Height), Color.White);     
+                    s.Draw(block, new Vector2(x * block.Width, y * block.Height), Color.White);     
                 }
             }
         }
