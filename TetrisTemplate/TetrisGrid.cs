@@ -64,6 +64,17 @@ class TetrisGrid
 
     public void LineisFull()
     {
+        int full = 0;
+        for(int y = 0; y < GridHeight; y++)
+        {
+            for (int x = 0; x < GridWidth; x++)
+            {
+                if (gridlock[x, y])
+                {
+                    full++;
+                }
+            }
+        }
         TetrisGame.Variables.score += 100; 
     }
 

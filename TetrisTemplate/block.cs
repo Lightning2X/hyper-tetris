@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 class Block
 {
-    public int blocktype, offsetx, offsety, nexttick, tick;
+    public int blocktype, offsetx, offsety, offsetcorrector, nexttick, tick;
     protected int rotation;
     protected bool[,] blockposition = new bool[4, 4];
     public Block()
@@ -46,43 +46,62 @@ class Block
         {
             //pauze;
         }
-        // gofaster is set back to false if S isn't pressed
     }
     protected virtual void MoveRight()
     {
-        offsetx++;
+        int space = 0;
+        offsetcorrector = 0;
+        for (int x = 3; x > 0; x--)
+        {
+            for (int y = 0; y < 4; y++)
+            {
+                if (blockposition[x, y])
+                {
+                    space++;
+                }
+            }
+            if (space > 0)
+            {
+                if(x == 1)
+                {
+                    offsetcorrector = 3;
+                }
+                else
+                {
+                    offsetcorrector = x;
+                }
+                break;
+            }
+        }
+        if (offsetx < (7 + offsetcorrector))
+        {
+            offsetx++;
+        }
     }
     protected virtual void MoveLeft()
     {
-        int emptyspace = 0;
-        bool twocolumns = false;
+        int space = 0;
+        offsetcorrector = 0;
         for(int x = 0; x < 3; x++)
         {
             for (int y = 0; y < 4; y++)
             {
                 if (blockposition[x, y])
                 {
-                    emptyspace++;
-                }
-                if(x > 0)
-                {
-                    twocolumns = true;
-                }
-                if(emptyspace > 1)
-                {
-                    break;
+                    space++;
                 }
             }
-        }
-        if(emptyspace > 1)
-        {
-            // add 1 column break
-            if (twocolumns)
+            if (space > 0)
             {
-               // add 2 column break
+                offsetcorrector = x;
+                break;
             }
         }
-        offsetx--;
+        if(offsetx > (0 - offsetcorrector))
+        {
+            offsetx--;
+        }
+        
     }
 
     protected virtual void MoveDown()
@@ -248,6 +267,14 @@ class BlockI : Block
                 blockposition[i, 2] = true;
             }
         }
+    }
+    protected override void MoveRight()
+    {
+        base.MoveRight();
+    }
+    protected override void MoveLeft()
+    {
+        base.MoveLeft();
     }
 }
 class BlockJ : Block
