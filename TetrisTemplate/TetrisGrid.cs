@@ -10,7 +10,7 @@ class TetrisGrid
     public TetrisGrid(Texture2D b)
     {
         gridblock = b;
-        position = Vector2.Zero;
+        position = Vector2.Zero; // is dit de begin positie?
         this.Clear();
     }
     protected bool[,] maingrid = new bool[12, 20];
@@ -105,7 +105,7 @@ class TetrisGrid
 }
     
     public void LineisFull()
-    {
+    {// hier nog een check als de rij vol is.
         int n = 20;
         for(int y = n; y > GridHeight; y--)
         {
