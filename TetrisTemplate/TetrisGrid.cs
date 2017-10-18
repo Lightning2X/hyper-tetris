@@ -103,20 +103,33 @@ class TetrisGrid
             }
 
 }
-    
+
     public void LineisFull()
-    {// hier nog een check als de rij vol is.
-        int n = 20;
-        for(int y = n; y > GridHeight; y--)
+    {
+        int n = 0;
+        for (int y = 20; y > 0; y--)
         {
             for (int x = 0; x < GridWidth; x++)
             {
-                maingrid[x, y + 1] = maingrid[x, y];
-            }        
+                if (maingrid[x, y] == true)
+                {
+           //         int n = y;
+                }
+            }
+            // hier nog een check als de rij vol is.
         }
-        TetrisGame.Variables.score += 100; 
+       // if (y = null)
+       // {
+            for (int y = n; y > 0; y--)
+            {
+                for (int x = 0; x < GridWidth; x++)
+                {
+                    maingrid[x, y + 1] = maingrid[x, y];
+                }
+            }
+            TetrisGame.Variables.score += 100;
+       // }
     }
-
     public void Update(GameTime gameTime)
     {
         LineisFull();

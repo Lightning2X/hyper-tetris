@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-//using Microsoft.Xna.Framework.Media;
-//using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System;
 //using static System.Console;
@@ -39,8 +39,6 @@ class GameWorld
     Vector2 Musicoff = new Vector2(250, 260);
     Vector2 blauw1 = new Vector2(360, 0);
     Vector2 NexpiecePosition = new Vector2(410, 120);
-    //MouseState currentMouseState;
-    //bool fullscreen1 = true;
     bool music = false;
 
     // the current game state
@@ -50,7 +48,8 @@ class GameWorld
 
     TetrisGrid grid;
     Block newblock;
-
+    SoundEffect laugher;
+    SoundEffect backGroundMusic;
 
     public GameWorld(int width, int height, ContentManager Content)
     {
@@ -72,6 +71,8 @@ class GameWorld
         timerlimit = 1;
         newblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
         Highscore = 0;
+    //    backGroundMusic = Content.Load<SoundEffect>("Background_music");
+    //    laugher = Content.Load<SoundEffect>("End_Laugh");
     }
 
     public void Reset()
@@ -173,7 +174,7 @@ class GameWorld
         }
         if (gameState == GameState.GameOver)
         {
-
+      //      laugher.Play(); 
             if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
             {
                 gameState = GameState.Menu;
@@ -182,6 +183,10 @@ class GameWorld
         if (gameState == GameState.Playing)
         {
             Clock(gameTime);
+            if (TetrisGame.Variables.score > 1000)
+            {
+                gameState = GameState.GameOver;
+            }
         }
     }
     private void TryMoveDown()
