@@ -101,7 +101,7 @@ class TetrisGrid
                     }
                 }
             }
-}
+    }
 
     public void LineisFull()
     {
@@ -110,9 +110,19 @@ class TetrisGrid
             for (int x = 0; x < GridWidth; x++)
             {
                 int aantal = 0;
+                int aantalrij = 0;
+                if(maingrid[x,y])
+                {
+                   aantal++;
+                }
+                if(aantal == GridWidth)
+                {
+                    aantalrij = y;
+                }
+                /*int aantal = 0;
                 aantal = aantal + Convert.ToInt32(maingrid[x, y]);
                 int aantalrij = y;
-                if (aantal == 12)
+                */if (aantalrij != 0)
                 {
                     for (int z = aantalrij; z > 0; z--)
                     {
