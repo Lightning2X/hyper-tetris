@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -89,6 +90,7 @@ class TetrisGrid
     }
     public void PlaceBlock(Block block)
     {
+        TetrisGame.Variables.score += 5;
         bool[,] blockgrid = block.BlockGrid;
         // Collision with another block in the field
             for (int y = 0; y < 4; y++)
@@ -104,6 +106,7 @@ class TetrisGrid
     }
     public void LineisFull()
     {
+        List<int> fullLines = new List<int>();
         int full = 0;
         for(int y = 0; y < GridHeight; y++)
         {
@@ -113,7 +116,10 @@ class TetrisGrid
                 {
                     full++;
                 }
+                else
+                    break;
             }
+            
         }
         TetrisGame.Variables.score += 100; 
     }
