@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework.Input;
 
 class Block
 {
-    public int blocktype;
     private Point offset;
     protected int rotation;
     protected bool[,] blockposition = new bool[4, 4];
@@ -120,11 +119,8 @@ class Block
         else
             return null;
     }
-    public int Blocktype
-    {
-        get { return blocktype; }
-    }
 
+    // Draw the block
     public void Draw(GameTime gameTime, SpriteBatch s, Texture2D block)
     {
         for (int x = 0; x < 4; x++)
@@ -138,6 +134,22 @@ class Block
             }
         }
     }
+
+    //Function that draws the block if it specified as a "nextblock" (for the HUD)
+    public void DrawNextBlock(GameTime gameTime, SpriteBatch s, Texture2D block, Point hudoffset)
+    {
+        for (int x = 0; x < 4; x++)
+        {
+            for (int y = 0; y < 4; y++)
+            {
+                if (blockposition[x, y])
+                {
+                    s.Draw(block, new Vector2(hudoffset.X + (x * block.Width), hudoffset.Y + (y * block.Height)), Color.White);
+                }
+            }
+        }
+    }
+
     public bool[,] BlockGrid
     {
         get { return blockposition; }

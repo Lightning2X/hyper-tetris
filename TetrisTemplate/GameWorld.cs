@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-//using Microsoft.Xna.Framework.Media;
-//using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System;
 //using static System.Console;
@@ -13,129 +13,224 @@ using System;
 class GameWorld
 {
 
-    // enum for different game states (playing or game over)
-
+    // enum for different game states (playing or game over
     enum GameState { Menu, Options, Help, Playing, GameOver }
 
-    // screen width and height
-
-    int screenWidth, screenHeight;
+    // makes a rectangle of the screen so that a video can be played as background during gameplay
+    Rectangle display;
     double timer, timerlimit;
-
+    int blocksplaced;
+    public static int level;
     //random number generator
     static Random random;
 
     //main game font
-
     SpriteFont font;
 
 
     // sprite for representing a single tetris block element
-
-    Texture2D block, helpmenu, MainMenu, OptionsMenu, OffSprite, blauwsprite, blauwsprite2, GameOverSprite;
-    Vector2 ScorePosition = new Vector2(370, 0);
-    Vector2 FSon = new Vector2(250, 70);
-    Vector2 Musicoff = new Vector2(250, 260);
-    Vector2 blauw1 = new Vector2(360, 0);
-    Vector2 NexpiecePosition = new Vector2(410, 120);
-    //MouseState currentMouseState;
-    //bool fullscreen1 = true;
-    bool music = false;
+    Texture2D block, playbutton, optionsbutton, helpbutton, backbutton, musicbuttonON, musicbuttonOFF, videobuttonON, videobuttonOFF, alternativebackground;
+    Song menu, playing, gameover;
+    SoundEffect placeblocksound, levelup;
+    // Make booleans for the option menu (for turning music on/off or the video background on/off and make a boolean for the W key to check if a block was placed
+    bool music = true;
+    bool videoison = true;
+    bool placed = false;
 
     // the current game state
-
     GameState gameState;
-    // the main playing grid
 
+    // the main playing grd
     TetrisGrid grid;
-    Block newblock;
+    Block newblock, nextblock;
+    HUD hud;
+    Button Play, Help, Options, Back, Musicbutton, Videobutton;
+    VideoPlayer videoplayer;
+    Video backgroundvideo;
 
-
-    public GameWorld(int width, int height, ContentManager Content)
+    public GameWorld(ContentManager Content, Point screencoordinates, Point screendimensions)
     {
-        screenWidth = width;
-        screenHeight = height;
-        random = new Random();
-        gameState = GameState.Playing;
+        backgroundvideo = Content.Load<Video>("space");
+        menu = Content.Load<Song>("menu_music");
+        playing = Content.Load<Song>("main_highlevel");
+        placeblocksound = Content.Load<SoundEffect>("placeblock");
+        levelup = Content.Load<SoundEffect>("levelchime");
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
-        helpmenu = Content.Load<Texture2D>("Helpmenu");
-        OffSprite = Content.Load<Texture2D>("offoptions");
-        OptionsMenu = Content.Load<Texture2D>("OptionsMenu");
-        blauwsprite = Content.Load<Texture2D>("blauw");
-        blauwsprite2 = Content.Load<Texture2D>("blauw2");
-        MainMenu = Content.Load<Texture2D>("Mainmenu");
-        GameOverSprite = Content.Load<Texture2D>("gameover");
-        grid = new TetrisGrid(block);
-        timer = 0;
-        timerlimit = 1;
+        playbutton = Content.Load<Texture2D>("playbutton");
+        optionsbutton = Content.Load<Texture2D>("optionsbutton");
+        helpbutton = Content.Load<Texture2D>("helpbutton");
+        backbutton = Content.Load<Texture2D>("gobackbutton");
+        musicbuttonON = Content.Load<Texture2D>("musicbutton_ON");
+        videobuttonON = Content.Load<Texture2D>("videobutton_ON");
+        musicbuttonOFF = Content.Load<Texture2D>("musicbutton_OFF");
+        videobuttonOFF = Content.Load<Texture2D>("videobutton_OFF");
+        alternativebackground = Content.Load<Texture2D>("spacebackground");
+
+        random = new Random();
+        videoplayer = new VideoPlayer();
+        hud = new HUD(Content);
+        grid = new TetrisGrid();
+        Play = new Button(playbutton, new Vector2(10, 130));
+        Help = new Button(helpbutton, new Vector2(10, 250));
+        Options = new Button(optionsbutton, new Vector2(10, 400));
+        Back = new Button(backbutton, new Vector2(160, 500));
+        Musicbutton = new Button(musicbuttonON, new Vector2(155, 120));
+        Videobutton = new Button(videobuttonON, new Vector2(155, 250));
+
         newblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
+        nextblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
+
+        display = new Rectangle(screencoordinates.X, screencoordinates.Y, screendimensions.X, screendimensions.Y);
+        gameState = GameState.Menu;
+        timer = 0;
+        level = 0;
+        timerlimit = 1.5;
+        MediaPlayer.IsRepeating = true;
+        MediaPlayer.Volume = 0.5f;
+        MediaPlayer.Play(menu);
     }
 
     public void Reset()
     {
+        grid.Clear();
+        blocksplaced = 0;
+        TetrisGame.Score.score = 0;
+    }
 
-    }
-    protected void NextPiece()
-    {
-        TetrisGame.Variables.score += 10;
-    }
-    protected void Additionaleffects()
-    {
-
-    }
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
     {
-        if(newblock != null)
+        if (gameState == GameState.Menu)
         {
-            if (inputHelper.KeyPressed(Keys.A, false))
+            if (music)
             {
-                newblock.RotateLeft();
-                if (!grid.IsValid(newblock))
+                MediaPlayer.Play(menu);
+            }
+
+            if (inputHelper.MouseLeftButtonPressed())
+            {
+                if (Play.IsClicked(inputHelper))
                 {
-                    newblock.RotateRight();
+                    MediaPlayer.Stop();
+                    TetrisGame.showmouse = false;
+                    Reset();
+
+                    if (music)
+                    {
+                        MediaPlayer.Play(playing);
+                        Console.WriteLine(MediaPlayer.State);
+                    }
+
+                    gameState = GameState.Playing;
+                }
+                if (Help.IsClicked(inputHelper))
+                {
+                    TetrisGame.showmouse = true;
+                    gameState = GameState.Help;
+                }
+                if (Options.IsClicked(inputHelper))
+                {
+                    TetrisGame.showmouse = true;
+                    gameState = GameState.Options;
                 }
             }
-            if (inputHelper.KeyPressed(Keys.D, false))
+        }
+        if (gameState == GameState.Playing)
+        {
+            if (newblock != null)
             {
-                newblock.RotateRight();
-                if (!grid.IsValid(newblock))
+                if (inputHelper.KeyPressed(Keys.A, false))
                 {
                     newblock.RotateLeft();
+                    if (!grid.IsValid(newblock))
+                    {
+                        newblock.RotateRight();
+                    }
                 }
-            }
-            if (inputHelper.KeyPressed(Keys.S, true))
-            {
-                TryMoveDown();
-            }
-            if (inputHelper.KeyPressed(Keys.Left, true))
-            {
-                newblock.MoveLeft();
-                if (!grid.IsValid(newblock))
+                if (inputHelper.KeyPressed(Keys.D, false))
                 {
-                    newblock.MoveRight();
+                    newblock.RotateRight();
+                    if (!grid.IsValid(newblock))
+                    {
+                        newblock.RotateLeft();
+                    }
                 }
-            }
-            if (inputHelper.KeyPressed(Keys.Right, true))
-            {
-                newblock.MoveRight();
-                if (!grid.IsValid(newblock))
+                if (inputHelper.KeyPressed(Keys.W, false))
+                {
+                    // Beweegt het blok meteen naar beneden, gebruikt de override in TrymoveDown om te kijken of het blokje al geplaatst is met behulp van de bool placed;
+                    for (int i = 0; i < TetrisGrid.GridHeight; i++)
+                    {
+                        TryMoveDown(true);
+                        if (placed)
+                        {
+                            placed = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (inputHelper.KeyPressed(Keys.S, true))
+                {
+                    TryMoveDown();
+                }
+                if (inputHelper.KeyPressed(Keys.Left, true))
                 {
                     newblock.MoveLeft();
+                    if (!grid.IsValid(newblock))
+                    {
+                        newblock.MoveRight();
+                    }
+                }
+                if (inputHelper.KeyPressed(Keys.Right, true))
+                {
+                    newblock.MoveRight();
+                    if (!grid.IsValid(newblock))
+                    {
+                        newblock.MoveLeft();
+                    }
                 }
             }
-            if (inputHelper.KeyPressed(Keys.Space, true))
+        }
+        if(gameState == GameState.Options)
+        {
+            // options to turn music and the video background off
+            if (inputHelper.MouseLeftButtonPressed())
             {
-                //pauze;
+                if (Back.IsClicked(inputHelper))
+                {
+                    gameState = GameState.Menu;
+                }
+
+                if (Musicbutton.IsClicked(inputHelper))
+                {
+                    music = !music;
+                }
+
+                if (Videobutton.IsClicked(inputHelper))
+                {
+                    videoison = !videoison;
+                }
+            }
+        }
+        if(gameState == GameState.Help || gameState == GameState.GameOver)
+        {
+            if (inputHelper.MouseLeftButtonPressed())
+            {
+                if (Back.IsClicked(inputHelper))
+                {
+                    gameState = GameState.Menu;
+                }
             }
         }
     }
     public void Update(GameTime gameTime, InputHelper inputhelper)
     {
+
         if (gameState == GameState.Menu)
         {
             if (inputhelper.KeyPressed(Keys.P, true))// startknop
-            { 
+            {
+                Reset();
                 gameState = GameState.Playing;
             }
             if (inputhelper.KeyPressed(Keys.H, true)) // helpknop
@@ -147,21 +242,12 @@ class GameWorld
                 gameState = GameState.Options;
             }
         }
+
         if (gameState == GameState.Options)
         {
-            if (inputhelper.KeyPressed(Keys.S, true) && music == true) // songknop
-            {
-                music = false;// music is off
-            }
-            if (inputhelper.KeyPressed(Keys.Z, true) && music == false) // songknop
-            {
-                music = true; // music is on
-            }
-            if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
-            {
-                gameState = GameState.Menu;
-            }
+           
         }
+
         if (gameState == GameState.Help)
         {
             if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
@@ -169,82 +255,135 @@ class GameWorld
                 gameState = GameState.Menu;
             }
         }
+
         if (gameState == GameState.GameOver)
         {
+            if (TetrisGame.Score.highscore < TetrisGame.Score.score)
+            {
+                TetrisGame.Score.highscore = TetrisGame.Score.score;
+            }
 
             if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
             {
+                TetrisGame.showmouse = true;
                 gameState = GameState.Menu;
             }
         }
+
         if (gameState == GameState.Playing)
         {
+
+            if (videoison)
+            {
+                videoplayer.Play(backgroundvideo);
+            }
+            grid.Update(gameTime);
             Clock(gameTime);
         }
     }
-    private void TryMoveDown()
+    private void TryMoveDown(bool instant = false)
     {
         newblock.MoveDown();
         if (!grid.IsValid(newblock))
         {
             newblock.MoveUp();
             grid.PlaceBlock(newblock);
-            newblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
+            newblock = nextblock;
+
+            if (!grid.IsValid(newblock))
+            {
+                gameState = GameState.GameOver;
+            }
+
+            placeblocksound.Play();
+            blocksplaced++;
+            nextblock = Block.CreateBlock(RandomNumber(0, 10), 0, Block.RandomiseBlockType());
+
+            if (blocksplaced % 10 == 0)
+            {
+                levelup.Play();
+                level = blocksplaced / 10;
+            }
+
+            if (instant)
+            {
+                placed = true;
+            }
         }
     }
     public void Clock(GameTime gameTime)
     {
         timer += gameTime.ElapsedGameTime.TotalSeconds;
-        if (timer >= timerlimit)
+        if (timer >= (timerlimit - level / 5))
         {
             timer = 0;
             TryMoveDown();
         }
 
     }
-//    public int NextWorldBlock
- //   {
- //       get { return .blocktype; }
-  //  }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         if (gameState == GameState.Playing)
-        {
-            spriteBatch.Draw(blauwsprite, Vector2.Zero, Color.White);// achtergrond weghalen
+        { 
+            if (videoison)
+            {
+                Texture2D videoframe = videoplayer.GetTexture();
+                spriteBatch.Draw(videoframe, display, Color.White);
+            }
+            else
+            {
+                spriteBatch.Draw(alternativebackground, Vector2.Zero, Color.White);
+            }
+            
             grid.Draw(gameTime, spriteBatch, block);
             newblock.Draw(gameTime, spriteBatch, block);
-            string Scorestring = "Score: " + TetrisGame.Variables.score.ToString();
-            spriteBatch.Draw(blauwsprite2, blauw1, Color.White);
-            spriteBatch.DrawString(font,Scorestring, ScorePosition, Color.Black);
-            spriteBatch.Draw(block, NexpiecePosition, Color.White);
+            hud.MainDraw(gameTime, spriteBatch, nextblock);
         }
         if (gameState == GameState.GameOver)
         {
-            spriteBatch.Draw(GameOverSprite, Vector2.Zero, Color.White);
+            hud.GameOverScreen(gameTime, spriteBatch);
+            Back.Draw(gameTime, spriteBatch);
         }
         if (gameState == GameState.Help)
         {
-            spriteBatch.Draw(helpmenu, Vector2.Zero, Color.White);
+            hud.Help(gameTime, spriteBatch);
+            Back.Draw(gameTime, spriteBatch);
         }
         if (gameState == GameState.Options)
         {
-            spriteBatch.Draw(OptionsMenu, Vector2.Zero, Color.White);
-            if (!music)// music is off
+            hud.Options(gameTime, spriteBatch);
+            if (videoison)
             {
-                spriteBatch.Draw(OffSprite, Musicoff, Color.White);
-                string Musicoffstring = "Press Z to turn the music off";
-                spriteBatch.DrawString(font, Musicoffstring, new Vector2(40,160), Color.Black);
+                Videobutton = new Button(videobuttonON, new Vector2(155, 250));
+                Videobutton.Draw(gameTime, spriteBatch);
             }
-            else // music is on
+            else
+            {     
+                Videobutton = new Button(videobuttonOFF, new Vector2(155, 250));
+                Videobutton.Draw(gameTime, spriteBatch);
+            }
+
+            if (music)
             {
-                string Musiconstring = "Press S to turn the music on";
-                spriteBatch.DrawString(font, Musiconstring, new Vector2(40, 160), Color.Black);
+                Musicbutton = new Button(musicbuttonON, new Vector2(155, 130));
+                Musicbutton.Draw(gameTime, spriteBatch);
             }
+            else
+            {
+                Musicbutton = new Button(musicbuttonOFF, new Vector2(155, 130));
+                Musicbutton.Draw(gameTime, spriteBatch);
+            }
+
+            Back.Draw(gameTime, spriteBatch);
         }
+        
         if(gameState == GameState.Menu)
         {
-            spriteBatch.Draw(MainMenu, Vector2.Zero, Color.White);
+            hud.MenuScreen(gameTime, spriteBatch);
+            Play.Draw(gameTime, spriteBatch);
+            Options.Draw(gameTime, spriteBatch);
+            Help.Draw(gameTime, spriteBatch);
         }
     }
     // utility method for drawing text on the screen

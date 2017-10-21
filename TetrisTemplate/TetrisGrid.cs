@@ -1,26 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
  
  // a class for representing the Tetris playing grid
   
 class TetrisGrid
 {
-    public TetrisGrid(Texture2D b)
+    public TetrisGrid()
     {
-        gridblock = b;
-        position = Vector2.Zero;
+        position = Vector2.Zero; // positie van het grid
+        gameover = false;
         this.Clear();
     }
     protected bool[,] maingrid = new bool[12, 20];
-
-    public int AVL = 0;
-    // sprite for representing a single grid block
-      
-    Texture2D gridblock;
-
+    protected bool gameover;
      // the position of the tetris grid
       
     Vector2 position;
@@ -42,11 +37,6 @@ class TetrisGrid
     {
         // getter
         return maingrid[x, y]; 
-    }
-    public void setGridPositions(int x, int y, bool set)
-    {
-        // setter
-        maingrid[x, y] = set;
     }
 
      // clears the grid
@@ -75,10 +65,11 @@ class TetrisGrid
                     {
                         return false;
                     }
-                    if(y + block.OffsetY < 0 || y + block.OffsetY >= GridHeight)
+                    if(y + block.OffsetY >= GridHeight || y + block.OffsetY < 0)
                     {
                         return false;
                     }
+
                     if(maingrid[x + block.OffsetX, y + block.OffsetY])
                     {
                         return false;
@@ -90,8 +81,8 @@ class TetrisGrid
     }
     public void PlaceBlock(Block block)
     {
-        TetrisGame.Variables.score += 5;
         bool[,] blockgrid = block.BlockGrid;
+        TetrisGame.Score.score += 1;
         // Collision with another block in the field
             for (int y = 0; y < 4; y++)
             {
@@ -104,24 +95,47 @@ class TetrisGrid
                 }
             }
     }
+
     public void LineisFull()
     {
-        List<int> fullLines = new List<int>();
-        int full = 0;
-        for(int y = 0; y < GridHeight; y++)
+        List<int> fullrows = new List<int>();
+        for (int y = GridHeight - 1; y > 0; y--)
         {
+            int numberofblocks = 0;
             for (int x = 0; x < GridWidth; x++)
             {
                 if (maingrid[x, y])
                 {
-                    full++;
+                    numberofblocks++;
                 }
-                else
-                    break;
-            }
-            
+                if (numberofblocks == GridWidth)
+                {
+                    fullrows.Add(y);
+                }
+            } 
+
         }
-        TetrisGame.Variables.score += 100; 
+        if(fullrows.Count > 0)
+        {
+            TetrisGame.Score.score += fullrows.Count * (20 + (fullrows.Count * 5));
+            for (int y = GridHeight - 1; y > 0; y--)
+            {
+                for (int row = 0; row < fullrows.Count - 1; row++)
+                {
+                    maingrid[row, fullrows[row]] = false;
+                }
+            }
+            for (int y = GridHeight - 1; y > 0; y--)
+            {
+                for (int x = 0; x < GridWidth; x++)
+                {
+                    maingrid[x, y] = maingrid[x, y - 1];
+                }
+            }
+
+        }
+
+
     }
 
     public void Update(GameTime gameTime)

@@ -9,42 +9,22 @@ class InputHelper
 
     MouseState currentMouseState, previousMouseState;
     KeyboardState currentKeyboardState, previousKeyboardState;
+    // time passed since the last key press
 
+    double timeSinceLastKeyPress;
+
+
+    // time interval to read separate keypresses when holding a key
+
+    double keyPressInterval;
 
     public InputHelper()
     {
         scale = Vector2.One;
         offset = Vector2.Zero;
-    }
-    public Vector2 Scale
-    {
-        get { return scale; }
-        set { scale = value; }
-    }
-
-    public Vector2 Offset
-    {
-        get { return offset; }
-        set { offset = value; }
-    }
-    // time passed since the last key press
-
-    double timeSinceLastKeyPress;
-
-     
-     // time interval to read separate keypresses when holding a key
-      
-    double keyPressInterval;
-
-     
-     // constructor method
-      
-   /* public InputHelper()
-    {
-        keyPressInterval = 100;
+        keyPressInterval = 25;
         timeSinceLastKeyPress = 0;
-    }*/
-
+    }
      
      // updates the input helper object by updating the mouse and keyboard states and updating the timeSinceLastKeyPress variable
       
