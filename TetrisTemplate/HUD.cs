@@ -35,9 +35,9 @@ class HUD
     {
         s.Draw(gameover, Vector2.Zero, Color.White);
         string Scorestring = "Score: " + TetrisGame.Score.score.ToString();
-        string HighScorestring = "HighScore: " + TetrisGame.Score.highscore.ToString();
-        s.DrawString(font, Scorestring, new Vector2(70, 380), Color.Black);
-        s.DrawString(font, HighScorestring, new Vector2(70, 420), Color.Black);
+        string HighScorestring = "High Score: " + TetrisGame.Score.highscore.ToString();
+        s.DrawString(font, Scorestring, new Vector2(160, 380), Color.Black);
+        s.DrawString(font, HighScorestring, new Vector2(160, 420), Color.Black);
     }
 
     public void Options(GameTime gameTime, SpriteBatch s)

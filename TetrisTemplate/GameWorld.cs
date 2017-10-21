@@ -30,9 +30,12 @@ class GameWorld
 
     // sprite for representing a single tetris block element
     Texture2D block, playbutton, optionsbutton, helpbutton, backbutton, musicbuttonON, musicbuttonOFF, videobuttonON, videobuttonOFF, alternativebackground;
-
+    Song menu, playing, gameover;
+    SoundEffect placeblocksound, levelup;
     // Make booleans for the option menu (for turning music on/off or the video background on/off and make a boolean for the W key to check if a block was placed
-    bool music = false, videoison = true, placed = false;
+    bool music = true;
+    bool videoison = true;
+    bool placed = false;
 
     // the current game state
     GameState gameState;
@@ -48,6 +51,10 @@ class GameWorld
     public GameWorld(ContentManager Content, Point screencoordinates, Point screendimensions)
     {
         backgroundvideo = Content.Load<Video>("space");
+        menu = Content.Load<Song>("menu_music");
+        playing = Content.Load<Song>("main_highlevel");
+        placeblocksound = Content.Load<SoundEffect>("placeblock");
+        levelup = Content.Load<SoundEffect>("levelchime");
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         playbutton = Content.Load<Texture2D>("playbutton");
@@ -68,8 +75,8 @@ class GameWorld
         Help = new Button(helpbutton, new Vector2(10, 250));
         Options = new Button(optionsbutton, new Vector2(10, 400));
         Back = new Button(backbutton, new Vector2(160, 500));
-        Musicbutton = new Button(musicbuttonON, new Vector2(150, 120));
-        Videobutton = new Button(videobuttonON, new Vector2(150, 300));
+        Musicbutton = new Button(musicbuttonON, new Vector2(155, 120));
+        Videobutton = new Button(videobuttonON, new Vector2(155, 250));
 
         newblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
         nextblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
@@ -79,6 +86,9 @@ class GameWorld
         timer = 0;
         level = 0;
         timerlimit = 1.5;
+        MediaPlayer.IsRepeating = true;
+        MediaPlayer.Volume = 0.5f;
+        MediaPlayer.Play(menu);
     }
 
     public void Reset()
@@ -92,12 +102,25 @@ class GameWorld
     {
         if (gameState == GameState.Menu)
         {
+            if (music)
+            {
+                MediaPlayer.Play(menu);
+            }
+
             if (inputHelper.MouseLeftButtonPressed())
             {
                 if (Play.IsClicked(inputHelper))
                 {
+                    MediaPlayer.Stop();
                     TetrisGame.showmouse = false;
                     Reset();
+
+                    if (music)
+                    {
+                        MediaPlayer.Play(playing);
+                        Console.WriteLine(MediaPlayer.State);
+                    }
+
                     gameState = GameState.Playing;
                 }
                 if (Help.IsClicked(inputHelper))
@@ -189,7 +212,7 @@ class GameWorld
                 }
             }
         }
-        if(gameState == GameState.Help)
+        if(gameState == GameState.Help || gameState == GameState.GameOver)
         {
             if (inputHelper.MouseLeftButtonPressed())
             {
@@ -269,6 +292,7 @@ class GameWorld
             {
                 gameState = GameState.GameOver;
             }
+            placeblocksound.Play();
             blocksplaced++;
             nextblock = Block.CreateBlock(RandomNumber(0, 10), 0, Block.RandomiseBlockType());
             if (instant)
@@ -284,7 +308,7 @@ class GameWorld
             level = blocksplaced / 10;
         }
         timer += gameTime.ElapsedGameTime.TotalSeconds;
-        if (timer >= (timerlimit - level / 3))
+        if (timer >= (timerlimit - level / 5))
         {
             timer = 0;
             TryMoveDown();
@@ -313,6 +337,7 @@ class GameWorld
         if (gameState == GameState.GameOver)
         {
             hud.GameOverScreen(gameTime, spriteBatch);
+            Back.Draw(gameTime, spriteBatch);
         }
         if (gameState == GameState.Help)
         {
@@ -324,23 +349,23 @@ class GameWorld
             hud.Options(gameTime, spriteBatch);
             if (videoison)
             {
-                Videobutton = new Button(videobuttonON, new Vector2(150, 300));
+                Videobutton = new Button(videobuttonON, new Vector2(155, 250));
                 Videobutton.Draw(gameTime, spriteBatch);
             }
             else
             {     
-                Videobutton = new Button(videobuttonOFF, new Vector2(150, 300));
+                Videobutton = new Button(videobuttonOFF, new Vector2(155, 250));
                 Videobutton.Draw(gameTime, spriteBatch);
             }
 
             if (music)
             {
-                Musicbutton = new Button(musicbuttonON, new Vector2(150, 130));
+                Musicbutton = new Button(musicbuttonON, new Vector2(155, 130));
                 Musicbutton.Draw(gameTime, spriteBatch);
             }
             else
             {
-                Musicbutton = new Button(musicbuttonOFF, new Vector2(150, 130));
+                Musicbutton = new Button(musicbuttonOFF, new Vector2(155, 130));
                 Musicbutton.Draw(gameTime, spriteBatch);
             }
 

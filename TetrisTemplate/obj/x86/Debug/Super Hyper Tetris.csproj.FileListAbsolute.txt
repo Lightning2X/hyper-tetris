@@ -127,3 +127,9 @@ C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\videobutton_OFF.xnb
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\videobutton_ON.xnb
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\spacebackground.xnb
+C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\main_highlevel.wma
+C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\main_highlevel.xnb
+C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\menu_music.wma
+C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\menu_music.xnb
+C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\levelchime.xnb
+C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\placeblock.xnb

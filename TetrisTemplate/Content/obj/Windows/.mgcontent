@@ -5,7 +5,6 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/SpelFont.spritefont</File>
-    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/Background_music.mp3</File>
     <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/block.png</File>
     <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/gameover.png</File>
     <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/Helpmenu.png</File>
@@ -22,5 +21,9 @@
     <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/videobutton_OFF.png</File>
     <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/videobutton_ON.png</File>
     <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/spacebackground.jpg</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/main_highlevel.mp3</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/menu_music.mp3</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/placeblock.wav</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/levelchime.wav</File>
   </SourceFiles>
 </SourceFileCollection>

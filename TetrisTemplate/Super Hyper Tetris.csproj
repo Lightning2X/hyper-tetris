@@ -59,7 +59,6 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Background_music.mp3" />
     <Content Include="Content\block.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -71,9 +70,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\hudbackground.png" />
+    <Content Include="Content\levelchime.wav" />
     <Content Include="Content\Mainmenu.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\main_highlevel.mp3" />
+    <Content Include="Content\menu_music.mp3" />
+    <Content Include="Content\placeblock.wav" />
     <Content Include="Content\spacebackground.jpg" />
     <Content Include="Content\videobutton_OFF.png" />
     <Content Include="Content\videobutton_ON.png" />
@@ -89,6 +92,7 @@
     <Content Include="Content\space.mp4" />
     <Content Include="Content\SpelFont.spritefont">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
