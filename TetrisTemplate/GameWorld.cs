@@ -29,11 +29,11 @@ class GameWorld
 
 
     // sprite for representing a single tetris block element
-    Texture2D block, helpmenu, playbutton, optionsbutton, helpbutton;
+    Texture2D block, helpmenu, playbutton, optionsbutton, helpbutton, backbutton;
     Vector2 Musicoff = new Vector2(250, 260);
 
-    // make a boolean for if the music is playing and if a block is placed 
-    bool music = false, placed = false;
+    // Make booleans for the option menu (for turning music on/off or the video background on/off and make a boolean for the W key to check if a block was placed
+    bool music = false, videoison = true, placed = false;
 
     // the current game state
     GameState gameState;
@@ -42,7 +42,7 @@ class GameWorld
     TetrisGrid grid;
     Block newblock, nextblock;
     HUD hud;
-    Button Play, Help, Options;
+    Button Play, Help, Options, Back, Music, Video;
     VideoPlayer videoplayer;
     Video backgroundvideo;
 
@@ -54,7 +54,9 @@ class GameWorld
         helpmenu = Content.Load<Texture2D>("Helpmenu");
         playbutton = Content.Load<Texture2D>("playbutton");
         optionsbutton = Content.Load<Texture2D>("optionsbutton");
-        helpbutton = Content.Load<Texture2D>("helpbutton"); ;
+        helpbutton = Content.Load<Texture2D>("helpbutton");
+        backbutton = Content.Load<Texture2D>("gobackbutton");
+
 
         random = new Random();
         videoplayer = new VideoPlayer();
@@ -63,6 +65,7 @@ class GameWorld
         Play = new Button(playbutton, new Vector2(10, 130));
         Help = new Button(helpbutton, new Vector2(10, 250));
         Options = new Button(optionsbutton, new Vector2(10, 400));
+        Back = new Button(backbutton, new Vector2(160, 500));
         newblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
         nextblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
 
@@ -160,7 +163,24 @@ class GameWorld
         }
         if(gameState == GameState.Options)
         {
-
+            // options to turn music and the video background off
+            if (inputHelper.MouseLeftButtonPressed())
+            {
+                if (Back.IsClicked(inputHelper))
+                {
+                    gameState = GameState.Menu;
+                }
+            }
+        }
+        if(gameState == GameState.Help)
+        {
+            if (inputHelper.MouseLeftButtonPressed())
+            {
+                if (Back.IsClicked(inputHelper))
+                {
+                    gameState = GameState.Menu;
+                }
+            }
         }
     }
     public void Update(GameTime gameTime, InputHelper inputhelper)
@@ -279,6 +299,7 @@ class GameWorld
         if (gameState == GameState.Help)
         {
             spriteBatch.Draw(helpmenu, Vector2.Zero, Color.White);
+            Back.Draw(gameTime, spriteBatch);
         }
         if (gameState == GameState.Options)
         {
@@ -296,6 +317,7 @@ class GameWorld
                 spriteBatch.DrawString(font, Musiconstring, new Vector2(40, 160), Color.Black);
             }
             */
+            Back.Draw(gameTime, spriteBatch);
         }
         
         if(gameState == GameState.Menu)

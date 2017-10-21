@@ -59,6 +59,14 @@ class TetrisGame : Game
     {
        // GraphicsDevice.Clear(Color.White);
         spriteBatch.Begin();
+        if (showmouse)
+        {
+            this.IsMouseVisible = true;
+        }
+        else
+        {
+            this.IsMouseVisible = false;
+        }
         this.IsMouseVisible = true;
         gameWorld.Draw(gameTime, spriteBatch);
         spriteBatch.End();

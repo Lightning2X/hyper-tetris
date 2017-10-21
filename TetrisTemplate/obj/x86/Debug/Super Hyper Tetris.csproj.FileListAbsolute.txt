@@ -122,3 +122,4 @@ C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\helpbutton.xnb
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\optionsbutton.xnb
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\playbutton.xnb
+C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\gobackbutton.xnb
