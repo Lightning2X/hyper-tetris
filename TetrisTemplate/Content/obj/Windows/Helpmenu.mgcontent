@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/Helpmenu.png</SourceFile>
-  <SourceTime>2017-10-19T12:40:15.0797095+02:00</SourceTime>
-  <DestFile>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/bin/Windows/Helpmenu.xnb</DestFile>
-  <DestTime>2017-10-21T10:42:26.3207597+02:00</DestTime>
+  <SourceFile>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/Helpmenu.png</SourceFile>
+  <SourceTime>2017-10-18T21:12:22.9092564+02:00</SourceTime>
+  <DestFile>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/bin/Windows/Helpmenu.xnb</DestFile>
+  <DestTime>2017-10-21T13:56:19.9842819+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

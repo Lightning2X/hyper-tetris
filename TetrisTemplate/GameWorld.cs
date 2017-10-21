@@ -18,7 +18,7 @@ class GameWorld
     enum GameState { Menu, Options, Help, Playing, GameOver }
 
     // makes a rectangle of the screen so that a video can be played as background during gameplay
-    Rectangle display;
+    Rectangle display, HelpButton, StartButton, OptionsButton, FromGameOverToMain, FromOptionsToMain, FromHelpToMain;
     int Highscore;
     double timer, timerlimit;
 
@@ -48,9 +48,9 @@ class GameWorld
     Block newblock, nextblock;
     HUD hud;
     VideoPlayer videoplayer;
-    Video backgroundvideo;
+    //Video backgroundvideo;
     SoundEffect laugher;
-    SoundEffect backGroundMusic;
+    Song backGroundMusic;
 
     public GameWorld(ContentManager Content, Point screencoordinates, Point screendimensions)
     {
@@ -61,8 +61,14 @@ class GameWorld
         newblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
         nextblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
         hud = new HUD(Content);
+        StartButton = new Rectangle(15, 90, 380, 80);
+        HelpButton = new Rectangle(15, 90, 380, 80);
+        OptionsButton = new Rectangle(15, 90, 380, 80);
+        FromOptionsToMain = new Rectangle(15, 90, 380, 80);
+        FromHelpToMain = new Rectangle(15, 90, 380, 80);
+        FromGameOverToMain = new Rectangle(15, 90, 380, 80);
 
-        backgroundvideo = Content.Load<Video>("space");
+        //backgroundvideo = Content.Load<Video>("space");
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         helpmenu = Content.Load<Texture2D>("Helpmenu");
@@ -143,22 +149,20 @@ class GameWorld
     }
     public void Update(GameTime gameTime, InputHelper inputhelper)
     {
-        if (gameState == GameState.Menu)
+        if (inputhelper.MouseLeftButtonPressed() && StartButton.Contains(inputhelper.MousePosition.X, inputhelper.MousePosition.Y))// startknop
         {
-            if (inputhelper.KeyPressed(Keys.P, true))// startknop
-            {
-                Reset();
-                gameState = GameState.Playing;
-            }
-            if (inputhelper.KeyPressed(Keys.H, true)) // helpknop
-            {
-                gameState = GameState.Help;
-            }
-            if (inputhelper.KeyPressed(Keys.O, true)) // optiesnop
-            {
-                gameState = GameState.Options;
-            }
+            Reset();
+            gameState = GameState.Playing;
         }
+        if (inputhelper.MouseLeftButtonPressed() && HelpButton.Contains(inputhelper.MousePosition.X, inputhelper.MousePosition.Y))// helpknop
+        {
+            gameState = GameState.Help;
+        }
+        if (inputhelper.MouseLeftButtonPressed() && OptionsButton.Contains(inputhelper.MousePosition.X, inputhelper.MousePosition.Y))// optionsknop
+        {
+            gameState = GameState.Options;
+        }
+    
         if (gameState == GameState.Options)
         {
             if (inputhelper.KeyPressed(Keys.S, true) && music == true) // songknop
@@ -169,30 +173,35 @@ class GameWorld
             {
                 music = true; // music is on
             }
-            if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
+            if (inputhelper.MouseLeftButtonPressed() && FromOptionsToMain.Contains(inputhelper.MousePosition.X, inputhelper.MousePosition.Y))// startknop
             {
                 gameState = GameState.Menu;
             }
         }
         if (gameState == GameState.Help)
         {
-            if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
+            if (inputhelper.MouseLeftButtonPressed() && FromHelpToMain.Contains(inputhelper.MousePosition.X, inputhelper.MousePosition.Y))// startknop
             {
                 gameState = GameState.Menu;
             }
         }
         if (gameState == GameState.GameOver)
         {
-            if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
+            if (inputhelper.MouseLeftButtonPressed() && FromGameOverToMain.Contains(inputhelper.MousePosition.X, inputhelper.MousePosition.Y))// startknop
             {
                 gameState = GameState.Menu;
             }
         }
+
         if (gameState == GameState.Playing)
         {
-            videoplayer.Play(backgroundvideo);
+      //      videoplayer.Play(backgroundvideo);
             grid.Update(gameTime);
             Clock(gameTime);
+            if(music)
+            {
+             //backGroundMusic.Play;
+            }
         }
     }
     private void TryMoveDown(bool instant = false)
