@@ -120,8 +120,8 @@ class Block
             return null;
     }
 
-    // Draw the block, and make a vector2 so that the nextblock can be given another position on the screen (defaults to zero so the actual block will not deal with this variable)
-    public void Draw(GameTime gameTime, SpriteBatch s, Texture2D block, Vector2 hudoffset = default(Vector2))
+    // Draw the block
+    public void Draw(GameTime gameTime, SpriteBatch s, Texture2D block)
     {
         for (int x = 0; x < 4; x++)
         {
@@ -129,11 +129,27 @@ class Block
             {
                 if (blockposition[x, y])
                 {
-                    s.Draw(block, new Vector2(hudoffset.X + ((offset.X + x) * block.Width), hudoffset.Y + ((offset.Y + y) * block.Height)), Color.White);
+                    s.Draw(block, new Vector2(((offset.X + x) * block.Width), ((offset.Y + y) * block.Height)), Color.White);
                 }
             }
         }
     }
+
+    //Function that draws the block if it specified as a "nextblock" (for the HUD)
+    public void DrawNextBlock(GameTime gameTime, SpriteBatch s, Texture2D block, Point hudoffset)
+    {
+        for (int x = 0; x < 4; x++)
+        {
+            for (int y = 0; y < 4; y++)
+            {
+                if (blockposition[x, y])
+                {
+                    s.Draw(block, new Vector2(hudoffset.X + (x * block.Width), hudoffset.Y + (y * block.Height)), Color.White);
+                }
+            }
+        }
+    }
+
     public bool[,] BlockGrid
     {
         get { return blockposition; }

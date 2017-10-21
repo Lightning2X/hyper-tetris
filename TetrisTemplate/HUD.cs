@@ -39,7 +39,7 @@ class HUD
         s.DrawString(font, "Next Piece: ", new Vector2(25 + offset, 80), Color.Black);
         s.DrawString(font, ("HYPER" + Environment.NewLine + "TETRIS!"), new Vector2(offset+ 30, 550), Color.Black);
         // Draw the block next to the playingfield
-        nextblock.Draw(gameTime, s, block, new Vector2(27 + offset, 120));
+        nextblock.DrawNextBlock(gameTime, s, block, new Point(27 + offset, 120));
     }
 
     public void Options(GameTime gameTime, SpriteBatch s)

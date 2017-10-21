@@ -7,18 +7,14 @@ using Microsoft.Xna.Framework.Graphics;
   
 class TetrisGrid
 {
-    public TetrisGrid(Texture2D b)
+    public TetrisGrid()
     {
-        gridblock = b;
-        position = Vector2.Zero; // is dit de begin positie?
+        position = Vector2.Zero; // positie van het grid
+        gameover = false;
         this.Clear();
     }
     protected bool[,] maingrid = new bool[12, 20];
-
-    // sprite for representing a single grid block
-      
-    Texture2D gridblock;
-
+    protected bool gameover;
      // the position of the tetris grid
       
     Vector2 position;
@@ -40,11 +36,6 @@ class TetrisGrid
     {
         // getter
         return maingrid[x, y]; 
-    }
-    public void setGridPositions(int x, int y, bool set)
-    {
-        // setter
-        maingrid[x, y] = set;
     }
 
      // clears the grid
@@ -73,10 +64,11 @@ class TetrisGrid
                     {
                         return false;
                     }
-                    if(y + block.OffsetY < 0 || y + block.OffsetY >= GridHeight)
+                    if(y + block.OffsetY >= GridHeight || y + block.OffsetY < 0)
                     {
                         return false;
                     }
+
                     if(maingrid[x + block.OffsetX, y + block.OffsetY])
                     {
                         return false;

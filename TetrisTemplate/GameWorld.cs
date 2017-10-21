@@ -71,7 +71,7 @@ class GameWorld
         blauwsprite = Content.Load<Texture2D>("blauw");
         MainMenu = Content.Load<Texture2D>("Mainmenu");
         GameOverSprite = Content.Load<Texture2D>("gameover");
-        grid = new TetrisGrid(block);
+        grid = new TetrisGrid();
         timer = 0;
         timerlimit = 1;
         Highscore = 0;
@@ -81,7 +81,8 @@ class GameWorld
 
     public void Reset()
     {
-
+        grid.Clear();
+        TetrisGame.Variables.score = 0;
     }
 
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
@@ -138,10 +139,6 @@ class GameWorld
                     newblock.MoveLeft();
                 }
             }
-            if (inputHelper.KeyPressed(Keys.Space, true))
-            {
-                //pauze;
-            }
         }
     }
     public void Update(GameTime gameTime, InputHelper inputhelper)
@@ -149,7 +146,8 @@ class GameWorld
         if (gameState == GameState.Menu)
         {
             if (inputhelper.KeyPressed(Keys.P, true))// startknop
-            { 
+            {
+                Reset();
                 gameState = GameState.Playing;
             }
             if (inputhelper.KeyPressed(Keys.H, true)) // helpknop
@@ -185,7 +183,6 @@ class GameWorld
         }
         if (gameState == GameState.GameOver)
         {
-      //      laugher.Play(); 
             if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
             {
                 gameState = GameState.Menu;
@@ -196,10 +193,6 @@ class GameWorld
             videoplayer.Play(backgroundvideo);
             grid.Update(gameTime);
             Clock(gameTime);
-            if (TetrisGame.Variables.score > 1000000000)
-            {
-                gameState = GameState.GameOver;
-            }
         }
     }
     private void TryMoveDown(bool instant = false)
@@ -210,7 +203,11 @@ class GameWorld
             newblock.MoveUp();
             grid.PlaceBlock(newblock);
             newblock = nextblock;
-            nextblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
+            if (!grid.IsValid(newblock))
+            {
+                gameState = GameState.GameOver;
+            }
+            nextblock = Block.CreateBlock(RandomNumber(0, 10), 0, Block.RandomiseBlockType());
             if (instant)
             {
                 placed = true;
