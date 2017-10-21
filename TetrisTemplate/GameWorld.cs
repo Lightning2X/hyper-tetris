@@ -18,7 +18,7 @@ class GameWorld
     enum GameState { Menu, Options, Help, Playing, GameOver }
 
     // makes a rectangle of the screen so that a video can be played as background during gameplay
-    Rectangle display, HelpButton, StartButton, OptionsButton, FromGameOverToMain, FromOptionsToMain, FromHelpToMain;
+    Rectangle display, HelpButton, StartButton, OptionsButton, FromGameOverToMain, FromOptionsToMain, FromHelpToMain, VidoeOff, MusicOff;
     int Highscore;
     double timer, timerlimit;
 
@@ -38,7 +38,7 @@ class GameWorld
     Vector2 Musicoff = new Vector2(250, 260);
 
     // make a boolean for if the music is playing and if a block is placed 
-    bool music = false, placed = false;
+    bool music = false, placed = false, video = false;
 
     // the current game state
 
@@ -55,7 +55,7 @@ class GameWorld
     {
         random = new Random();
         display = new Rectangle(screencoordinates.X, screencoordinates.Y, screendimensions.X, screendimensions.Y);
-        gameState = GameState.Menu;
+        gameState = GameState.Playing;
         videoplayer = new VideoPlayer();
         newblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
         nextblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
@@ -66,6 +66,8 @@ class GameWorld
         FromOptionsToMain = new Rectangle(15, 90, 380, 80);
         FromHelpToMain = new Rectangle(15, 90, 380, 80);
         FromGameOverToMain = new Rectangle(15, 90, 380, 80);
+        VidoeOff = new Rectangle(15, 90, 380, 80);
+        MusicOff = new Rectangle(15, 90, 380, 80);
 
         backgroundvideo = Content.Load<Video>("space");
         block = Content.Load<Texture2D>("block");
@@ -163,22 +165,30 @@ class GameWorld
     
         if (gameState == GameState.Options)
         {
-            if (inputhelper.KeyPressed(Keys.S, true) && music == true) // songknop
+            if(inputhelper.MouseLeftButtonPressed() && MusicOff.Contains(inputhelper.MousePosition.X, inputhelper.MousePosition.Y))// musicknop
             {
                 music = false;// music is off
             }
-            if (inputhelper.KeyPressed(Keys.Z, true) && music == false) // songknop
+            if (inputhelper.MouseLeftButtonPressed() && MusicOff.Contains(inputhelper.MousePosition.X, inputhelper.MousePosition.Y))// musicknop
             {
                 music = true; // music is on
             }
-            if (inputhelper.MouseLeftButtonPressed() && FromOptionsToMain.Contains(inputhelper.MousePosition.X, inputhelper.MousePosition.Y))// startknop
+            if (inputhelper.MouseLeftButtonPressed() && VidoeOff.Contains(inputhelper.MousePosition.X, inputhelper.MousePosition.Y))// videoknop
+            {
+                video = false;// video is off
+            }
+            if (inputhelper.MouseLeftButtonPressed() && VidoeOff.Contains(inputhelper.MousePosition.X, inputhelper.MousePosition.Y))// videoknop
+            {
+                video = true; // video is on
+            }
+            if (inputhelper.MouseLeftButtonPressed() && FromOptionsToMain.Contains(inputhelper.MousePosition.X, inputhelper.MousePosition.Y))// Main menuknop
             {
                 gameState = GameState.Menu;
             }
         }
         if (gameState == GameState.Help)
         {
-            if (inputhelper.MouseLeftButtonPressed() && FromHelpToMain.Contains(inputhelper.MousePosition.X, inputhelper.MousePosition.Y))// startknop
+            if (inputhelper.MouseLeftButtonPressed() && FromHelpToMain.Contains(inputhelper.MousePosition.X, inputhelper.MousePosition.Y))// Main menuknop
             {
                 gameState = GameState.Menu;
             }
@@ -193,7 +203,10 @@ class GameWorld
 
         if (gameState == GameState.Playing)
         {
-            videoplayer.Play(backgroundvideo);
+            if (video)
+            {
+                videoplayer.Play(backgroundvideo);
+            }
             grid.Update(gameTime);
             Clock(gameTime);
             if(music)
@@ -240,8 +253,15 @@ class GameWorld
     {
         if (gameState == GameState.Playing)
         {
-            Texture2D videoframe = videoplayer.GetTexture();
-            spriteBatch.Draw(videoframe, display, Color.White);
+            if (video)
+            {
+                Texture2D videoframe = videoplayer.GetTexture();
+                spriteBatch.Draw(videoframe, display, Color.White);
+            }
+            else
+            {
+                spriteBatch.Draw(blauwsprite, Vector2.Zero, Color.White);
+            }
             grid.Draw(gameTime, spriteBatch, block);
             newblock.Draw(gameTime, spriteBatch, block);
             hud.MainDraw(gameTime, spriteBatch, nextblock);
@@ -268,13 +288,13 @@ class GameWorld
             if (!music)// music is off
             {
                 spriteBatch.Draw(OffSprite, Musicoff, Color.White);
-                string Musicoffstring = "Press Z to turn the music off";
-                spriteBatch.DrawString(font, Musicoffstring, new Vector2(40,160), Color.Black);
+            //    string Musicoffstring = "Press Z to turn the music off";
+            //    spriteBatch.DrawString(font, Musicoffstring, new Vector2(40,160), Color.Black);
             }
-            else // music is on
+            
+            if(!video)// video is off
             {
-                string Musiconstring = "Press S to turn the music on";
-                spriteBatch.DrawString(font, Musiconstring, new Vector2(40, 160), Color.Black);
+                spriteBatch.Draw(OffSprite, Musicoff, Color.White);
             }
         }
         if(gameState == GameState.Menu)
