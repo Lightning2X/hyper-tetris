@@ -1,7 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-//using Microsoft.Xna.Framework.Input;
 //using static System.Console;
 
 
@@ -12,8 +11,8 @@ class TetrisGame : Game
     SpriteBatch spriteBatch;
     InputHelper inputHelper;
     GameWorld gameWorld;
-    HUD hud;
     public static int score = 0;
+    private Point screendimensions;
 
     [STAThread]
     static void Main(string[] args)
@@ -35,6 +34,7 @@ class TetrisGame : Game
         // set the desired window size
         graphics.PreferredBackBufferWidth = 500;
         graphics.PreferredBackBufferHeight = 600;
+        screendimensions = new Point(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
         // create the input helper object
         inputHelper = new InputHelper();
     }
@@ -43,9 +43,8 @@ class TetrisGame : Game
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);
         // create and reset the game world
-        gameWorld = new GameWorld(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, Content);
+        gameWorld = new GameWorld(Content, new Point (GraphicsDevice.Viewport.X, GraphicsDevice.Viewport.Y), screendimensions);
         gameWorld.Reset();
-        hud = new HUD(gameWorld);
     }
     protected override void Update(GameTime gameTime)
     {
@@ -57,9 +56,7 @@ class TetrisGame : Game
     {
        // GraphicsDevice.Clear(Color.White);
         spriteBatch.Begin();
-
         gameWorld.Draw(gameTime, spriteBatch);
         spriteBatch.End();
     }
- 
 }

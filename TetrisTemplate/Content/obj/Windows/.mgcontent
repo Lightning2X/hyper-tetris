@@ -4,6 +4,18 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/SpelFont.spritefont</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/SpelFont.spritefont</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/Background_music.mp3</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/blauw.png</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/blauw2.png</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/block.png</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/End_Laugh.mp3</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/gameover.png</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/Helpmenu.png</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/Mainmenu.png</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/offoptions.png</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/Optionsmenu.png</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/space.mp4</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/hudbackground.png</File>
   </SourceFiles>
 </SourceFileCollection>

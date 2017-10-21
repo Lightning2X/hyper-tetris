@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework.Input;
 
 class Block
 {
-    public int blocktype;
     private Point offset;
     protected int rotation;
     protected bool[,] blockposition = new bool[4, 4];
@@ -120,12 +119,9 @@ class Block
         else
             return null;
     }
-    public int Blocktype
-    {
-        get { return blocktype; }
-    }
 
-    public void Draw(GameTime gameTime, SpriteBatch s, Texture2D block)
+    // Draw the block, and make a vector2 so that the nextblock can be given another position on the screen (defaults to zero so the actual block will not deal with this variable)
+    public void Draw(GameTime gameTime, SpriteBatch s, Texture2D block, Vector2 hudoffset = default(Vector2))
     {
         for (int x = 0; x < 4; x++)
         {
@@ -133,7 +129,7 @@ class Block
             {
                 if (blockposition[x, y])
                 {
-                    s.Draw(block, new Vector2(((offset.X + x) * block.Width), ((offset.Y + y) * block.Height)), Color.White);
+                    s.Draw(block, new Vector2(hudoffset.X + ((offset.X + x) * block.Width), hudoffset.Y + ((offset.Y + y) * block.Height)), Color.White);
                 }
             }
         }

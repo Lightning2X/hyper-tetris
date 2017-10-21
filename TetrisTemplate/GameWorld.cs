@@ -17,9 +17,9 @@ class GameWorld
 
     enum GameState { Menu, Options, Help, Playing, GameOver }
 
-    // screen width and height
-
-    int screenWidth, screenHeight, Highscore;
+    // makes a rectangle of the screen so that a video can be played as background during gameplay
+    Rectangle display;
+    int Highscore;
     double timer, timerlimit;
 
     //random number generator
@@ -32,44 +32,48 @@ class GameWorld
 
     // sprite for representing a single tetris block element
 
-    Texture2D block, helpmenu, MainMenu, OptionsMenu, OffSprite, blauwsprite, blauwsprite2, GameOverSprite;
-    Vector2 ScorePosition = new Vector2(370, 0);
+    Texture2D block, helpmenu, MainMenu, OptionsMenu, OffSprite, blauwsprite, GameOverSprite;
     Vector2 Gameoverscore = new Vector2(70, 380);
     Vector2 Highscorepositie = new Vector2(70, 420);
     Vector2 Musicoff = new Vector2(250, 260);
-    Vector2 blauw1 = new Vector2(360, 0);
-    Vector2 NexpiecePosition = new Vector2(410, 120);
-    bool music = false;
+
+    // make a boolean for if the music is playing and if a block is placed 
+    bool music = false, placed = false;
 
     // the current game state
 
     GameState gameState;
-    // the main playing grid
-
+    // the main playing grd
     TetrisGrid grid;
-    Block newblock;
+    Block newblock, nextblock;
+    HUD hud;
+    VideoPlayer videoplayer;
+    Video backgroundvideo;
     SoundEffect laugher;
     SoundEffect backGroundMusic;
 
-    public GameWorld(int width, int height, ContentManager Content)
+    public GameWorld(ContentManager Content, Point screencoordinates, Point screendimensions)
     {
-        screenWidth = width;
-        screenHeight = height;
         random = new Random();
+        display = new Rectangle(screencoordinates.X, screencoordinates.Y, screendimensions.X, screendimensions.Y);
         gameState = GameState.Menu;
+        videoplayer = new VideoPlayer();
+        newblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
+        nextblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
+        hud = new HUD(Content);
+
+        backgroundvideo = Content.Load<Video>("space");
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         helpmenu = Content.Load<Texture2D>("Helpmenu");
         OffSprite = Content.Load<Texture2D>("offoptions");
         OptionsMenu = Content.Load<Texture2D>("OptionsMenu");
         blauwsprite = Content.Load<Texture2D>("blauw");
-        blauwsprite2 = Content.Load<Texture2D>("blauw2");
         MainMenu = Content.Load<Texture2D>("Mainmenu");
         GameOverSprite = Content.Load<Texture2D>("gameover");
         grid = new TetrisGrid(block);
         timer = 0;
         timerlimit = 1;
-        newblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
         Highscore = 0;
     //    backGroundMusic = Content.Load<SoundEffect>("Background_music");
     //    laugher = Content.Load<SoundEffect>("End_Laugh");
@@ -79,14 +83,7 @@ class GameWorld
     {
 
     }
-    protected void NextPiece()
-    {
-        TetrisGame.Variables.score += 10;
-    }
-    protected void Additionaleffects()
-    {
 
-    }
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
     {
         if(newblock != null)
@@ -107,6 +104,20 @@ class GameWorld
                     newblock.RotateLeft();
                 }
             }
+            if (inputHelper.KeyPressed(Keys.W, false))
+            {
+                // Beweegt het blok meteen naar beneden, gebruikt de override in TrymoveDown om te kijken of het blokje al geplaatst is met behulp van de bool placed;
+                for(int i = 0; i < TetrisGrid.GridHeight; i++)
+                {
+                    TryMoveDown(true);
+                    if (placed)
+                    {
+                        placed = false;
+                        break;
+                    }
+                }
+            }
+
             if (inputHelper.KeyPressed(Keys.S, true))
             {
                 TryMoveDown();
@@ -182,21 +193,28 @@ class GameWorld
         }
         if (gameState == GameState.Playing)
         {
+            videoplayer.Play(backgroundvideo);
+            grid.Update(gameTime);
             Clock(gameTime);
-            if (TetrisGame.Variables.score > 1000)
+            if (TetrisGame.Variables.score > 1000000000)
             {
                 gameState = GameState.GameOver;
             }
         }
     }
-    private void TryMoveDown()
+    private void TryMoveDown(bool instant = false)
     {
         newblock.MoveDown();
         if (!grid.IsValid(newblock))
         {
             newblock.MoveUp();
             grid.PlaceBlock(newblock);
-            newblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
+            newblock = nextblock;
+            nextblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
+            if (instant)
+            {
+                placed = true;
+            }
         }
     }
     public void Clock(GameTime gameTime)
@@ -218,13 +236,11 @@ class GameWorld
     {
         if (gameState == GameState.Playing)
         {
-            spriteBatch.Draw(blauwsprite, Vector2.Zero, Color.White);// achtergrond weghalen
+            Texture2D videoframe = videoplayer.GetTexture();
+            spriteBatch.Draw(videoframe, display, Color.White);
             grid.Draw(gameTime, spriteBatch, block);
             newblock.Draw(gameTime, spriteBatch, block);
-            spriteBatch.Draw(blauwsprite2, blauw1, Color.White);
-            string Scorestring = "Score: " + TetrisGame.Variables.score.ToString();
-            spriteBatch.DrawString(font,Scorestring, ScorePosition, Color.Black);
-            spriteBatch.Draw(block, NexpiecePosition, Color.White);
+            hud.MainDraw(gameTime, spriteBatch, nextblock);
         }
         if (gameState == GameState.GameOver)
         {

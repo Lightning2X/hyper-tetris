@@ -89,7 +89,7 @@ class TetrisGrid
     public void PlaceBlock(Block block)
     {
         bool[,] blockgrid = block.BlockGrid;
-        TetrisGame.Variables.score += 10;
+        TetrisGame.Variables.score += 1;
         // Collision with another block in the field
             for (int y = 0; y < 4; y++)
             {
@@ -105,36 +105,29 @@ class TetrisGrid
 
     public void LineisFull()
     {
-        for (int y = 20; y > 0; y--)
+        int linefull = 0;
+        for (int y = GridHeight - 1; y > 0; y--)
         {
+            int numberofblocks = 0;
             for (int x = 0; x < GridWidth; x++)
             {
-                int aantal = 0;
-                int aantalrij = 0;
-                if(maingrid[x,y])
+                if(maingrid[x, y])
                 {
-                   aantal++;
-                }
-                if(aantal == GridWidth)
-                {
-                    aantalrij = y;
-                }
-                /*int aantal = 0;
-                aantal = aantal + Convert.ToInt32(maingrid[x, y]);
-                int aantalrij = y;
-                */if (aantalrij != 0)
-                {
-                    for (int z = aantalrij; z > 0; z--)
-                    {
-                        for (int q = 0; q < GridWidth; q++)
-                        {
-                            maingrid[q, z + 1] = maingrid[q, z];
-                        }
-                    }
-                    TetrisGame.Variables.score += 100;
+                    numberofblocks++;
                 }
             }
-                // hier nog een check als de rij vol is.
+            if(numberofblocks == GridWidth)
+            {
+                linefull++;
+                for (int x = 0; x < GridWidth; x++)
+                {
+                    maingrid[x, y] = maingrid[x, y - 1];
+                }
+            }
+        }
+        if(linefull > 0)
+        {
+            TetrisGame.Variables.score += (int)Math.Pow(25, linefull);
         }
     }
 
