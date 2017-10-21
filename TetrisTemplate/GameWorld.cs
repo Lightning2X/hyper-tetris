@@ -35,7 +35,8 @@ class GameWorld
     Texture2D block, helpmenu, MainMenu, OptionsMenu, OffSprite, blauwsprite, GameOverSprite;
     Vector2 Gameoverscore = new Vector2(70, 380);
     Vector2 Highscorepositie = new Vector2(70, 420);
-    Vector2 Musicoff = new Vector2(250, 260);
+    Vector2 Videooff = new Vector2(255, 124);
+    Vector2 Musicoff = new Vector2(255, 289);
 
     // make a boolean for if the music is playing and if a block is placed 
     bool music = false, placed = false, video = false;
@@ -63,11 +64,11 @@ class GameWorld
         StartButton = new Rectangle(15, 90, 380, 80);
         HelpButton = new Rectangle(15, 90, 380, 80);
         OptionsButton = new Rectangle(15, 90, 380, 80);
-        FromOptionsToMain = new Rectangle(15, 90, 380, 80);
-        FromHelpToMain = new Rectangle(15, 90, 380, 80);
-        FromGameOverToMain = new Rectangle(15, 90, 380, 80);
-        VidoeOff = new Rectangle(15, 90, 380, 80);
-        MusicOff = new Rectangle(15, 90, 380, 80);
+        FromOptionsToMain = new Rectangle(13, 439, 300, 50);
+        FromHelpToMain = new Rectangle(9, 467, 300, 50);
+        FromGameOverToMain = new Rectangle(7, 450, 280, 70);
+        VidoeOff = new Rectangle(255, 124, 150, 150);
+        MusicOff = new Rectangle(255, 289, 150, 150);
 
         backgroundvideo = Content.Load<Video>("space");
         block = Content.Load<Texture2D>("block");
@@ -88,7 +89,7 @@ class GameWorld
     public void Reset()
     {
         grid.Clear();
-        TetrisGame.Variables.score = 0;
+        TetrisGame.score = 0;
     }
 
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
@@ -269,12 +270,12 @@ class GameWorld
         if (gameState == GameState.GameOver)
         {
             spriteBatch.Draw(GameOverSprite, Vector2.Zero, Color.White);
-            string Scorestring = "Score: " + TetrisGame.Variables.score.ToString();
+            string Scorestring = "Score: " + TetrisGame.score.ToString();
             string HighScorestring = "HighScore: " + Highscore.ToString();
             spriteBatch.DrawString(font, Scorestring, Gameoverscore, Color.Black);
-            if( Highscore < TetrisGame.Variables.score )
+            if( Highscore < TetrisGame.score )
                 {
-                Highscore = TetrisGame.Variables.score;
+                Highscore = TetrisGame.score;
             }
             spriteBatch.DrawString(font, HighScorestring, Highscorepositie, Color.Black);
         }
