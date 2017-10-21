@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/optionsbutton.png</SourceFile>
-  <SourceTime>2017-10-21T15:26:24.7846414+02:00</SourceTime>
-  <DestFile>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/bin/Windows/optionsbutton.xnb</DestFile>
-  <DestTime>2017-10-21T15:48:53.3691015+02:00</DestTime>
+  <SourceFile>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/optionsbutton.png</SourceFile>
+  <SourceTime>2017-10-21T21:16:42.6894197+02:00</SourceTime>
+  <DestFile>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/bin/Windows/optionsbutton.xnb</DestFile>
+  <DestTime>2017-10-21T21:18:17.6398687+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

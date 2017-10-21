@@ -25,7 +25,6 @@ C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX
 C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\obj\x86\Debug\Tetris.exe
 C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\obj\x86\Debug\Tetris.pdb
-C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\obj\x86\Debug\Super Hyper Tetris.csprojResolveAssemblyReference.cache
 C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\obj\x86\Debug\Super Hyper Tetris.csprojResolveAssemblyReference.cache
 C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\obj\x86\Debug\Tetris.exe
 C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\obj\x86\Debug\Tetris.pdb
@@ -83,9 +82,6 @@ C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\obj\x86\Debug\Super Hyper Tetris.csprojResolveAssemblyReference.cache
 C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\Helpmenu.png
-C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\xblock.png
-C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\bomblock.png
-C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\rblock.png
 C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\offoptions.png
 C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\Helpmenu.png
 C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\Optionsmenu.png
@@ -97,11 +93,8 @@ C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\Helpmenu.png
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\Mainmenu.png
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\Optionsmenu.png
-C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\blauw.png
-C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\blauw2.png
 C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\gameover.png
 C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\Mainmenu.png
-C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\offoptions.png
 C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\Optionsmenu.png
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\Background_music.wma
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\Background_music.xnb
@@ -133,3 +126,35 @@ C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\menu_music.xnb
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\levelchime.xnb
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\placeblock.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\Background_music.wma
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\Background_music.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\blauw.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\blauw2.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\block.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\End_Laugh.wma
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\End_Laugh.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\gameover.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\gobackbutton.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\helpbutton.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\Helpmenu.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\hudbackground.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\levelchime.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\Mainmenu.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\main_highlevel.wma
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\main_highlevel.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\menu_music.wma
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\menu_music.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\musicbutton_OFF.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\musicbutton_ON.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\offoptions.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\optionsbutton.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\Optionsmenu.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\placeblock.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\playbutton.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\space.mp4
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\space.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\spacebackground.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\videobutton_OFF.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\videobutton_ON.xnb
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\obj\x86\Debug\Super Hyper Tetris.csprojResolveAssemblyReference.cache
+C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\game_over_snd.xnb

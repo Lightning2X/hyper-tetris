@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/videobutton_ON.png</SourceFile>
-  <SourceTime>2017-10-21T18:37:33.087208+02:00</SourceTime>
-  <DestFile>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/bin/Windows/videobutton_ON.xnb</DestFile>
-  <DestTime>2017-10-21T18:44:43.9257285+02:00</DestTime>
+  <SourceFile>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/videobutton_ON.png</SourceFile>
+  <SourceTime>2017-10-21T21:16:42.7362885+02:00</SourceTime>
+  <DestFile>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/bin/Windows/videobutton_ON.xnb</DestFile>
+  <DestTime>2017-10-21T21:18:17.655496+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

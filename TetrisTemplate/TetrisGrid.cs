@@ -82,7 +82,7 @@ class TetrisGrid
     public void PlaceBlock(Block block)
     {
         bool[,] blockgrid = block.BlockGrid;
-        TetrisGame.Score.score += 1;
+        Score.currentscore += 1;
         // Collision with another block in the field
             for (int y = 0; y < 4; y++)
             {
@@ -95,47 +95,42 @@ class TetrisGrid
                 }
             }
     }
-
+    public void MoveRowsDown(int height)
+    {
+        for (int y = height - 1; y >= 0; y--)
+        {
+            for (int x = 0; x < GridWidth; x++)
+            {
+                maingrid[x, y + 1] = maingrid[x, y];
+                maingrid[x, y] = false;
+            }
+        }
+        Score.currentscore += 25;
+    }
     public void LineisFull()
     {
-        List<int> fullrows = new List<int>();
-        for (int y = GridHeight - 1; y > 0; y--)
+        int clearedlines = 0;
+        for (int y = 0; y < GridHeight; y++)
         {
-            int numberofblocks = 0;
+            int numberfull = 0;
             for (int x = 0; x < GridWidth; x++)
             {
                 if (maingrid[x, y])
                 {
-                    numberofblocks++;
+                    numberfull++;
                 }
-                if (numberofblocks == GridWidth)
+                if (numberfull == GridWidth)
                 {
-                    fullrows.Add(y);
+                    for(x = 0; x < GridWidth - 1; x++)
+                    {
+                        maingrid[x, y] = false;
+                    }
+                    MoveRowsDown(y);
                 }
+
             } 
 
         }
-        if(fullrows.Count > 0)
-        {
-            TetrisGame.Score.score += fullrows.Count * (20 + (fullrows.Count * 5));
-            for (int y = GridHeight - 1; y > 0; y--)
-            {
-                for (int row = 0; row < fullrows.Count - 1; row++)
-                {
-                    maingrid[row, fullrows[row]] = false;
-                }
-            }
-            for (int y = GridHeight - 1; y > 0; y--)
-            {
-                for (int x = 0; x < GridWidth; x++)
-                {
-                    maingrid[x, y] = maingrid[x, y - 1];
-                }
-            }
-
-        }
-
-
     }
 
     public void Update(GameTime gameTime)

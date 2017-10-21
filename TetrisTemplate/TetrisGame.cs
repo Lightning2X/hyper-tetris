@@ -11,8 +11,6 @@ class TetrisGame : Game
     SpriteBatch spriteBatch;
     InputHelper inputHelper;
     GameWorld gameWorld;
-    public static int score = 0;
-    public static int highscore = 0;
     public static bool showmouse = true;
     private Point screendimensions;
 
@@ -21,12 +19,6 @@ class TetrisGame : Game
     {
         TetrisGame game = new TetrisGame();
         game.Run();
-    }
-
-    public class Score
-    {
-        public static int score = 0;
-        public static int highscore = 0;
     }
 
     public TetrisGame()
@@ -71,4 +63,10 @@ class TetrisGame : Game
         gameWorld.Draw(gameTime, spriteBatch);
         spriteBatch.End();
     }
+}
+
+// global class for keeping the score 
+static class Score
+{
+    public static int currentscore = 0, highscore = 0;
 }

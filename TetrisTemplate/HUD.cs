@@ -34,8 +34,8 @@ class HUD
     public void GameOverScreen (GameTime gameTime, SpriteBatch s)
     {
         s.Draw(gameover, Vector2.Zero, Color.White);
-        string Scorestring = "Score: " + TetrisGame.Score.score.ToString();
-        string HighScorestring = "High Score: " + TetrisGame.Score.highscore.ToString();
+        string Scorestring = "Score: " + Score.currentscore.ToString();
+        string HighScorestring = "High Score: " + Score.highscore.ToString();
         s.DrawString(font, Scorestring, new Vector2(160, 380), Color.Black);
         s.DrawString(font, HighScorestring, new Vector2(160, 420), Color.Black);
     }
@@ -55,7 +55,7 @@ class HUD
         // Draw the hud's background
         s.Draw(hudbackground, new Vector2(offset, 0), Color.White);
         // Draw the score next to the playing field
-        string Scorestring = "Score: " + TetrisGame.Score.score.ToString();
+        string Scorestring = "Score: " + Score.currentscore.ToString();
         string Levelstring = "Level: " + GameWorld.level.ToString();
         s.DrawString(font, Scorestring, new Vector2(25 + offset , 0), Color.Black);
         s.DrawString(font, Levelstring, new Vector2(25 + offset, 25), Color.Black);

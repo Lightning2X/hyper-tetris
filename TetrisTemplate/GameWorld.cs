@@ -14,7 +14,7 @@ class GameWorld
 {
 
     // enum for different game states (playing or game over
-    enum GameState { Menu, Options, Help, Playing, GameOver }
+    enum GameState { Menu, Loading, Options, Help, Playing, GameOver }
 
     // makes a rectangle of the screen so that a video can be played as background during gameplay
     Rectangle display;
@@ -31,7 +31,7 @@ class GameWorld
     // sprite for representing a single tetris block element
     Texture2D block, playbutton, optionsbutton, helpbutton, backbutton, musicbuttonON, musicbuttonOFF, videobuttonON, videobuttonOFF, alternativebackground;
     Song menu, playing, gameover;
-    SoundEffect placeblocksound, levelup;
+    SoundEffect placeblocksound, levelup, gameoversound;
     // Make booleans for the option menu (for turning music on/off or the video background on/off and make a boolean for the W key to check if a block was placed
     bool music = true;
     bool videoison = true;
@@ -55,6 +55,7 @@ class GameWorld
         playing = Content.Load<Song>("main_highlevel");
         placeblocksound = Content.Load<SoundEffect>("placeblock");
         levelup = Content.Load<SoundEffect>("levelchime");
+        gameoversound = Content.Load<SoundEffect>("game_over_snd");
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         playbutton = Content.Load<Texture2D>("playbutton");
@@ -82,31 +83,25 @@ class GameWorld
         nextblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
 
         display = new Rectangle(screencoordinates.X, screencoordinates.Y, screendimensions.X, screendimensions.Y);
-        gameState = GameState.Menu;
+        gameState = GameState.Loading;
         timer = 0;
         level = 0;
         timerlimit = 1.5;
         MediaPlayer.IsRepeating = true;
         MediaPlayer.Volume = 0.5f;
-        MediaPlayer.Play(menu);
     }
 
     public void Reset()
     {
         grid.Clear();
         blocksplaced = 0;
-        TetrisGame.Score.score = 0;
+        Score.currentscore = 0;
     }
 
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
     {
         if (gameState == GameState.Menu)
         {
-            if (music)
-            {
-                MediaPlayer.Play(menu);
-            }
-
             if (inputHelper.MouseLeftButtonPressed())
             {
                 if (Play.IsClicked(inputHelper))
@@ -198,12 +193,16 @@ class GameWorld
             {
                 if (Back.IsClicked(inputHelper))
                 {
-                    gameState = GameState.Menu;
+                    gameState = GameState.Loading;
                 }
 
                 if (Musicbutton.IsClicked(inputHelper))
                 {
                     music = !music;
+                    if (!music)
+                    {
+                        MediaPlayer.Stop();
+                    }
                 }
 
                 if (Videobutton.IsClicked(inputHelper))
@@ -218,55 +217,27 @@ class GameWorld
             {
                 if (Back.IsClicked(inputHelper))
                 {
-                    gameState = GameState.Menu;
+                    gameState = GameState.Loading;
                 }
             }
         }
     }
     public void Update(GameTime gameTime, InputHelper inputhelper)
     {
-
-        if (gameState == GameState.Menu)
+        if (gameState == GameState.Loading)
         {
-            if (inputhelper.KeyPressed(Keys.P, true))// startknop
+            if (music)
             {
-                Reset();
-                gameState = GameState.Playing;
+                MediaPlayer.Play(menu);
             }
-            if (inputhelper.KeyPressed(Keys.H, true)) // helpknop
-            {
-                gameState = GameState.Help;
-            }
-            if (inputhelper.KeyPressed(Keys.O, true)) // optiesnop
-            {
-                gameState = GameState.Options;
-            }
-        }
-
-        if (gameState == GameState.Options)
-        {
-           
-        }
-
-        if (gameState == GameState.Help)
-        {
-            if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
-            {
-                gameState = GameState.Menu;
-            }
+            gameState = GameState.Menu;
         }
 
         if (gameState == GameState.GameOver)
         {
-            if (TetrisGame.Score.highscore < TetrisGame.Score.score)
+            if (Score.highscore < Score.currentscore)
             {
-                TetrisGame.Score.highscore = TetrisGame.Score.score;
-            }
-
-            if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
-            {
-                TetrisGame.showmouse = true;
-                gameState = GameState.Menu;
+                Score.highscore = Score.currentscore;
             }
         }
 
@@ -292,6 +263,8 @@ class GameWorld
 
             if (!grid.IsValid(newblock))
             {
+                MediaPlayer.Stop();
+                gameoversound.Play();
                 gameState = GameState.GameOver;
             }
 

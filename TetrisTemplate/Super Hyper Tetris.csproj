@@ -65,6 +65,7 @@
     <Content Include="Content\gameover.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\game_over_snd.wav" />
     <Content Include="Content\helpbutton.png" />
     <Content Include="Content\Helpmenu.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/placeblock.wav</SourceFile>
-  <SourceTime>2017-10-21T20:01:27.6989602+02:00</SourceTime>
-  <DestFile>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/bin/Windows/placeblock.xnb</DestFile>
-  <DestTime>2017-10-21T20:06:28.2010187+02:00</DestTime>
+  <SourceFile>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/placeblock.wav</SourceFile>
+  <SourceTime>2017-10-21T21:16:42.6894197+02:00</SourceTime>
+  <DestFile>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/bin/Windows/placeblock.xnb</DestFile>
+  <DestTime>2017-10-21T21:18:20.9953389+02:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

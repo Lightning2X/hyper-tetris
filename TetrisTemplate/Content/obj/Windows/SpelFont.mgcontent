@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/SpelFont.spritefont</SourceFile>
-  <SourceTime>2017-10-21T12:14:40.943634+02:00</SourceTime>
-  <DestFile>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/bin/Windows/SpelFont.xnb</DestFile>
-  <DestTime>2017-10-21T16:33:36.3328527+02:00</DestTime>
+  <SourceFile>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/SpelFont.spritefont</SourceFile>
+  <SourceTime>2017-10-21T21:16:42.7362885+02:00</SourceTime>
+  <DestFile>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/bin/Windows/SpelFont.xnb</DestFile>
+  <DestTime>2017-10-21T21:18:17.0616838+02:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
