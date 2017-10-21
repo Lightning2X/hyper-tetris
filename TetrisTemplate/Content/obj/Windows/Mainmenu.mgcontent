@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/Mainmenu.png</SourceFile>
-  <SourceTime>2017-10-18T21:12:22.9182812+02:00</SourceTime>
+  <SourceTime>2017-10-21T15:18:32.2690695+02:00</SourceTime>
   <DestFile>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/bin/Windows/Mainmenu.xnb</DestFile>
-  <DestTime>2017-10-21T13:56:20.0463694+02:00</DestTime>
+  <DestTime>2017-10-21T15:19:47.6818772+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

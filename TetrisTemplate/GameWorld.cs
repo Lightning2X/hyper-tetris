@@ -48,9 +48,8 @@ class GameWorld
     Block newblock, nextblock;
     HUD hud;
     VideoPlayer videoplayer;
-    //Video backgroundvideo;
-    SoundEffect laugher;
-    Song backGroundMusic;
+    Video backgroundvideo;
+    Song BackGroundMusic;
 
     public GameWorld(ContentManager Content, Point screencoordinates, Point screendimensions)
     {
@@ -68,7 +67,7 @@ class GameWorld
         FromHelpToMain = new Rectangle(15, 90, 380, 80);
         FromGameOverToMain = new Rectangle(15, 90, 380, 80);
 
-        //backgroundvideo = Content.Load<Video>("space");
+        backgroundvideo = Content.Load<Video>("space");
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
         helpmenu = Content.Load<Texture2D>("Helpmenu");
@@ -81,8 +80,7 @@ class GameWorld
         timer = 0;
         timerlimit = 1;
         Highscore = 0;
-    //    backGroundMusic = Content.Load<SoundEffect>("Background_music");
-    //    laugher = Content.Load<SoundEffect>("End_Laugh");
+    //    BackGroundMusic = Content.Load<Song>("Background_music");
     }
 
     public void Reset()
@@ -195,12 +193,12 @@ class GameWorld
 
         if (gameState == GameState.Playing)
         {
-      //      videoplayer.Play(backgroundvideo);
+            videoplayer.Play(backgroundvideo);
             grid.Update(gameTime);
             Clock(gameTime);
             if(music)
             {
-             //backGroundMusic.Play;
+             //BackGroundMusic.Play();
             }
         }
     }
