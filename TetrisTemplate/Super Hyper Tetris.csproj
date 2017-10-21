@@ -74,13 +74,13 @@
     <Content Include="Content\Mainmenu.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\musicbutton.png" />
-    <Content Include="Content\offoptions.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\videobutton.png" />
+    <Content Include="Content\spacebackground.jpg" />
+    <Content Include="Content\videobutton_OFF.png" />
+    <Content Include="Content\videobutton_ON.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\musicbutton_OFF.png" />
+    <Content Include="Content\musicbutton_ON.png" />
     <Content Include="Content\optionsbutton.png" />
     <Content Include="Content\Optionsmenu.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

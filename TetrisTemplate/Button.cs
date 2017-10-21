@@ -14,6 +14,7 @@ class Button
     {
         this.button = button;
         this.position = position;
+        
     }
 
     public bool IsClicked(InputHelper inputHelper)
@@ -32,3 +33,4 @@ class Button
         s.Draw(button, position, Color.White);
     }
 }
+

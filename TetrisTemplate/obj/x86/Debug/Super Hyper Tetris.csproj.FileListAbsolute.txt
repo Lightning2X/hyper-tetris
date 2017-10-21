@@ -96,7 +96,6 @@ C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Conten
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\gameover.png
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\Helpmenu.png
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\Mainmenu.png
-C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\offoptions.png
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\Optionsmenu.png
 C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\blauw.png
 C:\Users\schag\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\blauw2.png
@@ -123,3 +122,8 @@ C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\optionsbutton.xnb
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\playbutton.xnb
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\gobackbutton.xnb
+C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\musicbutton_OFF.xnb
+C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\musicbutton_ON.xnb
+C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\videobutton_OFF.xnb
+C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\videobutton_ON.xnb
+C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\spacebackground.xnb

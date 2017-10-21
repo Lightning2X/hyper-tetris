@@ -18,9 +18,9 @@ class GameWorld
 
     // makes a rectangle of the screen so that a video can be played as background during gameplay
     Rectangle display;
-    int Highscore;
     double timer, timerlimit;
-
+    int blocksplaced;
+    public static int level;
     //random number generator
     static Random random;
 
@@ -29,8 +29,7 @@ class GameWorld
 
 
     // sprite for representing a single tetris block element
-    Texture2D block, helpmenu, playbutton, optionsbutton, helpbutton, backbutton;
-    Vector2 Musicoff = new Vector2(250, 260);
+    Texture2D block, playbutton, optionsbutton, helpbutton, backbutton, musicbuttonON, musicbuttonOFF, videobuttonON, videobuttonOFF, alternativebackground;
 
     // Make booleans for the option menu (for turning music on/off or the video background on/off and make a boolean for the W key to check if a block was placed
     bool music = false, videoison = true, placed = false;
@@ -42,7 +41,7 @@ class GameWorld
     TetrisGrid grid;
     Block newblock, nextblock;
     HUD hud;
-    Button Play, Help, Options, Back, Music, Video;
+    Button Play, Help, Options, Back, Musicbutton, Videobutton;
     VideoPlayer videoplayer;
     Video backgroundvideo;
 
@@ -51,12 +50,15 @@ class GameWorld
         backgroundvideo = Content.Load<Video>("space");
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
-        helpmenu = Content.Load<Texture2D>("Helpmenu");
         playbutton = Content.Load<Texture2D>("playbutton");
         optionsbutton = Content.Load<Texture2D>("optionsbutton");
         helpbutton = Content.Load<Texture2D>("helpbutton");
         backbutton = Content.Load<Texture2D>("gobackbutton");
-
+        musicbuttonON = Content.Load<Texture2D>("musicbutton_ON");
+        videobuttonON = Content.Load<Texture2D>("videobutton_ON");
+        musicbuttonOFF = Content.Load<Texture2D>("musicbutton_OFF");
+        videobuttonOFF = Content.Load<Texture2D>("videobutton_OFF");
+        alternativebackground = Content.Load<Texture2D>("spacebackground");
 
         random = new Random();
         videoplayer = new VideoPlayer();
@@ -66,19 +68,23 @@ class GameWorld
         Help = new Button(helpbutton, new Vector2(10, 250));
         Options = new Button(optionsbutton, new Vector2(10, 400));
         Back = new Button(backbutton, new Vector2(160, 500));
+        Musicbutton = new Button(musicbuttonON, new Vector2(150, 120));
+        Videobutton = new Button(videobuttonON, new Vector2(150, 300));
+
         newblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
         nextblock = Block.CreateBlock(0, 0, Block.RandomiseBlockType());
 
         display = new Rectangle(screencoordinates.X, screencoordinates.Y, screendimensions.X, screendimensions.Y);
         gameState = GameState.Menu;
         timer = 0;
-        timerlimit = 1;
-        Highscore = 0;
+        level = 0;
+        timerlimit = 1.5;
     }
 
     public void Reset()
     {
         grid.Clear();
+        blocksplaced = 0;
         TetrisGame.Score.score = 0;
     }
 
@@ -91,6 +97,7 @@ class GameWorld
                 if (Play.IsClicked(inputHelper))
                 {
                     TetrisGame.showmouse = false;
+                    Reset();
                     gameState = GameState.Playing;
                 }
                 if (Help.IsClicked(inputHelper))
@@ -170,6 +177,16 @@ class GameWorld
                 {
                     gameState = GameState.Menu;
                 }
+
+                if (Musicbutton.IsClicked(inputHelper))
+                {
+                    music = !music;
+                }
+
+                if (Videobutton.IsClicked(inputHelper))
+                {
+                    videoison = !videoison;
+                }
             }
         }
         if(gameState == GameState.Help)
@@ -205,18 +222,7 @@ class GameWorld
 
         if (gameState == GameState.Options)
         {
-            if (inputhelper.KeyPressed(Keys.S, true) && music == true) // songknop
-            {
-                music = false;//music is off
-            }
-            if (inputhelper.KeyPressed(Keys.Z, true) && music == false) // songknop
-            {
-                music = true; // music is on
-            }
-            if (inputhelper.KeyPressed(Keys.M, true)) // mainmenu knop
-            {
-                gameState = GameState.Menu;
-            }
+           
         }
 
         if (gameState == GameState.Help)
@@ -243,7 +249,10 @@ class GameWorld
 
         if (gameState == GameState.Playing)
         {
-            videoplayer.Play(backgroundvideo);
+            if (videoison)
+            {
+                videoplayer.Play(backgroundvideo);
+            }
             grid.Update(gameTime);
             Clock(gameTime);
         }
@@ -260,6 +269,7 @@ class GameWorld
             {
                 gameState = GameState.GameOver;
             }
+            blocksplaced++;
             nextblock = Block.CreateBlock(RandomNumber(0, 10), 0, Block.RandomiseBlockType());
             if (instant)
             {
@@ -269,25 +279,33 @@ class GameWorld
     }
     public void Clock(GameTime gameTime)
     {
+        if(blocksplaced % 10 == 0)
+        {
+            level = blocksplaced / 10;
+        }
         timer += gameTime.ElapsedGameTime.TotalSeconds;
-        if (timer >= timerlimit)
+        if (timer >= (timerlimit - level / 3))
         {
             timer = 0;
             TryMoveDown();
         }
 
     }
-//    public int NextWorldBlock
- //   {
- //       get { return .blocktype; }
-  //  }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         if (gameState == GameState.Playing)
-        {
-            Texture2D videoframe = videoplayer.GetTexture();
-            spriteBatch.Draw(videoframe, display, Color.White);
+        { 
+            if (videoison)
+            {
+                Texture2D videoframe = videoplayer.GetTexture();
+                spriteBatch.Draw(videoframe, display, Color.White);
+            }
+            else
+            {
+                spriteBatch.Draw(alternativebackground, Vector2.Zero, Color.White);
+            }
+            
             grid.Draw(gameTime, spriteBatch, block);
             newblock.Draw(gameTime, spriteBatch, block);
             hud.MainDraw(gameTime, spriteBatch, nextblock);
@@ -298,25 +316,34 @@ class GameWorld
         }
         if (gameState == GameState.Help)
         {
-            spriteBatch.Draw(helpmenu, Vector2.Zero, Color.White);
+            hud.Help(gameTime, spriteBatch);
             Back.Draw(gameTime, spriteBatch);
         }
         if (gameState == GameState.Options)
         {
-            /*
-            spriteBatch.Draw(OptionsMenu, Vector2.Zero, Color.White);
-            if (!music)// music is off
+            hud.Options(gameTime, spriteBatch);
+            if (videoison)
             {
-                spriteBatch.Draw(OffSprite, Musicoff, Color.White);
-                string Musicoffstring = "Press Z to turn the music off";
-                spriteBatch.DrawString(font, Musicoffstring, new Vector2(40,160), Color.Black);
+                Videobutton = new Button(videobuttonON, new Vector2(150, 300));
+                Videobutton.Draw(gameTime, spriteBatch);
             }
-            else // music is on
+            else
+            {     
+                Videobutton = new Button(videobuttonOFF, new Vector2(150, 300));
+                Videobutton.Draw(gameTime, spriteBatch);
+            }
+
+            if (music)
             {
-                string Musiconstring = "Press S to turn the music on";
-                spriteBatch.DrawString(font, Musiconstring, new Vector2(40, 160), Color.Black);
+                Musicbutton = new Button(musicbuttonON, new Vector2(150, 130));
+                Musicbutton.Draw(gameTime, spriteBatch);
             }
-            */
+            else
+            {
+                Musicbutton = new Button(musicbuttonOFF, new Vector2(150, 130));
+                Musicbutton.Draw(gameTime, spriteBatch);
+            }
+
             Back.Draw(gameTime, spriteBatch);
         }
         

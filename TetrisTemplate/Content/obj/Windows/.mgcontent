@@ -10,7 +10,6 @@
     <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/gameover.png</File>
     <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/Helpmenu.png</File>
     <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/Mainmenu.png</File>
-    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/offoptions.png</File>
     <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/Optionsmenu.png</File>
     <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/space.mp4</File>
     <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/hudbackground.png</File>
@@ -18,5 +17,10 @@
     <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/optionsbutton.png</File>
     <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/playbutton.png</File>
     <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/gobackbutton.png</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/musicbutton_OFF.png</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/musicbutton_ON.png</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/videobutton_OFF.png</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/videobutton_ON.png</File>
+    <File>C:/Users/Lightning/Source/Repos/Superhyperepictetris/TetrisTemplate/Content/spacebackground.jpg</File>
   </SourceFiles>
 </SourceFileCollection>

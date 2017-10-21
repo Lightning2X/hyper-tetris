@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
  
  // a class for representing the Tetris playing grid
@@ -97,30 +98,44 @@ class TetrisGrid
 
     public void LineisFull()
     {
-        int linefull = 0;
+        List<int> fullrows = new List<int>();
         for (int y = GridHeight - 1; y > 0; y--)
         {
             int numberofblocks = 0;
             for (int x = 0; x < GridWidth; x++)
             {
-                if(maingrid[x, y])
+                if (maingrid[x, y])
                 {
                     numberofblocks++;
                 }
-            }
-            if(numberofblocks == GridWidth)
+                if (numberofblocks == GridWidth)
+                {
+                    fullrows.Add(y);
+                }
+            } 
+
+        }
+        if(fullrows.Count > 0)
+        {
+            TetrisGame.Score.score += fullrows.Count * (20 + (fullrows.Count * 5));
+            for (int y = GridHeight - 1; y > 0; y--)
             {
-                linefull++;
+                for (int row = 0; row < fullrows.Count - 1; row++)
+                {
+                    maingrid[row, fullrows[row]] = false;
+                }
+            }
+            for (int y = GridHeight - 1; y > 0; y--)
+            {
                 for (int x = 0; x < GridWidth; x++)
                 {
                     maingrid[x, y] = maingrid[x, y - 1];
                 }
             }
+
         }
-        if(linefull > 0)
-        {
-            TetrisGame.Score.score += (int)Math.Pow(25, linefull);
-        }
+
+
     }
 
     public void Update(GameTime gameTime)

@@ -14,7 +14,7 @@ class HUD
 {
     int offset;
     SpriteFont font;
-    Texture2D block, hudbackground, gameover, menu;
+    Texture2D block, hudbackground, gameover, menu, helpmenu, optionmenu;
     public HUD(ContentManager Content, int hudoffset = 360)
     {
         offset = hudoffset;
@@ -23,6 +23,8 @@ class HUD
         hudbackground = Content.Load<Texture2D>("hudbackground");
         gameover = Content.Load<Texture2D>("gameover");
         menu = Content.Load<Texture2D>("Mainmenu");
+        helpmenu = Content.Load<Texture2D>("Helpmenu");
+        optionmenu = Content.Load<Texture2D>("Optionsmenu");
     }
 
     public void MenuScreen(GameTime gameTime, SpriteBatch s)
@@ -40,7 +42,12 @@ class HUD
 
     public void Options(GameTime gameTime, SpriteBatch s)
     {
+        s.Draw(optionmenu, Vector2.Zero, Color.White);
+    }
 
+    public void Help(GameTime gameTime, SpriteBatch s)
+    {
+        s.Draw(helpmenu, Vector2.Zero, Color.White);
     }
 
     public void MainDraw(GameTime gameTime, SpriteBatch s, Block nextblock)
@@ -49,7 +56,9 @@ class HUD
         s.Draw(hudbackground, new Vector2(offset, 0), Color.White);
         // Draw the score next to the playing field
         string Scorestring = "Score: " + TetrisGame.Score.score.ToString();
+        string Levelstring = "Level: " + GameWorld.level.ToString();
         s.DrawString(font, Scorestring, new Vector2(25 + offset , 0), Color.Black);
+        s.DrawString(font, Levelstring, new Vector2(25 + offset, 25), Color.Black);
         s.DrawString(font, "Next Piece: ", new Vector2(25 + offset, 80), Color.Black);
         s.DrawString(font, ("HYPER" + Environment.NewLine + "TETRIS!"), new Vector2(offset+ 30, 550), Color.Black);
         // Draw the block next to the playingfield
