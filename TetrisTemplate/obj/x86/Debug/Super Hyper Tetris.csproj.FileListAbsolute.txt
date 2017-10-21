@@ -93,8 +93,6 @@ C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Conten
 C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\Mainmenu.png
 C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\gameover.png
 C:\Users\Victor\Source\Repos\Tetris2\TetrisTemplate\bin\Windows\x86\Debug\Content\blauw2.png
-C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\blauw.png
-C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\blauw2.png
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\gameover.png
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\Helpmenu.png
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\Mainmenu.png
@@ -121,3 +119,6 @@ C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\space.mp4
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\space.xnb
 C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\hudbackground.xnb
+C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\helpbutton.xnb
+C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\optionsbutton.xnb
+C:\Users\Lightning\Source\Repos\Superhyperepictetris\TetrisTemplate\bin\Windows\x86\Debug\Content\playbutton.xnb

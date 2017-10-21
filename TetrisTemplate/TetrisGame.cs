@@ -12,6 +12,8 @@ class TetrisGame : Game
     InputHelper inputHelper;
     GameWorld gameWorld;
     public static int score = 0;
+    public static int highscore = 0;
+    public static bool showmouse = true;
     private Point screendimensions;
 
     [STAThread]
@@ -21,9 +23,10 @@ class TetrisGame : Game
         game.Run();
     }
 
-    public class Variables
+    public class Score
     {
         public static int score = 0;
+        public static int highscore = 0;
     }
 
     public TetrisGame()
@@ -56,6 +59,7 @@ class TetrisGame : Game
     {
        // GraphicsDevice.Clear(Color.White);
         spriteBatch.Begin();
+        this.IsMouseVisible = true;
         gameWorld.Draw(gameTime, spriteBatch);
         spriteBatch.End();
     }

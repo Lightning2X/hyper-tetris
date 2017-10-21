@@ -81,7 +81,7 @@ class TetrisGrid
     public void PlaceBlock(Block block)
     {
         bool[,] blockgrid = block.BlockGrid;
-        TetrisGame.Variables.score += 1;
+        TetrisGame.Score.score += 1;
         // Collision with another block in the field
             for (int y = 0; y < 4; y++)
             {
@@ -119,7 +119,7 @@ class TetrisGrid
         }
         if(linefull > 0)
         {
-            TetrisGame.Variables.score += (int)Math.Pow(25, linefull);
+            TetrisGame.Score.score += (int)Math.Pow(25, linefull);
         }
     }
 
