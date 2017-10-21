@@ -272,6 +272,7 @@ class GameWorld
 
         if (gameState == GameState.Playing)
         {
+
             if (videoison)
             {
                 videoplayer.Play(backgroundvideo);
@@ -288,13 +289,22 @@ class GameWorld
             newblock.MoveUp();
             grid.PlaceBlock(newblock);
             newblock = nextblock;
+
             if (!grid.IsValid(newblock))
             {
                 gameState = GameState.GameOver;
             }
+
             placeblocksound.Play();
             blocksplaced++;
             nextblock = Block.CreateBlock(RandomNumber(0, 10), 0, Block.RandomiseBlockType());
+
+            if (blocksplaced % 10 == 0)
+            {
+                levelup.Play();
+                level = blocksplaced / 10;
+            }
+
             if (instant)
             {
                 placed = true;
@@ -303,10 +313,6 @@ class GameWorld
     }
     public void Clock(GameTime gameTime)
     {
-        if(blocksplaced % 10 == 0)
-        {
-            level = blocksplaced / 10;
-        }
         timer += gameTime.ElapsedGameTime.TotalSeconds;
         if (timer >= (timerlimit - level / 5))
         {
