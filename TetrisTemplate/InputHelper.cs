@@ -3,8 +3,6 @@ using Microsoft.Xna.Framework.Input;
 
 class InputHelper
 {
-    protected Vector2 scale, offset;
-
     // current and previous mouse/keyboard states
     MouseState currentMouseState, previousMouseState;
     KeyboardState currentKeyboardState, previousKeyboardState;
@@ -17,8 +15,6 @@ class InputHelper
 
     public InputHelper()
     {
-        scale = Vector2.One;
-        offset = Vector2.Zero;
         keyPressInterval = 25;
         timeSinceLastKeyPress = 0;
     }
