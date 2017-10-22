@@ -16,7 +16,7 @@ class HUD
     SpriteFont font;
     Texture2D block, hudbackground, gameover, menu, helpmenu, optionmenu;
     public HUD(ContentManager Content, int hudoffset = 360)
-    {
+    {   //load content
         offset = hudoffset;
         font = Content.Load<SpriteFont>("SpelFont");
         block = Content.Load<Texture2D>("block");
@@ -26,11 +26,12 @@ class HUD
         helpmenu = Content.Load<Texture2D>("Helpmenu");
         optionmenu = Content.Load<Texture2D>("Optionsmenu");
     }
-
+    // draws menu screen
     public void MenuScreen(GameTime gameTime, SpriteBatch s)
     {
         s.Draw(menu, Vector2.Zero, Color.White);
     }
+    // draws game over screen
     public void GameOverScreen (GameTime gameTime, SpriteBatch s)
     {
         s.Draw(gameover, Vector2.Zero, Color.White);
@@ -39,17 +40,17 @@ class HUD
         s.DrawString(font, Scorestring, new Vector2(160, 380), Color.Black);
         s.DrawString(font, HighScorestring, new Vector2(160, 420), Color.Black);
     }
-
+    // draws options menu
     public void Options(GameTime gameTime, SpriteBatch s)
     {
         s.Draw(optionmenu, Vector2.Zero, Color.White);
     }
-
+    // draws help menu
     public void Help(GameTime gameTime, SpriteBatch s)
     {
         s.Draw(helpmenu, Vector2.Zero, Color.White);
     }
-
+    // drwas main menu
     public void MainDraw(GameTime gameTime, SpriteBatch s, Block nextblock)
     {
         // Draw the hud's background
