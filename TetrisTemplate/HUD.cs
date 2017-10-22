@@ -56,7 +56,7 @@ class HUD
         s.Draw(hudbackground, new Vector2(offset, 0), Color.White);
         // Draw the score next to the playing field
         string Scorestring = "Score: " + Score.currentscore.ToString();
-        string Levelstring = "Level: " + GameWorld.level.ToString();
+        string Levelstring = "Level: " + GameWorld.Level.ToString();
         s.DrawString(font, Scorestring, new Vector2(25 + offset , 0), Color.Black);
         s.DrawString(font, Levelstring, new Vector2(25 + offset, 25), Color.Black);
         s.DrawString(font, "Next Piece: ", new Vector2(25 + offset, 80), Color.Black);

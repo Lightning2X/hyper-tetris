@@ -12,6 +12,7 @@ class TetrisGame : Game
     InputHelper inputHelper;
     GameWorld gameWorld;
     public static bool showmouse = true;
+    public static bool exitgame = false;
     private Point screendimensions;
 
     [STAThread]
@@ -46,6 +47,10 @@ class TetrisGame : Game
         inputHelper.Update(gameTime);
         gameWorld.HandleInput(gameTime, inputHelper);
         gameWorld.Update(gameTime, inputHelper);
+        if (exitgame)
+        {
+            Exit();
+        }
     }
     protected override void Draw(GameTime gameTime)
     {
