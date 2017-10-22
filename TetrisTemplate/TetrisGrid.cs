@@ -52,7 +52,7 @@ class TetrisGrid
         }
     }
 
-    public bool IsValid(Block block)
+    public bool IsValid(Block block)// check if a place is valid and thus is open
     {
         bool[,] blockgrid = block.BlockGrid;
         for (int y = 0; y < 4; y++)
@@ -61,16 +61,16 @@ class TetrisGrid
             {
                 if (blockgrid[x, y])
                 {
-                    if(x + block.OffsetX < 0 || x + block.OffsetX >= GridWidth)
+                    if(x + block.OffsetX < 0 || x + block.OffsetX >= GridWidth)// block will be out of the grid: left and right
                     {
                         return false;
                     }
-                    if(y + block.OffsetY >= GridHeight || y + block.OffsetY < 0)
+                    if(y + block.OffsetY >= GridHeight || y + block.OffsetY < 0)// block will be out of the grid: above and below
                     {
                         return false;
                     }
 
-                    if(maingrid[x + block.OffsetX, y + block.OffsetY])
+                    if(maingrid[x + block.OffsetX, y + block.OffsetY])// the is a block placed at this location
                     {
                         return false;
                     }
@@ -95,7 +95,7 @@ class TetrisGrid
                 }
             }
     }
-    public void MoveRowsDown(int height)
+    public void MoveRowsDown(int height)// move the block down to lowest position
     {
         for (int y = height - 1; y >= 0; y--)
         {
@@ -107,7 +107,7 @@ class TetrisGrid
         }
         Score.currentscore += 25;
     }
-    public void LineisFull()
+    public void LineisFull()// checks and clears full lines
     {
         int clearedlines = 0;
         for (int y = 0; y < GridHeight; y++)

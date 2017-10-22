@@ -4,27 +4,27 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/SpelFont.spritefont</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/block.png</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/gameover.png</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/Helpmenu.png</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/Mainmenu.png</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/Optionsmenu.png</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/space.mp4</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/hudbackground.png</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/helpbutton.png</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/optionsbutton.png</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/playbutton.png</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/gobackbutton.png</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/musicbutton_OFF.png</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/musicbutton_ON.png</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/videobutton_OFF.png</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/videobutton_ON.png</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/spacebackground.jpg</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/main_highlevel.mp3</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/menu_music.mp3</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/placeblock.wav</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/levelchime.wav</File>
-    <File>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/game_over_snd.wav</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/SpelFont.spritefont</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/block.png</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/gameover.png</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/Helpmenu.png</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/Mainmenu.png</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/Optionsmenu.png</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/space.mp4</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/hudbackground.png</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/helpbutton.png</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/optionsbutton.png</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/playbutton.png</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/gobackbutton.png</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/musicbutton_OFF.png</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/musicbutton_ON.png</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/videobutton_OFF.png</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/videobutton_ON.png</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/spacebackground.jpg</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/main_highlevel.mp3</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/menu_music.mp3</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/placeblock.wav</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/levelchime.wav</File>
+    <File>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/game_over_snd.wav</File>
   </SourceFiles>
 </SourceFileCollection>

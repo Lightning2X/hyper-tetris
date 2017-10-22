@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/space.mp4</SourceFile>
-  <SourceTime>2017-10-21T21:16:42.7206634+02:00</SourceTime>
-  <DestFile>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/bin/Windows/space.xnb</DestFile>
-  <DestTime>2017-10-21T21:18:17.6086166+02:00</DestTime>
+  <SourceFile>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/space.mp4</SourceFile>
+  <SourceTime>2017-10-21T13:55:24.5708267+02:00</SourceTime>
+  <DestFile>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/bin/Windows/space.xnb</DestFile>
+  <DestTime>2017-10-22T13:34:28.0754737+02:00</DestTime>
   <Importer>H264Importer</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>VideoProcessor</Processor>
@@ -11,6 +11,6 @@
   <Dependencies />
   <BuildAsset />
   <BuildOutput>
-    <string>C:/Users/schag/Source/Repos/Tetris2/TetrisTemplate/Content/bin/Windows/space.mp4</string>
+    <string>C:/Users/Victor/Source/Repos/Tetris2/TetrisTemplate/Content/bin/Windows/space.mp4</string>
   </BuildOutput>
 </PipelineBuildEvent>

@@ -40,11 +40,13 @@ class GameWorld
     // the current game state
     GameState gameState;
 
-    // the main playing grd
+    // the main playing grid
     TetrisGrid grid;
     Block newblock, nextblock;
+    // hud (menu's)
     HUD hud;
-    Button Play, Help, Options, Back, Musicbutton, Videobutton;
+    // buttons
+    Button Play, Help, Options, Back, Musicbutton, Videobutton; 
     VideoPlayer videoplayer;
     Video backgroundvideo;
 
