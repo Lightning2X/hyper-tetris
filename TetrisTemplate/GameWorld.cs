@@ -17,7 +17,7 @@ class GameWorld
     // makes a rectangle of the screen so that a video can be played as background during gameplay
     Rectangle display;
     // Variables for the timerlimit, the amount of blocks placed (used to increase level) and a static int for the level.
-    double timerlimit;
+    double timerlimit, timer = 0;
     int blocksplaced;
     private static int level;
 
@@ -29,9 +29,9 @@ class GameWorld
 
 
     // Declarations for game assets
-    Texture2D block, playbutton, optionsbutton, helpbutton, backbutton, musicbuttonON, musicbuttonOFF, videobuttonON, videobuttonOFF, alternativebackground;
-    Song menu, playing, gameover;
-    SoundEffect placeblocksound, levelup, gameoversound;
+    Texture2D block, bombblock, playbutton, optionsbutton, helpbutton, backbutton, musicbuttonON, musicbuttonOFF, videobuttonON, videobuttonOFF, alternativebackground;
+    Song menu, playing;
+    SoundEffect placeblocksound, boomsound, levelup, gameoversound;
     Video backgroundvideo;
     // Make booleans for the option menu (for turning music on/off or the video background on/off and make a boolean for the W key to check
     // if a block was placed
@@ -61,9 +61,11 @@ class GameWorld
         menu = Content.Load<Song>("menu_music");
         playing = Content.Load<Song>("main_highlevel");
         placeblocksound = Content.Load<SoundEffect>("placeblock");
+        boomsound = Content.Load<SoundEffect>("explosion");
         levelup = Content.Load<SoundEffect>("levelchime");
         gameoversound = Content.Load<SoundEffect>("game_over_snd");
         block = Content.Load<Texture2D>("block");
+        bombblock = Content.Load<Texture2D>("bomb_block");
         font = Content.Load<SpriteFont>("SpelFont");
         playbutton = Content.Load<Texture2D>("playbutton");
         optionsbutton = Content.Load<Texture2D>("optionsbutton");
@@ -299,6 +301,11 @@ class GameWorld
         newblock.MoveDown();
         if (!grid.IsValid(newblock))
         {
+            bool bomb = false;
+            if(newblock is BlockBOOM)
+            {
+                bomb = true;
+            }
             // move the block back up and place it
             newblock.MoveUp();
             grid.PlaceBlock(newblock);
@@ -312,8 +319,15 @@ class GameWorld
                 gameoversound.Play();
                 gameState = GameState.GameOver;
             }
-            // play a sound for placing a block and increase the blocksplaced variable
-            placeblocksound.Play();
+            // play a sound for placing a block and increase the blocksplaced variable (and an explosion if it was a bomb block)
+            if (bomb)
+            {
+                boomsound.Play();
+            }
+            else
+            {
+                placeblocksound.Play();
+            }
             blocksplaced++;
             // generate a next block
             nextblock = Block.CreateBlock(RandomNumber(0, 10), 0, Block.RandomiseBlockType());
@@ -335,7 +349,6 @@ class GameWorld
     // the speed at which the block moves down)
     public void Clock(GameTime gameTime)
     {
-        double timer = 0;
         timer += gameTime.ElapsedGameTime.TotalSeconds;
         if (timer >= (timerlimit - level / 5))
         {
@@ -362,7 +375,15 @@ class GameWorld
             }
             // Draw the main playing grid, the HUD and the current block
             grid.Draw(gameTime, spriteBatch, block);
-            newblock.Draw(gameTime, spriteBatch, block);
+            // draw the bomb sprite if the block is indeed a bbomb
+            if(newblock is BlockBOOM)
+            {
+                 newblock.Draw(gameTime, spriteBatch, bombblock);
+            }
+            else
+            {
+                 newblock.Draw(gameTime, spriteBatch, block);
+            }
             hud.MainDraw(gameTime, spriteBatch, nextblock);
         }
         if (gameState == GameState.GameOver)

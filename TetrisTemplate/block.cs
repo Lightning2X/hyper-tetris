@@ -90,7 +90,7 @@ class Block
     // block on the HUD
     public static int RandomiseBlockType()
     {
-        int blocktype = GameWorld.RandomNumber(0, 7);
+        int blocktype = GameWorld.RandomNumber(0, 8);
         return blocktype;
     }
     // this Method returns a new Block based on the block type given
@@ -128,6 +128,10 @@ class Block
         {
             // Build Block Z
             return new BlockZ(x, y);
+        }
+        else if (blocktype == 7)
+        {
+            return new BlockBOOM(x, y);
         }
         else
             return null;
@@ -464,4 +468,17 @@ class BlockZ : Block
             blockposition[2, 1] = true;
         }
     }
+}
+// a class for a bomb block
+class BlockBOOM : Block
+{
+    public BlockBOOM(int x, int y) : base(x, y)
+    {
+
+    }
+    protected override void BuildBlockGrid()
+    {
+        blockposition[0, 0] = true;
+    }
+    
 }

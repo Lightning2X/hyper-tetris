@@ -79,16 +79,63 @@ class TetrisGrid
         bool[,] blockgrid = block.BlockGrid;
         // Increase the score
         Score.currentscore += 1;
+        if (block is BlockBOOM)
+        {
+            // boolean to check if the bomb hit the last row
+            bool down = false;
+            // Bomb block only contains one block, so we do not have to check for any other positions other than zero (thus
+            // only the offset)
+            if (block.OffsetY >= GridHeight - 1)
+            {
+                down = true;
+            }
+            // set all positions around the landing place of the bomb block to false
+
+            // if the bomb is not in the top row we set the top position to false
+            if (!(block.OffsetY <= 0))
+            {
+                maingrid[block.OffsetX, block.OffsetY - 1] = false;
+            }
+            // Checks if the bomb is in one of the corners, if it is we cannot delete the blocks left/ right of us, so this is not done
+            if (!(block.OffsetX <= 0))
+            {
+                maingrid[block.OffsetX - 1, block.OffsetY] = false;
+                maingrid[block.OffsetX - 1, block.OffsetY - 1] = false;
+                if (!down)
+                {
+                    maingrid[block.OffsetX - 1, block.OffsetY + 1] = false;
+                }
+            }
+            if (!(block.OffsetX >= GridWidth - 1))
+            {
+                maingrid[block.OffsetX + 1, block.OffsetY] = false;
+                maingrid[block.OffsetX + 1, block.OffsetY - 1] = false;
+                if (!down)
+                {
+                    maingrid[block.OffsetX + 1, block.OffsetY + 1] = false;
+                }
+            }
+            // checks if the block is not on the bottom row, because if we are on the bottom row we cannot delete
+            // blocks below us
+            if (!down)
+            {
+                maingrid[block.OffsetX, block.OffsetY + 1] = false;
+            }
+            Score.currentscore += 4;
+        }
+        else
+        {
             for (int y = 0; y < 4; y++)
             {
                 for (int x = 0; x < 4; x++)
                 {
                     if (blockgrid[x, y])
                     {
-                        maingrid[x+ block.OffsetX, y + block.OffsetY] = blockgrid[x, y];
+                        maingrid[x + block.OffsetX, y + block.OffsetY] = blockgrid[x, y];
                     }
                 }
             }
+        }
     }
     // Move all the rows down from the specified height
     public void MoveRowsDown(int height)

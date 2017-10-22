@@ -11,12 +11,13 @@ class HUD
     // declare a variable for the font
     SpriteFont font;
     // declare additional game assets (mainly for background and hud elements)
-    Texture2D block, hudbackground, gameover, menu, helpmenu, optionmenu;
+    Texture2D block, bombblock, hudbackground, gameover, menu, helpmenu, optionmenu;
     public HUD(ContentManager Content, int hudoffset = 360)
     {   //load content
         offset = hudoffset;
         font = Content.Load<SpriteFont>("SpelFont");
         block = Content.Load<Texture2D>("block");
+        bombblock = Content.Load<Texture2D>("bomb_block");
         hudbackground = Content.Load<Texture2D>("hudbackground");
         gameover = Content.Load<Texture2D>("gameover");
         menu = Content.Load<Texture2D>("Mainmenu");
@@ -62,7 +63,14 @@ class HUD
         s.DrawString(font, Scorestring, new Vector2(25 + offset , 0), Color.Black);
         s.DrawString(font, Levelstring, new Vector2(25 + offset, 25), Color.Black);
         // Draw the next block next to the playing field
-        nextblock.DrawNextBlock(gameTime, s, block, new Point(27 + offset, 120));
+        if(nextblock is BlockBOOM)
+        {
+            nextblock.DrawNextBlock(gameTime, s, bombblock, new Point(27 + offset, 120));
+        }
+        else
+        {
+            nextblock.DrawNextBlock(gameTime, s, block, new Point(27 + offset, 120));
+        }
         s.DrawString(font, "Next Piece: ", new Vector2(25 + offset, 80), Color.Black);
         // Draw utility text (the name of the game)
         s.DrawString(font, ("SUPER" + Environment.NewLine + "TETRIS!"), new Vector2(offset+ 30, 550), Color.Black);
