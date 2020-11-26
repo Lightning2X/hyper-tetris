@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/SpelFont.spritefont</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/block.png</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/gameover.png</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/Helpmenu.png</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/Mainmenu.png</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/Optionsmenu.png</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/space.mp4</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/hudbackground.png</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/helpbutton.png</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/optionsbutton.png</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/playbutton.png</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/gobackbutton.png</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/musicbutton_OFF.png</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/musicbutton_ON.png</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/videobutton_OFF.png</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/videobutton_ON.png</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/spacebackground.jpg</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/main_highlevel.mp3</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/menu_music.mp3</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/placeblock.wav</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/levelchime.wav</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/game_over_snd.wav</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/bomb_block.png</File>
+    <File>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/explosion.wav</File>
+  </SourceFiles>
+</SourceFileCollection>

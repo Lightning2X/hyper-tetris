@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/explosion.wav</SourceFile>
+  <SourceTime>2017-10-22T15:45:29.5696769+02:00</SourceTime>
+  <DestFile>C:/Users/schag/OneDrive/Finished Coding Projects/University/Tetris/TetrisTemplate/Content/bin/Windows/explosion.xnb</DestFile>
+  <DestTime>2017-10-25T11:07:09.2287889+02:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2016-03-30T08:36:08+02:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
